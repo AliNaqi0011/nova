@@ -1,4 +1,4 @@
-import { Context, createContext, useEffect } from 'react';
+import { Context, createContext, useEffect, Suspense } from 'react';
 
 import { AVAILABLE_TEMPLATES } from '@/helpers/constants';
 import { ThemeProvider } from '@mui/material/styles';
@@ -34,7 +34,11 @@ export const ResumeLayout = () => {
       >
         <div className="w-[210mm] h-[296mm] bg-white my-0 mx-auto">
           <StateContext.Provider value={resumeData}>
-            <ThemeProvider theme={selectedTheme}>{Template && <Template />}</ThemeProvider>
+            <ThemeProvider theme={selectedTheme}>
+              <Suspense fallback={<div>Loading...</div>}>
+                {Template && <Template />}
+              </Suspense>
+            </ThemeProvider>
           </StateContext.Provider>
         </div>
       </div>

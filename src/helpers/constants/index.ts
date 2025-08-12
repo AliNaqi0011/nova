@@ -1,4 +1,4 @@
-import dynamic from 'next/dynamic';
+import { ComponentType, lazy } from 'react';
 import { IThemeColor, ITemplate } from './index.interface';
 
 export const SYSTEM_COLORS: IThemeColor[] = [
@@ -30,17 +30,13 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
     id: 'modern',
     name: 'Modern Resume',
     thumbnail: '/templates/modern.png',
-    component: dynamic(() => import('@/templates/modern/MordernTemplate'), {
-      ssr: false,
-    }),
+    component: lazy(() => import('@/templates/modern/MordernTemplate')),
   },
   professional: {
     id: 'professional',
     name: 'Professional Resume',
     thumbnail: '/templates/professional.png',
-    component: dynamic(() => import('@/templates/professional/ProfessionalTemplate'), {
-      ssr: false,
-    }),
+    component: lazy(() => import('@/templates/professional/ProfessionalTemplate')),
   },
 };
 

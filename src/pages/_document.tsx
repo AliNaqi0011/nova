@@ -1,13 +1,13 @@
-import { DocumentContext, DocumentProps, Head, Html, Main, NextScript } from 'next/document';
+import * as React from 'react';
 import {
+  DocumentContext,
   DocumentHeadTags,
   DocumentHeadTagsProps,
   documentGetInitialProps,
 } from '@mui/material-nextjs/v15-pagesRouter';
+import { Head, Html, Main, NextScript, DocumentProps } from 'next/document';
 
-import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
-
-export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
+export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
   return (
     <Html lang="en" className="scroll-smooth">
       <Head>
@@ -31,10 +31,7 @@ export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
   );
 }
 
-Document.getInitialProps = async (ctx: DocumentContext) => {
-  const finalProps = await documentGetInitialProps(ctx, {
-    emotionCache: createEmotionCache({ enableCssLayer: true, key: 'css' }),
-  });
-
+MyDocument.getInitialProps = async (ctx: DocumentContext) => {
+  const finalProps = await documentGetInitialProps(ctx);
   return finalProps;
 };
