@@ -1,16 +1,16 @@
 import Head from 'next/head';
-import HomeLayout from '@/modules/home/HomeLayout';
+import LandingLayout from '@/modules/landing/LandingLayout';
 
 function HomePage() {
   return (
     <div>
       <Head>
-        <title>E-Resume: Home</title>
-        <meta name="description" content="Single Page Resume Builder" />
+        <title>Nova Resume: A new way to build your resume</title>
+        <meta name="description" content="Build your professional resume with Nova Resume" />
         <link rel="icon" type="image/png" href="/icons/resume-icon.png" />
       </Head>
 
-      <HomeLayout />
+      <LandingLayout />
     </div>
   );
 }

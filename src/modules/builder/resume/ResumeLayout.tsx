@@ -35,9 +35,7 @@ export const ResumeLayout = () => {
         <div className="w-[210mm] h-[296mm] bg-white my-0 mx-auto">
           <StateContext.Provider value={resumeData}>
             <ThemeProvider theme={selectedTheme}>
-              <Suspense fallback={<div>Loading...</div>}>
-                {Template && <Template />}
-              </Suspense>
+              <Suspense fallback={<div>Loading...</div>}>{Template && <Template />}</Suspense>
             </ThemeProvider>
           </StateContext.Provider>
         </div>

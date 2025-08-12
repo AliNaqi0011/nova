@@ -1,4 +1,4 @@
-import { ComponentType, lazy } from 'react';
+import { lazy } from 'react';
 import { IThemeColor, ITemplate } from './index.interface';
 
 export const SYSTEM_COLORS: IThemeColor[] = [
