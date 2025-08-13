@@ -3,8 +3,9 @@ import dayjs from 'dayjs';
 import { MutableRefObject } from 'react';
 
 export const dateParser = (dateValue: string | Dayjs | null, outputFormat = 'MMM YYYY') => {
-  if (dateValue === null) return;
+  if (dateValue === null) return '';
   const dayjsDate = dayjs(dateValue);
+  if (!dayjsDate.isValid()) return '';
   return dayjsDate.format(outputFormat);
 };
 
