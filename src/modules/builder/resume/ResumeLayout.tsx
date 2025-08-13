@@ -13,11 +13,11 @@ export let StateContext: Context<any> = createContext(null);
 
 export const ResumeLayout = () => {
   const resumeData = useResumeStore();
-  const zoom = useZoom((state) => state.zoom);
 
   const templateId = useTemplates((state) => state.activeTemplate.id);
   const Template = AVAILABLE_TEMPLATES[templateId].component;
   const selectedTheme = useThemes((state) => state.selectedTheme);
+  const zoom = useZoom((state) => state.zoom);
   StateContext = createContext(resumeData);
 
   useEffect(() => {
@@ -27,12 +27,12 @@ export const ResumeLayout = () => {
   }, []);
 
   return (
-    <div className="mx-5 print:mx-0 mb-2 print:mb-0">
+    <div className="h-full w-full flex items-start justify-center p-8 print:p-0 print:block print:h-auto print:w-auto">
       <div
+        className="flex-shrink-0 origin-top print:scale-100"
         style={{ transform: `scale(${zoom})` }}
-        className="origin-top transition-all duration-300 ease-linear	print:scale-100!"
       >
-        <div className="w-[210mm] h-[296mm] bg-white my-0 mx-auto">
+        <div className="w-[210mm] h-[297mm] bg-white my-0 mx-auto shadow-2xl">
           <StateContext.Provider value={resumeData}>
             <ThemeProvider theme={selectedTheme}>
               <Suspense fallback={<div>Loading...</div>}>{Template && <Template />}</Suspense>

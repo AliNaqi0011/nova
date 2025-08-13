@@ -19,9 +19,13 @@ export const RichtextEditor = memo(({ label, onChange, value }: IRichtext) => {
   const [editorInstanceCreated, setEditorInstanceCreated] = useState(false);
 
   useEffect(() => {
-    if (editorContainerRef.current) {
-      const initEditor = async () => {
-        const { Jodit } = await import('jodit');
+    if (!editorContainerRef.current || editorRef.current) {
+      return;
+    }
+
+    const initEditor = async () => {
+      const { Jodit } = await import('jodit');
+      if (editorContainerRef.current) {
         const editor = Jodit.make(editorContainerRef.current as HTMLTextAreaElement, {
           showCharsCounter: false,
           showWordsCounter: false,
@@ -39,9 +43,16 @@ export const RichtextEditor = memo(({ label, onChange, value }: IRichtext) => {
         editor.value = value;
         editorRef.current = editor;
         setEditorInstanceCreated(true);
-      };
-      initEditor();
-    }
+      }
+    };
+    initEditor();
+
+    return () => {
+      if (editorRef.current) {
+        editorRef.current.destruct();
+        editorRef.current = null;
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

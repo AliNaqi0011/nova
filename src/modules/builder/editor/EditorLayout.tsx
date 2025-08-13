@@ -6,8 +6,15 @@ import ErrorBoundary from '@/helpers/common/components/ErrorBoundary';
 import { OutlinedButton } from '@/helpers/common/atoms/Buttons';
 import { headers } from '@/helpers/constants/editor-data';
 import { resetResumeStore } from '@/stores/useResumeStore';
+import { motion } from 'framer-motion';
+import { X } from 'lucide-react';
 
-const EditorLayout = () => {
+interface EditorLayoutProps {
+  closeEditor?: () => void;
+  isMobile?: boolean;
+}
+
+const EditorLayout = ({ closeEditor, isMobile = false }: EditorLayoutProps) => {
   const [link, setLink] = useState('');
   const section = headers[link];
 
@@ -23,13 +30,27 @@ const EditorLayout = () => {
 
   return (
     <ErrorBoundary>
-      <div className="bg-resume-50 h-full text-resume-800 p-6 overflow-auto relative no-scrollbar shadow-level-4dp">
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className="bg-black/80 backdrop-blur-sm border-l border-white/10 h-full text-gray-300 p-6 overflow-auto relative no-scrollbar"
+      >
+        {isMobile && (
+          <button
+            onClick={closeEditor}
+            className="absolute top-4 right-4 text-gray-400 hover:text-white"
+            aria-label="Close editor"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        )}
         {displayElement}
 
         <div className="mt-8">
           <OutlinedButton onClick={resetResumeStore}>Reset all edits</OutlinedButton>
         </div>
-      </div>
+      </motion.div>
     </ErrorBoundary>
   );
 };

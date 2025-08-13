@@ -10,7 +10,9 @@ const ResumeHeader = () => {
   return (
     <div className="flex items-center justify-between">
       <ResumeTitle title={templateName} />
-      <ResumeController zoomIn={zoomIn} zoomOut={zoomOut} resetZoom={resetZoom} />
+      <div className="hidden md:flex">
+        <ResumeController zoomIn={zoomIn} zoomOut={zoomOut} resetZoom={resetZoom} />
+      </div>
     </div>
   );
 };

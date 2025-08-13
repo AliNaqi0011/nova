@@ -10,13 +10,10 @@ import {
   useTools,
 } from '@/stores/skills';
 
-import { AVAILABLE_TEMPLATES } from '@/helpers/constants';
 import DEFAULT_RESUME_JSON from '@/helpers/constants/resume-data.json';
 import Image from 'next/image';
-import Link from 'next/link';
 import { NavMenuItem } from './components/MenuItem';
 import { PrintResume } from './components/PrintResume';
-import { TemplateSelect } from './components/TemplateSelect';
 import { ThemeSelect } from './components/ThemeSelect';
 import { Toast } from '@/helpers/common/atoms/Toast';
 import exportFromJSON from 'export-from-json';
@@ -27,8 +24,6 @@ import { useEducations } from '@/stores/education';
 import { useExperiences } from '@/stores/experience';
 import { useVoluteeringStore } from '@/stores/volunteering';
 import { Menu, MenuItem } from '@mui/material';
-
-const TOTAL_TEMPLATES_AVAILABLE = Object.keys(AVAILABLE_TEMPLATES).length;
 
 const NavBarLayout = () => {
   const [openToast, setOpenToast] = useState(false);
@@ -129,16 +124,9 @@ const NavBarLayout = () => {
   }, []);
 
   return (
-    <nav className="h-14 w-full bg-resume-800 relative flex py-2.5 pl-2 md:pl-5 pr-1 nd:pr-4 items-center shadow-level-8dp z-20 print:hidden">
-      <Link href="/">
-        <Image src={'/icons/resume-icon.png'} alt="logo" height="36" width="36" />
-      </Link>
+    <nav className="h-14 w-full bg-transparent relative flex py-2.5 pl-2 md:pl-5 pr-1 nd:pr-4 items-center z-20 print:hidden">
       <div className="flex-auto flex justify-between items-center xs:ml-3 md:ml-5">
         <NavBarMenu>
-          <NavMenuItem
-            caption={`Templates (${TOTAL_TEMPLATES_AVAILABLE})`}
-            popoverChildren={<TemplateSelect />}
-          />
           <NavMenuItem caption="Colours" popoverChildren={<ThemeSelect />} />
         </NavBarMenu>
         <div className="hidden md:flex">

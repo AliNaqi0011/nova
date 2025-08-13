@@ -1,13 +1,16 @@
-import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const HeaderTitle = ({ title }: { title: string }) => (
-  <div className="flex items-center my-5 cursor-pointer">
-    <p className="text-xl ml-2">{title}</p>
-
-    <div className="ml-auto pl-4 flex items-center">
-      <Image src="/icons/right-arrow.svg" alt="right-arrow" height="16" width="16" />
+  <motion.div
+    whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
+    className="flex items-center my-2 p-3 rounded-lg cursor-pointer transition-colors duration-200"
+  >
+    <p className="text-lg ml-2 text-white font-medium">{title}</p>
+    <div className="ml-auto pl-4 flex items-center text-gray-400">
+      <ArrowRight className="h-5 w-5" />
     </div>
-  </div>
+  </motion.div>
 );
 
 export default HeaderTitle;
