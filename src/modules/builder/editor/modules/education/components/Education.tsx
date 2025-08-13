@@ -31,17 +31,13 @@ const Education: React.FC<IEducationProps> = ({ educationInfo, currentIndex }) =
           currentExpInfo.score = value;
           break;
         case 'startDate':
-          if (value?.isValid()) {
-            currentExpInfo.startDate = value;
-          }
+          currentExpInfo.startDate = value;
           break;
         case 'isStudyingHere':
           currentExpInfo.isStudyingHere = value;
           break;
         case 'endDate':
-          if (value?.isValid()) {
-            currentExpInfo.endDate = value;
-          }
+          currentExpInfo.endDate = value;
           break;
 
         default:
@@ -110,7 +106,7 @@ const Education: React.FC<IEducationProps> = ({ educationInfo, currentIndex }) =
       <DatePicker
         label="Start date"
         format={DATE_PICKER_FORMAT}
-        value={dayjs(educationInfo.startDate)}
+        value={educationInfo.startDate ? dayjs(educationInfo.startDate) : null}
         onChange={(newDate) => {
           onChangeHandler('startDate', newDate);
         }}
@@ -126,9 +122,9 @@ const Education: React.FC<IEducationProps> = ({ educationInfo, currentIndex }) =
         }}
       />
       <DatePicker
-        label="Start date"
+        label="End date"
         format={DATE_PICKER_FORMAT}
-        value={educationInfo.isStudyingHere ? null : dayjs(educationInfo.endDate)}
+        value={educationInfo.isStudyingHere || !educationInfo.endDate ? null : dayjs(educationInfo.endDate)}
         onChange={(newDate) => {
           onChangeHandler('endDate', newDate);
         }}
