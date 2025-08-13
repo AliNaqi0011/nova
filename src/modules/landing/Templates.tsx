@@ -11,12 +11,12 @@ const templateCategories = [
     templates: [
       {
         name: 'Modern Template 1',
-        imageUrl: 'https://placehold.co/400x560.png',
+        imageUrl: '/templates/modern.png',
         aiHint: 'modern resume',
       },
       {
         name: 'Modern Template 2',
-        imageUrl: 'https://placehold.co/400x560.png',
+        imageUrl: '/templates/professional.png',
         aiHint: 'sleek resume',
       },
       {
@@ -48,12 +48,12 @@ const templateCategories = [
     templates: [
       {
         name: 'Professional Template 1',
-        imageUrl: 'https://placehold.co/400x560.png',
+        imageUrl: '/templates/professional.png',
         aiHint: 'corporate resume',
       },
       {
         name: 'Professional Template 2',
-        imageUrl: 'https://placehold.co/400x560.png',
+        imageUrl: '/templates/modern.png',
         aiHint: 'executive resume',
       },
       {

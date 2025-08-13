@@ -124,7 +124,11 @@ const Education: React.FC<IEducationProps> = ({ educationInfo, currentIndex }) =
       <DatePicker
         label="End date"
         format={DATE_PICKER_FORMAT}
-        value={educationInfo.isStudyingHere || !educationInfo.endDate ? null : dayjs(educationInfo.endDate)}
+        value={
+          educationInfo.isStudyingHere || !educationInfo.endDate
+            ? null
+            : dayjs(educationInfo.endDate)
+        }
         onChange={(newDate) => {
           onChangeHandler('endDate', newDate);
         }}

@@ -38,6 +38,12 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
     thumbnail: '/templates/professional.png',
     component: dynamic(() => import('@/templates/professional/ProfessionalTemplate')),
   },
+  creative1: {
+    id: 'creative1',
+    name: 'Creative 1',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/creative1/Creative1Template')),
+  },
   modern2: {
     id: 'modern2',
     name: 'Modern 2',
@@ -65,31 +71,31 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
   professional2: {
     id: 'professional2',
     name: 'Professional 2',
-    thumbnail: 'https://placehold.co/400x560.png',
+    thumbnail: '/templates/professional.png',
     component: dynamic(() => import('@/templates/professional2/Professional2Template')),
   },
   professional3: {
     id: 'professional3',
     name: 'Professional 3',
-    thumbnail: 'https://placehold.co/400x560.png',
+    thumbnail: '/templates/professional.png',
     component: dynamic(() => import('@/templates/professional3/Professional3Template')),
   },
   professional4: {
     id: 'professional4',
     name: 'Professional 4',
-    thumbnail: 'https://placehold.co/400x560.png',
+    thumbnail: '/templates/professional.png',
     component: dynamic(() => import('@/templates/professional4/Professional4Template')),
   },
   professional5: {
     id: 'professional5',
     name: 'Professional 5',
-    thumbnail: 'https://placehold.co/400x560.png',
+    thumbnail: '/templates/professional.png',
     component: dynamic(() => import('@/templates/professional5/Professional5Template')),
   },
   professional6: {
     id: 'professional6',
     name: 'Professional 6',
-    thumbnail: 'https://placehold.co/400x560.png',
+    thumbnail: '/templates/professional.png',
     component: dynamic(() => import('@/templates/professional6/Professional6Template')),
   },
 };

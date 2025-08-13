@@ -118,7 +118,7 @@ export default function Hero() {
             >
               <div className="absolute -inset-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-2xl opacity-20 blur-2xl"></div>
               <Image
-                src="https://placehold.co/600x600.png"
+                src="/templates/modern.png"
                 alt="Resume Builder Interface"
                 width={600}
                 height={600}

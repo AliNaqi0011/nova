@@ -1,4 +1,4 @@
-interface ReferenceProps {
+export interface ReferenceProps {
   name: string;
   position: string;
   company: string;

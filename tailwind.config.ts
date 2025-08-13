@@ -11,18 +11,25 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-roboto)'],
+        kalam: ['var(--font-kalam)'],
+        'roboto-condensed': ['var(--font-roboto-condensed)'],
+        'roboto-slab': ['var(--font-roboto-slab)'],
+      },
       colors: {
         resume: {
-          50: '#E7EEFA',
-          100: '#C7D6E4',
-          200: '#A8B9CC',
-          300: '#889DB3',
-          400: '#7188A1',
-          500: '#59748F',
-          600: '#4C667E',
-          700: '#3C5268',
-          800: '#2E4052',
-          900: '#1C2C3A',
+          '10': '#f3f8ff',
+          '50': '#E7EEFA',
+          '100': '#C7D6E4',
+          '200': '#A8B9CC',
+          '300': '#889DB3',
+          '400': '#7188A1',
+          '500': '#59748F',
+          '600': '#4C667E',
+          '700': '#3C5268',
+          '800': '#2E4052',
+          '900': '#1C2C3A',
         },
         'custom-grey': '#e2e7ed',
         'custom-grey100': '#e5e5e5',
@@ -37,7 +44,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
 
 export default config;

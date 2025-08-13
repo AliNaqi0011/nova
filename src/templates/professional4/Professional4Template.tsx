@@ -2,10 +2,10 @@ import { StateContext } from '@/modules/builder/resume/ResumeLayout';
 import { useContext } from 'react';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
 
-import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Sidebar from './components/Sidebar';
 
 const Professional4Template: React.FC = () => {
   const { basics, work, education, skills } = useContext(StateContext);

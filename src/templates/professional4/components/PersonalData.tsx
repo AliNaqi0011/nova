@@ -4,7 +4,7 @@ const DataItem = ({ label, value }: { label: string; value: string | number }) =
   </p>
 );
 
-interface PersonalDataProps {
+export interface PersonalDataProps {
   birthday: string | number;
   birthPlace: string | number;
   age: string | number;
