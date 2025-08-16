@@ -5,7 +5,7 @@ import { ResumeTitle } from '../atoms/ResumeTitle';
 import { Button } from '@mui/material';
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || '');
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string);
 
 const ResumeHeader = () => {
   const { zoomIn, zoomOut, resetZoom } = useZoom.getState();
