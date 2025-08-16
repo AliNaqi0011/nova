@@ -22,9 +22,9 @@ const BasicHeader = ({
         },
       }}
     >
-      {tabTitles.map((title: string, index: number) => (
+      {tabTitles.map((title: string) => (
         <Tab
-          key={index}
+          key={title}
           label={title}
           sx={{
             color: 'white',

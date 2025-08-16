@@ -13,14 +13,14 @@ export default function Experience({ work }: { work: IExperienceItem[] }) {
       <SectionTitle title="Work Experience" />
       {work.map((job) => (
         <div key={job.id} className="mb-3">
-          <p className="text-xs">Company: {job.name}</p>
-          <p className="text-xs">Position: {job.position}</p>
-          <p className="text-xs">
+          <div className="text-xs">Company: {job.name}</div>
+          <div className="text-xs">Position: {job.position}</div>
+          <div className="text-xs">
             Year start and end:{' '}
             {`${dateParser(job.startDate, 'YYYY')} - ${
               job.isWorkingHere ? 'Present' : dateParser(job.endDate, 'YYYY')
             }`}
-          </p>
+          </div>
         </div>
       ))}
     </section>

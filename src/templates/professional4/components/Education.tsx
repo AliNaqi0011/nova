@@ -14,14 +14,14 @@ export default function Education({ education }: { education: IEducationItem[] }
       {education.map((edu) => (
         <div key={edu.id} className="mb-3">
           <h4 className="font-bold text-xs uppercase text-gray-600">{edu.studyType}</h4>
-          <p className="text-xs">School: {edu.institution}</p>
-          <p className="text-xs">Course: {edu.area}</p>
-          <p className="text-xs">
+          <div className="text-xs">School: {edu.institution}</div>
+          <div className="text-xs">Course: {edu.area}</div>
+          <div className="text-xs">
             Year:{' '}
             {`${dateParser(edu.startDate, 'YYYY')} - ${
               edu.isStudyingHere ? 'Present' : dateParser(edu.endDate, 'YYYY')
             }`}
-          </p>
+          </div>
         </div>
       ))}
     </section>

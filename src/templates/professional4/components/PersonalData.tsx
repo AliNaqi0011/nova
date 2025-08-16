@@ -1,7 +1,7 @@
 const DataItem = ({ label, value }: { label: string; value: string | number }) => (
-  <p className="text-xs">
+  <div className="text-xs">
     {label}: <span className="font-semibold">{value}</span>
-  </p>
+  </div>
 );
 
 export interface PersonalDataProps {
