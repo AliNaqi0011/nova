@@ -38,6 +38,13 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
     thumbnail: '/templates/professional.png',
     component: dynamic(() => import('@/templates/professional/ProfessionalTemplate')),
   },
+  simple: {
+    id: 'simple',
+    name: 'Simple Resume',
+    thumbnail:
+      'https://user-images.githubusercontent.com/12962887/201484876-75290af9-ccd6-4f6d-be96-6a8fb4f20c4b.png',
+    component: dynamic(() => import('@/templates/simple/SimpleTemplate')),
+  },
   creative1: {
     id: 'creative1',
     name: 'Creative 1',
