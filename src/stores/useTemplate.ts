@@ -13,7 +13,9 @@ export const useTemplates = create<ITemplateStore>((set) => ({
   activeTemplate: AVAILABLE_TEMPLATES['modern'],
 
   setTemplate: (template: ITemplateContent) => {
-    localStorage.setItem('selectedTemplateId', template.id);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedTemplateId', template.id);
+    }
     set({ activeTemplate: template });
   },
 }));

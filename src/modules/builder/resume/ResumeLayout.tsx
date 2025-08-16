@@ -1,3 +1,4 @@
+
 import { Suspense, useEffect, useState } from 'react';
 
 import { AVAILABLE_TEMPLATES } from '@/helpers/constants';
@@ -10,12 +11,9 @@ import { useZoom } from '@/stores/useZoom';
 
 const ResumeClient = () => {
   const resumeData = useResumeStore();
-  const templateId = useTemplates((state) => state.activeTemplate.id);
-  const setTemplate = useTemplates((state) => state.setTemplate);
-  const selectedTheme = useThemes((state) => state.selectedTheme);
-  const zoom = useZoom((state) => state.zoom);
-
-  const Template = AVAILABLE_TEMPLATES[templateId]?.component;
+  const { activeTemplate, setTemplate } = useTemplates();
+  const { selectedTheme } = useThemes();
+  const { zoom } = useZoom();
 
   useEffect(() => {
     const selectedTemplateId = localStorage.getItem('selectedTemplateId');
@@ -24,12 +22,10 @@ const ResumeClient = () => {
     }
   }, [setTemplate]);
 
+  const Template = AVAILABLE_TEMPLATES[activeTemplate.id]?.component;
+
   if (!Template) {
-    return (
-      <div className="w-[210mm] h-[297mm] bg-white my-0 mx-auto shadow-2xl flex items-center justify-center">
-        <div>Loading Template...</div>
-      </div>
-    );
+    return null; // Render nothing if template is not found
   }
 
   return (
@@ -40,7 +36,7 @@ const ResumeClient = () => {
       <div className="w-[210mm] h-[297mm] bg-white my-0 mx-auto shadow-2xl">
         <StateContext.Provider value={resumeData}>
           <ThemeProvider theme={selectedTheme}>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div>Loading Template...</div>}>
               <Template />
             </Suspense>
           </ThemeProvider>
