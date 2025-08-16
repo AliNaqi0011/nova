@@ -5,7 +5,7 @@ import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 
 export default function Experience({ work }: { work: IExperienceItem[] }) {
   return (
-    <section className="mt-5">
+    <section className="mt-5 avoid-page-break">
       <SectionTitle>EXPERIENCE</SectionTitle>
       {work.map((job) => (
         <div key={job.id} className="mt-3 relative">

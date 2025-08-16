@@ -6,7 +6,7 @@ export default function KeyAchievements({ awards }: { awards: IAwardItem[] }) {
   const achievements = awards.slice(0, 2);
   if (achievements.length === 0) return null;
   return (
-    <section className="mt-5">
+    <section className="mt-5 avoid-page-break">
       <SectionTitle>KEY ACHIEVEMENTS</SectionTitle>
       <div className="grid grid-cols-2 gap-6 mt-2">
         {achievements.map((award) => (

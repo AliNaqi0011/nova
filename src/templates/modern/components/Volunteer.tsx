@@ -16,7 +16,7 @@ export const VolunteerSection = ({ volunteer }: { volunteer: IVolunteer[] }) => 
   });
 
   return (
-    <div className="mb-3" ref={volunteerRef}>
+    <div className="mb-3 avoid-page-break" ref={volunteerRef}>
       <SectionHeading title="Volunteering" />
 
       {volunteer.map((item: IVolunteer, index: number) => {

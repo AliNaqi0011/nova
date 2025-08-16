@@ -16,7 +16,7 @@ export const AwardSection = ({ awardsReceived }: { awardsReceived: IAwards[] }) 
   });
 
   return (
-    <div className="mb-2" ref={awardsRef}>
+    <div className="mb-2 avoid-page-break" ref={awardsRef}>
       <SectionHeading title="Awards" />
 
       {awardsReceived.map((award: IAwards, index: number) => {

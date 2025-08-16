@@ -14,7 +14,7 @@ export const EducationSection = ({ education }: { education: IEducation[] }) => 
   });
 
   return (
-    <div className="mb-3" ref={educationRef}>
+    <div className="mb-3 avoid-page-break" ref={educationRef}>
       <SectionHeading title="Education" />
 
       {education.map((item: IEducation, index: number) => {

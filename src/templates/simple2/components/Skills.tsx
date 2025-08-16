@@ -10,7 +10,7 @@ const SkillTag = ({ name }: { name: string }) => (
 export default function Skills({ skills }: { skills: ISkillItem[] }) {
   if (skills.length === 0) return null;
   return (
-    <section>
+    <section className="avoid-page-break">
       <SectionTitle>SKILLS</SectionTitle>
       <div className="flex flex-wrap gap-2 mt-2">
         {skills.map((skill) => (

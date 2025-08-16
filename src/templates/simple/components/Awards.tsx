@@ -5,7 +5,7 @@ import SectionTitle from './SectionTitle';
 export default function Awards({ awards }: { awards: IAwardItem[] }) {
   if (awards.length === 0) return null;
   return (
-    <section className="mt-5">
+    <section className="mt-5 avoid-page-break">
       <SectionTitle>AWARDS</SectionTitle>
       <div className="grid grid-cols-3 gap-6 mt-2">
         {awards.map((award) => (

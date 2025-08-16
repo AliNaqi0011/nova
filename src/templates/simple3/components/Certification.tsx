@@ -4,7 +4,7 @@ import SectionTitle from './SectionTitle';
 export default function Certification({ certifications }: { certifications: IAwardItem[] }) {
   if (certifications.length === 0) return null;
   return (
-    <section className="mt-6">
+    <section className="mt-6 avoid-page-break">
       <SectionTitle>Certification</SectionTitle>
       <div className="mt-2 space-y-2">
         {certifications.map((cert) => (

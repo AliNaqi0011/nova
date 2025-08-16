@@ -6,7 +6,7 @@ import { Calendar, MapPin } from 'lucide-react';
 
 export default function Experience({ work }: { work: IExperienceItem[] }) {
   return (
-    <section>
+    <section className="avoid-page-break">
       <SectionTitle>EXPERIENCE</SectionTitle>
       {work.map((job) => (
         <div key={job.id} className="mt-2.5">

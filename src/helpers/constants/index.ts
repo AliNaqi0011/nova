@@ -57,11 +57,47 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
     thumbnail: 'https://placehold.co/400x560.png',
     component: dynamic(() => import('@/templates/simple3/Simple3Template')),
   },
+  simple4: {
+    id: 'simple4',
+    name: 'Simple 4',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/simple4/Simple4Template')),
+  },
+  simple5: {
+    id: 'simple5',
+    name: 'Simple 5',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/simple5/Simple5Template')),
+  },
+  simple6: {
+    id: 'simple6',
+    name: 'Simple 6',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/simple6/Simple6Template')),
+  },
   creative1: {
     id: 'creative1',
     name: 'Creative 1',
     thumbnail: 'https://placehold.co/400x560.png',
     component: dynamic(() => import('@/templates/creative1/Creative1Template')),
+  },
+  iconic1: {
+    id: 'iconic1',
+    name: 'Iconic 1',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/iconic1/Iconic1Template')),
+  },
+  iconic2: {
+    id: 'iconic2',
+    name: 'Iconic 2',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/iconic2/Iconic2Template')),
+  },
+  iconic3: {
+    id: 'iconic3',
+    name: 'Iconic 3',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/iconic3/Iconic3Template')),
   },
   modern2: {
     id: 'modern2',

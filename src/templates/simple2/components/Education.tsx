@@ -5,7 +5,7 @@ import { Calendar, MapPin } from 'lucide-react';
 
 export default function Education({ education }: { education: IEducationItem[] }) {
   return (
-    <section>
+    <section className="avoid-page-break">
       <SectionTitle>EDUCATION</SectionTitle>
       {education.map((edu) => (
         <div key={edu.id} className="mt-2.5">

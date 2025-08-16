@@ -81,7 +81,7 @@ export function Section({
   const borderColor = Color(highlighterColor).alpha(0.75).toString();
 
   return (
-    <SectionHolder borderColor={borderColor} headerColor={titleColor}>
+    <SectionHolder borderColor={borderColor} headerColor={titleColor} className="avoid-page-break">
       <div className="header flex justify-center items-center gap-1 max-w-[60%]" title={title}>
         <span
           className={`${

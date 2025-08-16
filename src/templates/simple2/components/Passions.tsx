@@ -20,7 +20,7 @@ const getIcon = (title: string) => {
 
 export default function Passions({ passions }: { passions: Passion[] }) {
   return (
-    <section>
+    <section className="avoid-page-break">
       <SectionTitle>PASSIONS</SectionTitle>
       <div className="space-y-2 mt-2">
         {passions.map((passion, index) => (

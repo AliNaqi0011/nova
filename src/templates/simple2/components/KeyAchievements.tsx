@@ -23,7 +23,7 @@ export default function KeyAchievements({ awards }: { awards: IAwardItem[] }) {
   if (awards.length === 0) return null;
 
   return (
-    <section>
+    <section className="avoid-page-break">
       <SectionTitle>KEY ACHIEVEMENTS</SectionTitle>
       <div className="space-y-2 mt-2">
         {awards.map((award) => (

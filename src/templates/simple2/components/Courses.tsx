@@ -7,7 +7,7 @@ interface Course {
 
 export default function Courses({ courses }: { courses: Course[] }) {
   return (
-    <section>
+    <section className="avoid-page-break">
       <SectionTitle>COURSES</SectionTitle>
       <div className="space-y-2 mt-2">
         {courses.map((course, index) => (

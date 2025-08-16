@@ -10,7 +10,7 @@ const universityLogos: { [key: string]: string } = {
 
 export default function Education({ education }: { education: IEducationItem[] }) {
   return (
-    <section className="mt-6">
+    <section className="mt-6 avoid-page-break">
       <SectionTitle>Education</SectionTitle>
       {education.map((edu) => (
         <div key={edu.id} className="mt-4 flex gap-4 items-center">

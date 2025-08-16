@@ -12,7 +12,7 @@ const companyLogos: { [key: string]: string } = {
 
 export default function Experience({ work }: { work: IExperienceItem[] }) {
   return (
-    <section className="mt-6">
+    <section className="mt-6 avoid-page-break">
       <SectionTitle>Experience</SectionTitle>
       {work.map((job) => (
         <div key={job.id} className="mt-4 flex gap-4">

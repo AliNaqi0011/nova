@@ -3,7 +3,7 @@ import SectionTitle from './SectionTitle';
 
 export default function Summary({ summary }: { summary: string }) {
   return (
-    <section className="mt-4">
+    <section className="mt-4 avoid-page-break">
       <SectionTitle>SUMMARY</SectionTitle>
       <div className="text-xs text-gray-600 mt-2">
         <HTMLRenderer htmlString={summary} />

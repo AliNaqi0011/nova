@@ -16,7 +16,7 @@ export const WorkSection = ({ experience }: { experience: IWorkIntrf[] }) => {
   });
 
   return (
-    <div className="mb-3" ref={experienceRef}>
+    <div className="mb-3 avoid-page-break" ref={experienceRef}>
       <SectionHeading title="Experience" />
 
       {experience.map((item: IWorkIntrf, index: number) => {
