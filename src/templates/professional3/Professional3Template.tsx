@@ -1,4 +1,4 @@
-import { StateContext } from '@/modules/builder/resume/ResumeLayout';
+import { StateContext } from '@/modules/builder/resume/StateContext';
 import { useContext } from 'react';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
 import Sidebar from './components/Sidebar';

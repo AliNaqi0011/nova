@@ -1,4 +1,4 @@
-import { Context, createContext, useEffect, Suspense, useState } from 'react';
+import { useEffect, Suspense, useState } from 'react';
 
 import { AVAILABLE_TEMPLATES } from '@/helpers/constants';
 import { ThemeProvider } from '@mui/material/styles';
@@ -6,10 +6,7 @@ import { useResumeStore } from '@/stores/useResumeStore';
 import { useTemplates } from '@/stores/useTemplate';
 import { useThemes } from '@/stores/themes';
 import { useZoom } from '@/stores/useZoom';
-
-// TODO: need to define types
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const StateContext = createContext<Context<any> | null>(null);
+import { StateContext } from './StateContext';
 
 export const ResumeLayout = () => {
   const [isClient, setIsClient] = useState(false);

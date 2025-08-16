@@ -1,4 +1,4 @@
-import { StateContext } from '@/modules/builder/resume/ResumeLayout';
+import { StateContext } from '@/modules/builder/resume/StateContext';
 import { useContext } from 'react';
 import Header from './components/Header';
 import AboutMe from './components/AboutMe';

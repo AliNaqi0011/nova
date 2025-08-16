@@ -1,4 +1,4 @@
-import { StateContext } from '@/modules/builder/resume/ResumeLayout';
+import { StateContext } from '@/modules/builder/resume/StateContext';
 import { useContext } from 'react';
 import { ISkillItem } from '@/stores/skill.interface';
 import { IVolunteeringItem } from '@/stores/volunteering.interface';

@@ -7,7 +7,7 @@ import { SummarySection } from './components/Summary';
 import { WorkSection } from './components/Work';
 import { AwardSection } from './components/Awards';
 import { useContext } from 'react';
-import { StateContext } from '@/modules/builder/resume/ResumeLayout';
+import { StateContext } from '@/modules/builder/resume/StateContext';
 import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
 
 export default function MordernTemplate() {

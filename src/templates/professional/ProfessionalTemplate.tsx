@@ -9,7 +9,7 @@ import { Objective } from './components/Objective';
 import RatedSkills from './components/RatedSkills';
 import { Section } from './components/Section';
 import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
-import { StateContext } from '@/modules/builder/resume/ResumeLayout';
+import { StateContext } from '@/modules/builder/resume/StateContext';
 import UnratedSkills from './components/UnratedSkills';
 import Work from './components/Work';
 import styled from '@emotion/styled';
