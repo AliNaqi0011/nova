@@ -1,6 +1,5 @@
-import { IBasics, IProfile } from '@/stores/basic.interface';
+import { IBasics } from '@/stores/basic.interface';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
-import { Mail, MapPin, Phone, Linkedin, Twitter } from 'lucide-react';
 import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 
 const ContactItem = ({
@@ -18,15 +17,7 @@ const ContactItem = ({
   </a>
 );
 
-const SocialItem = ({
-  network,
-  username,
-  url,
-}: {
-  network: string;
-  username: string;
-  url: string;
-}) => {
+const SocialItem = ({ network, url }: { network: string; url: string }) => {
   let icon: React.ReactNode;
   const text = url.replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/$/, '');
   switch (network) {
@@ -43,7 +34,6 @@ const SocialItem = ({
 };
 
 export default function Header({ basics }: { basics: IBasics }) {
-  const socialProfiles = basics.profiles.slice(0, 3);
   const otherContacts = [
     {
       icon: <Mail size={15} />,
@@ -66,15 +56,6 @@ export default function Header({ basics }: { basics: IBasics }) {
     href: `tel:${basics.phone}`,
   };
 
-  const socialLinks = [
-    {
-      network: 'linkedin',
-      username: 'linkedin.com/in/amandamore',
-      url: 'https://linkedin.com/in/amandamore',
-    },
-    { network: 'quora', username: 'quora.com/profile/amanda-more', url: 'https://quora.com' },
-  ];
-
   return (
     <header className="flex items-start gap-6">
       <div className="flex-shrink-0">
@@ -96,7 +77,7 @@ export default function Header({ basics }: { basics: IBasics }) {
             <ContactItem key={index} icon={item.icon} text={item.text} href={item.href} />
           ))}
           <ContactItem icon={phoneContact.icon} text={phoneContact.text} href={phoneContact.href} />
-          {socialLinks.map((profile) => (
+          {basics.profiles.slice(0, 3).map((profile) => (
             <SocialItem key={profile.network} {...profile} />
           ))}
         </div>

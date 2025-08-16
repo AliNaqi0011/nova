@@ -1,14 +1,12 @@
 import { IBasics } from '@/stores/basic.interface';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
 import { Mail, Phone, MapPin, Linkedin, Instagram } from 'lucide-react';
-import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 
 const ContactItem = ({
   icon,
   text,
-  href,
+
 }: {
-  icon: React.ReactNode;
   text: string;
   href?: string;
 }) => (
@@ -36,19 +34,8 @@ export default function Header({ basics }: { basics: IBasics }) {
           <p className="text-lg font-light">{basics.label}</p>
           <div className="text-xs mt-2 text-gray-200 max-w-md">
             <HTMLRenderer htmlString={basics.summary} />
-          </div>
-        </div>
+      </div>
         <div className="w-[35%] space-y-1.5">
-          <ContactItem
-            icon={<Mail size={15} />}
-            text={basics.email}
-            href={`mailto:${basics.email}`}
-          />
-          <ContactItem
-            icon={<Phone size={15} />}
-            text={basics.phone}
-            href={`tel:${basics.phone}`}
-          />
           <ContactItem icon={<MapPin size={15} />} text={basics.location.city} />
           {linkedin && (
             <ContactItem icon={<Linkedin size={15} />} text={linkedin.url} href={linkedin.url} />

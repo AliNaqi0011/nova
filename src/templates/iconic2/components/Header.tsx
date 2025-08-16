@@ -1,16 +1,13 @@
 import { IBasics } from '@/stores/basic.interface';
 import { Mail, Phone, MapPin, Linkedin, Globe } from 'lucide-react';
-import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 
 const ContactItem = ({
   icon,
   text,
-  href,
   className = '',
 }: {
   icon: React.ReactNode;
   text: string;
-  href?: string;
   className?: string;
 }) => (
   <div className={`flex items-center justify-end gap-2 text-gray-600 ${className}`}>
@@ -29,9 +26,7 @@ export default function Header({ basics }: { basics: IBasics }) {
         <div className="col-span-7">
           <h1 className="text-4xl font-bold text-gray-800">{basics.name}</h1>
           <p className="text-lg font-semibold text-gray-600 mt-1">{basics.label}</p>
-          <div className="text-xs text-gray-600 mt-2 max-w-md">
-            <HTMLRenderer htmlString={basics.summary} />
-          </div>
+          <div className="text-xs text-gray-600 mt-2 max-w-md">{basics.summary}</div>
         </div>
         <div className="col-span-5 flex flex-col items-end justify-start gap-y-1">
           <ContactItem icon={<Mail size={15} />} text={basics.email} />

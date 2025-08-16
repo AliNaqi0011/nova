@@ -1,6 +1,5 @@
 import { IEducationItem } from '@/stores/education.interface';
 import { dateParser } from '@/helpers/utils';
-import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 import SectionTitle from './SectionTitle';
 import { GraduationCap } from 'lucide-react';
 
