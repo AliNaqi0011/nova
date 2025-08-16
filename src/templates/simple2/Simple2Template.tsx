@@ -10,7 +10,6 @@ import Summary from './components/Summary';
 import KeyAchievements from './components/KeyAchievements';
 import Courses from './components/Courses';
 import Passions from './components/Passions';
-import Footer from './components/Footer';
 
 export default function Simple2Template() {
   const resumeData = useContext(StateContext);
@@ -76,7 +75,6 @@ export default function Simple2Template() {
           </div>
         </div>
       </main>
-      <Footer url={basics.url} />
     </div>
   );
 }
