@@ -45,6 +45,12 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
       'https://user-images.githubusercontent.com/12962887/201484876-75290af9-ccd6-4f6d-be96-6a8fb4f20c4b.png',
     component: dynamic(() => import('@/templates/simple/SimpleTemplate')),
   },
+  simple2: {
+    id: 'simple2',
+    name: 'Simple 2',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/simple2/Simple2Template')),
+  },
   creative1: {
     id: 'creative1',
     name: 'Creative 1',
