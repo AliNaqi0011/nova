@@ -13,16 +13,28 @@ const BasicHeader = ({
   tabs: IAllActivityTabs;
 }) => {
   return (
-    <Tabs value={activeTab.key} onChange={changeActiveTab} variant="fullWidth">
+    <Tabs
+      value={activeTab.key}
+      onChange={changeActiveTab}
+      variant="fullWidth"
+      sx={{
+        '& .MuiTabs-indicator': {
+          backgroundColor: '#8B5CF6',
+        },
+      }}
+    >
       {Object.keys(tabs).map((tab) => (
         <Tab
           key={tab}
           label={tabs[tab].label}
           value={tab}
           sx={{
-            color: 'rgb(46 64 82)',
+            color: 'white',
             textTransform: 'none',
             fontSize: '1rem',
+            '&.Mui-selected': {
+              color: '#C4B5FD',
+            },
           }}
         />
       ))}

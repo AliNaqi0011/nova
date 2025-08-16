@@ -1,95 +1,72 @@
 import { create } from 'zustand';
-import { GetState, SetState } from './store.interface';
 import { produce } from 'immer';
 import resumeData from '@/helpers/constants/resume-data.json';
 import { IEducationItem, IEducationStore } from './education.interface';
+import dayjs from 'dayjs';
 
-const addEducation =
-  (set: SetState<IEducationStore>) =>
-  ({
-    institution,
-    studyType,
-    area,
-    startDate,
-    isStudyingHere,
-    endDate,
-    id,
-    url,
-    score,
-    courses,
-  }: IEducationItem) =>
+const educationWithDayjs = resumeData.education.map((item) => ({
+  ...item,
+  startDate: item.startDate ? dayjs(item.startDate) : null,
+  endDate: item.endDate ? dayjs(item.endDate) : null,
+}));
+
+export const useEducations = create<IEducationStore>()((set, get) => ({
+  academics: educationWithDayjs,
+
+  add: (newEducation: IEducationItem) => {
     set(
       produce((state: IEducationStore) => {
-        state.academics.push({
-          institution,
-          studyType,
-          area,
-          startDate,
-          isStudyingHere,
-          endDate,
-          id,
-          url,
-          courses,
-          score,
-        });
+        state.academics.push(newEducation);
       })
     );
+  },
 
-const removeEducation = (set: SetState<IEducationStore>) => (index: number) =>
-  set((state) => ({
-    academics: state.academics.slice(0, index).concat(state.academics.slice(index + 1)),
-  }));
+  get: (index: number) => {
+    return get().academics[index];
+  },
 
-const setEducation = (set: SetState<IEducationStore>) => (values: IEducationItem[]) => {
-  set({
-    academics: values,
-  });
-};
+  remove: (index: number) => {
+    set((state) => ({
+      academics: state.academics.filter((_, i) => i !== index),
+    }));
+  },
 
-const getEducation = (get: GetState<IEducationStore>) => (index: number) => {
-  return get().academics[index];
-};
+  reset: (values: IEducationItem[]) => {
+    set({
+      academics: values,
+    });
+  },
 
-const onMoveUp = (set: SetState<IEducationStore>) => (index: number) => {
-  set(
-    produce((state: IEducationStore) => {
-      if (index > 0) {
-        const currentExperience = state.academics[index];
-        state.academics[index] = state.academics[index - 1];
-        state.academics[index - 1] = currentExperience;
-      }
-    })
-  );
-};
-const onMoveDown = (set: SetState<IEducationStore>) => (index: number) => {
-  set(
-    produce((state: IEducationStore) => {
-      const totalExp = state.academics.length;
-      if (index < totalExp - 1) {
-        const currentExperience = state.academics[index];
-        state.academics[index] = state.academics[index + 1];
-        state.academics[index + 1] = currentExperience;
-      }
-    })
-  );
-};
+  onmoveup: (index: number) => {
+    set(
+      produce((state: IEducationStore) => {
+        if (index > 0) {
+          const currentEducation = state.academics[index];
+          state.academics[index] = state.academics[index - 1];
+          state.academics[index - 1] = currentEducation;
+        }
+      })
+    );
+  },
 
-const updateEducation =
-  (set: SetState<IEducationStore>) => (index: number, updatedInfo: IEducationItem) => {
+  onmovedown: (index: number) => {
+    set(
+      produce((state: IEducationStore) => {
+        const totalEducation = state.academics.length;
+        if (index < totalEducation - 1) {
+          const currentEducation = state.academics[index];
+          state.academics[index] = state.academics[index + 1];
+          state.academics[index + 1] = currentEducation;
+        }
+      })
+    );
+  },
+
+  updateEducation: (index: number, updatedInfo: IEducationItem) => {
     set(
       produce((state: IEducationStore) => {
         state.academics[index] = updatedInfo;
       })
     );
-  };
-
-export const useEducations = create<IEducationStore>()((set, get) => ({
-  academics: resumeData.education,
-  add: addEducation(set),
-  get: getEducation(get),
-  remove: removeEducation(set),
-  reset: setEducation(set),
-  onmoveup: onMoveUp(set),
-  onmovedown: onMoveDown(set),
-  updateEducation: updateEducation(set),
+  },
 }));

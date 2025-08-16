@@ -3,7 +3,7 @@ import { useExperiences } from '@/stores/experience';
 import AddExperience from './components/AddExperience';
 import Experience from './components/Experience';
 
-import MoveEditSection from '@/helpers/common/components/MoveEditSectionContainer';
+import MoveEditSection from '@/modules/builder/editor/components/MoveEditSectionContainer';
 
 const ExperienceLayout = () => {
   const allWorks = useExperiences((state) => state.experiences);

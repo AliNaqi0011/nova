@@ -31,7 +31,7 @@ const EditorLayout = ({ closeEditor, isMobile = false }: EditorLayoutProps) => {
   return (
     <ErrorBoundary>
       <motion.div
-        initial={{ opacity: 0, x: 20 }}
+        initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="bg-black/80 backdrop-blur-sm border-l border-white/10 h-full text-gray-300 p-6 overflow-auto relative no-scrollbar"

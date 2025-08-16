@@ -1,12 +1,13 @@
 import React from 'react';
-import Color from 'color';
 import { IProfiles } from '@/stores/basic.interface';
 import { socialIcons } from '@/helpers/icons';
 import { BsGlobe } from 'react-icons/bs';
 import styled from '@emotion/styled';
+import { useThemes } from '@/stores/themes';
+import Color from 'color';
 
-const SectionHolder = styled.div`
-  border: 1px solid ${(props) => Color(props.theme.highlighterColor).alpha(0.75).toString()};
+const SectionHolder = styled.div<{ borderColor: string; headerColor: string }>`
+  border: 1px solid ${(props) => props.borderColor};
   border-radius: 5px;
   padding: 15px 10px 10px 10px;
   position: relative;
@@ -18,7 +19,7 @@ const SectionHolder = styled.div`
     background: white;
     padding: 0 5px;
     font-weight: 500;
-    color: ${(props) => props.theme.titleColor};
+    color: ${(props) => props.headerColor};
   }
 
   .social-icons {
@@ -26,7 +27,7 @@ const SectionHolder = styled.div`
     top: 0;
     right: 10px;
     transform: translate(0, -50%);
-    color: ${(props) => props.theme.titleColor};
+    color: ${(props) => props.headerColor};
   }
 `;
 
@@ -64,7 +65,7 @@ function SocialIcons({ profiles, portfolioUrl }: { profiles: IProfiles[]; portfo
 export function Section({
   title,
   children,
-  titleClassname,
+  titleClassname = '',
   profiles,
   portfolioUrl,
 }: {
@@ -74,8 +75,13 @@ export function Section({
   profiles?: IProfiles[];
   portfolioUrl?: string;
 }) {
+  const { selectedTheme } = useThemes();
+  const highlighterColor = selectedTheme.highlighterColor || '#ff7875'; // Fallback
+  const titleColor = selectedTheme.titleColor || '#1890ff';
+  const borderColor = Color(highlighterColor).alpha(0.75).toString();
+
   return (
-    <SectionHolder>
+    <SectionHolder borderColor={borderColor} headerColor={titleColor}>
       <div className="header flex justify-center items-center gap-1 max-w-[60%]" title={title}>
         <span
           className={`${

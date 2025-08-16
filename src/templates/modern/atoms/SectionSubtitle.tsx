@@ -1,9 +1,5 @@
-import styled from '@emotion/styled';
-
-const SubTitle = styled.p`
-  color: ${(props) => props.theme.titleColor};
-`;
-
-export const SectionSubtitle = ({ label }: { label: string }) => {
-  return <SubTitle className="text-base font-normal">{label}</SubTitle>;
+const SectionSubtitle = ({ label }: { label: string }) => {
+  return <p className="text-base font-normal text-blue-500">{label}</p>;
 };
+
+export { SectionSubtitle };

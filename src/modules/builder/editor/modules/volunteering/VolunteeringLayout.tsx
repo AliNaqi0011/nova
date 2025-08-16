@@ -3,7 +3,7 @@ import { useVoluteeringStore } from '@/stores/volunteering';
 import AddVolunteeringExp from './components/AddVolunteering';
 import Volunteering from './components/Volunteer';
 
-import MoveEditSection from '@/helpers/common/components/MoveEditSectionContainer';
+import MoveEditSection from '@/modules/builder/editor/components/MoveEditSectionContainer';
 
 const VolunteeringLayout = () => {
   const allVolunteeringExps = useVoluteeringStore((state) => state.volunteeredExps);

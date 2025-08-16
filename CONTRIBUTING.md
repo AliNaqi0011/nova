@@ -44,7 +44,6 @@ TODO(sadanandpai): Per issue https://github.com/sadanandpai/resume-builder/issue
    $ npm run dev
    ```
 1. Commit your changes
-
    1. [Commit](https://github.com/git-guides/git-commit) to the forked repository
 
       ```

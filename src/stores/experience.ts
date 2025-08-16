@@ -1,96 +1,72 @@
 import { create } from 'zustand';
-import { GetState, SetState } from './store.interface';
 import { produce } from 'immer';
 import resumeData from '@/helpers/constants/resume-data.json';
 import { IExperienceItem, IExperienceStore } from './experience.interface';
+import dayjs from 'dayjs';
 
-const addExperience =
-  (set: SetState<IExperienceStore>) =>
-  ({
-    name,
-    position,
-    startDate,
-    isWorkingHere,
-    endDate,
-    years,
-    summary,
-    id,
-    url = '',
-    highlights = [],
-  }: IExperienceItem) =>
+const workWithDayjs = resumeData.work.map((item) => ({
+  ...item,
+  startDate: item.startDate ? dayjs(item.startDate) : null,
+  endDate: item.endDate ? dayjs(item.endDate) : null,
+}));
+
+export const useExperiences = create<IExperienceStore>()((set, get) => ({
+  experiences: workWithDayjs,
+
+  add: (newExperience: IExperienceItem) => {
     set(
       produce((state: IExperienceStore) => {
-        state.experiences.push({
-          id,
-          name,
-          position,
-          startDate,
-          isWorkingHere,
-          endDate,
-          summary,
-          url,
-          years,
-          highlights,
-        });
+        state.experiences.push(newExperience);
       })
     );
+  },
 
-const removeExperience = (set: SetState<IExperienceStore>) => (index: number) =>
-  set((state) => ({
-    experiences: state.experiences.slice(0, index).concat(state.experiences.slice(index + 1)),
-  }));
+  get: (index: number) => {
+    return get().experiences[index];
+  },
 
-const setExperience = (set: SetState<IExperienceStore>) => (values: IExperienceItem[]) => {
-  set({
-    experiences: values,
-  });
-};
+  remove: (index: number) => {
+    set((state) => ({
+      experiences: state.experiences.filter((_, i) => i !== index),
+    }));
+  },
 
-const updateExperience =
-  (set: SetState<IExperienceStore>) => (index: number, updatedInfo: IExperienceItem) => {
+  reset: (values: IExperienceItem[]) => {
+    set({
+      experiences: values,
+    });
+  },
+
+  onmoveup: (index: number) => {
+    set(
+      produce((state: IExperienceStore) => {
+        if (index > 0) {
+          const currentExperience = state.experiences[index];
+          state.experiences[index] = state.experiences[index - 1];
+          state.experiences[index - 1] = currentExperience;
+        }
+      })
+    );
+  },
+
+  onmovedown: (index: number) => {
+    set(
+      produce((state: IExperienceStore) => {
+        const totalExperiences = state.experiences.length;
+        if (index < totalExperiences - 1) {
+          const currentExperience = state.experiences[index];
+          state.experiences[index] = state.experiences[index + 1];
+          state.experiences[index + 1] = currentExperience;
+        }
+      })
+    );
+  },
+
+  updateExperience: (index: number, updatedInfo: IExperienceItem) => {
     set(
       produce((state: IExperienceStore) => {
         state.experiences[index] = updatedInfo;
       })
     );
-  };
-
-const getExperience = (get: GetState<IExperienceStore>) => (index: number) => {
-  return get().experiences[index];
-};
-
-const onMoveUp = (set: SetState<IExperienceStore>) => (index: number) => {
-  set(
-    produce((state: IExperienceStore) => {
-      if (index > 0) {
-        const currentExperience = state.experiences[index];
-        state.experiences[index] = state.experiences[index - 1];
-        state.experiences[index - 1] = currentExperience;
-      }
-    })
-  );
-};
-
-const onMoveDown = (set: SetState<IExperienceStore>) => (index: number) => {
-  set(
-    produce((state: IExperienceStore) => {
-      const totalExp = state.experiences.length;
-      if (index < totalExp - 1) {
-        const currentExperience = state.experiences[index];
-        state.experiences[index] = state.experiences[index + 1];
-        state.experiences[index + 1] = currentExperience;
-      }
-    })
-  );
-};
-
-export const useExperiences = create<IExperienceStore>()((set, get) => ({
-  experiences: resumeData.work,
-  add: addExperience(set),
-  get: getExperience(get),
-  remove: removeExperience(set),
-  reset: setExperience(set),
-  onmoveup: onMoveUp(set),
-  onmovedown: onMoveDown(set),
-  updateExperience: updateExperience(set),
+  },
 }));

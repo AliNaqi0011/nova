@@ -1,12 +1,20 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Roboto, Kalam, Roboto_Condensed, Roboto_Slab } from 'next/font/google';
+import { ThemeProvider } from '@mui/material/styles';
+import { CacheProvider, EmotionCache } from '@emotion/react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
-import { Roboto, Kalam, Roboto_Condensed, Roboto_Slab } from 'next/font/google';
 
-import { GLOBAL_MUI_THEME } from '../styles/global.theme';
+import theme from '@/styles/global.theme';
+import createEmotionCache from '@/styles/createEmotionCache';
+
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
+
+export interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
 
 const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
@@ -37,20 +45,19 @@ const roboto_slab = Roboto_Slab({
   variable: '--font-roboto-slab',
 });
 
-export default function App(props: AppProps) {
-  const { Component, pageProps } = props;
-
+export default function MyApp(props: MyAppProps) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
-    <AppCacheProvider {...props}>
-      <ThemeProvider theme={GLOBAL_MUI_THEME}>
-        <main
-          className={`${roboto.variable} ${kalam.variable} ${roboto_condensed.variable} ${roboto_slab.variable} font-sans`}
-        >
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <CacheProvider value={emotionCache}>
+      <ThemeProvider theme={theme}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <main
+            className={`${roboto.variable} ${kalam.variable} ${roboto_condensed.variable} ${roboto_slab.variable} font-sans`}
+          >
             <Component {...pageProps} />
-          </LocalizationProvider>
-        </main>
+          </main>
+        </LocalizationProvider>
       </ThemeProvider>
-    </AppCacheProvider>
+    </CacheProvider>
   );
 }

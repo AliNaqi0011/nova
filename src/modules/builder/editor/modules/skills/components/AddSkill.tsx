@@ -72,6 +72,8 @@ const AddSkill = ({
         fullWidth
         required
         autoFocus
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       {hasLevel && <SliderValue level={level} setLevel={setLevel} />}
       <div className="flex gap-2 mt-3">

@@ -1,10 +1,12 @@
+import { Dayjs } from 'dayjs';
+
 export interface IVolunteeringItem {
   id: string;
   organization: string;
   position: string;
   url: string;
-  startDate: string | null;
-  endDate: string | null;
+  startDate: Dayjs | null;
+  endDate: Dayjs | null;
   summary: string;
   highlights: string[];
   isVolunteeringNow: boolean;

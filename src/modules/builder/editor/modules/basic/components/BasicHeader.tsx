@@ -12,15 +12,27 @@ const BasicHeader = ({
   tabTitles: string[];
 }) => {
   return (
-    <Tabs value={activeTab} onChange={changeActiveTab} variant="fullWidth">
+    <Tabs
+      value={activeTab}
+      onChange={changeActiveTab}
+      variant="fullWidth"
+      sx={{
+        '& .MuiTabs-indicator': {
+          backgroundColor: '#8B5CF6', // A nice purple for the indicator
+        },
+      }}
+    >
       {tabTitles.map((title: string, index: number) => (
         <Tab
           key={index}
           label={title}
           sx={{
-            color: 'rgb(46 64 82)',
+            color: 'white',
             textTransform: 'none',
             fontSize: '1rem',
+            '&.Mui-selected': {
+              color: '#C4B5FD', // Lighter purple when selected
+            },
           }}
         />
       ))}

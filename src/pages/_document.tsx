@@ -1,17 +1,32 @@
 import * as React from 'react';
-import {
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
   DocumentContext,
-  DocumentHeadTags,
-  DocumentHeadTagsProps,
-  documentGetInitialProps,
-} from '@mui/material-nextjs/v15-pagesRouter';
-import { Head, Html, Main, NextScript, DocumentProps } from 'next/document';
+  DocumentInitialProps,
+} from 'next/document';
+import createEmotionServer from '@emotion/server/create-instance';
+import { AppType } from 'next/app';
+import { MyAppProps } from './_app';
+import theme from '@/styles/global.theme';
+import createEmotionCache from '@/styles/createEmotionCache';
 
-export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
+interface MyDocumentProps extends DocumentInitialProps {
+  emotionStyleTags: JSX.Element[];
+}
+
+export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
   return (
     <Html lang="en" className="scroll-smooth">
       <Head>
-        <DocumentHeadTags {...props} />
+        {/* PWA primary color */}
+        <meta name="theme-color" content={theme.palette.primary.main} />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <meta name="emotion-insertion-point" content="" />
+        {/* Add your XPay script here if required */}
+        {emotionStyleTags}
       </Head>
       <body>
         <Main />
@@ -22,6 +37,30 @@ export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps)
 }
 
 MyDocument.getInitialProps = async (ctx: DocumentContext) => {
-  const finalProps = await documentGetInitialProps(ctx);
-  return finalProps;
+  const originalRenderPage = ctx.renderPage;
+  const cache = createEmotionCache();
+  const { extractCriticalToChunks } = createEmotionServer(cache);
+
+  ctx.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: (App: React.ComponentType<React.ComponentProps<AppType> & MyAppProps>) =>
+        function EnhanceApp(props) {
+          return <App emotionCache={cache} {...props} />;
+        },
+    });
+
+  const initialProps = await Document.getInitialProps(ctx);
+  const emotionStyles = extractCriticalToChunks(initialProps.html);
+  const emotionStyleTags = emotionStyles.styles.map((style) => (
+    <style
+      data-emotion={`${style.key} ${style.ids.join(' ')}`}
+      key={style.key}
+      dangerouslySetInnerHTML={{ __html: style.css }}
+    />
+  ));
+
+  return {
+    ...initialProps,
+    emotionStyleTags,
+  };
 };

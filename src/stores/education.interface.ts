@@ -1,11 +1,13 @@
+import { Dayjs } from 'dayjs';
+
 export interface IEducationItem {
   institution: string;
   url: string;
   studyType: string;
   area: string;
-  startDate: string | null;
+  startDate: Dayjs | null;
   isStudyingHere: boolean;
-  endDate: string | null;
+  endDate: Dayjs | null;
   score: string;
   courses: string[];
   id: string;

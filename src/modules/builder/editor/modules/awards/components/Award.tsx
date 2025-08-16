@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Fragment, useCallback } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
@@ -48,7 +48,7 @@ const AwardComp: React.FC<IAwardComp> = ({ awardInfo, currentIndex }) => {
   );
 
   return (
-    <Fragment>
+    <div className="flex flex-col gap-4">
       <TextField
         label="Award name"
         variant="filled"
@@ -61,7 +61,8 @@ const AwardComp: React.FC<IAwardComp> = ({ awardInfo, currentIndex }) => {
         fullWidth
         required
         autoFocus={true}
-        sx={{ marginBottom: '26px' }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Awarded by"
@@ -74,7 +75,8 @@ const AwardComp: React.FC<IAwardComp> = ({ awardInfo, currentIndex }) => {
         autoComplete="off"
         fullWidth
         required
-        sx={{ marginBottom: '26px' }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <DatePicker
         label="Date"
@@ -89,7 +91,8 @@ const AwardComp: React.FC<IAwardComp> = ({ awardInfo, currentIndex }) => {
             autoComplete: 'off',
             fullWidth: true,
             required: true,
-            sx: { marginBottom: '26px' },
+            InputLabelProps: { style: { color: 'black' } },
+            inputProps: { style: { color: 'black' } },
           },
         }}
       />
@@ -99,7 +102,7 @@ const AwardComp: React.FC<IAwardComp> = ({ awardInfo, currentIndex }) => {
         onChange={onSummaryChange}
         name="summary"
       />
-    </Fragment>
+    </div>
   );
 };
 

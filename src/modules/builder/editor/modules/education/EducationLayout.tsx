@@ -3,7 +3,7 @@ import { useEducations } from '@/stores/education';
 import AddEducation from './components/AddEducation';
 import Education from './components/Education';
 
-import MoveEditSection from '@/helpers/common/components/MoveEditSectionContainer';
+import MoveEditSection from '@/modules/builder/editor/components/MoveEditSectionContainer';
 
 const EducationLayout = () => {
   const allAcademics = useEducations((state) => state.academics);

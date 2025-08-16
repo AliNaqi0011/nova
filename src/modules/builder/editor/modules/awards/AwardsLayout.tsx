@@ -3,7 +3,7 @@ import { useAwards } from '@/stores/awards';
 import AddAward from './components/AddAward';
 import AwardComponent from './components/Award';
 
-import MoveEditSection from '@/helpers/common/components/MoveEditSectionContainer';
+import MoveEditSection from '@/modules/builder/editor/components/MoveEditSectionContainer';
 
 const AwardsLayout = () => {
   const allAwards = useAwards((state) => state.awards);

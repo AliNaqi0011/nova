@@ -17,7 +17,7 @@ const ResumeController = ({
         <TooltipRenderer title="Zoom out">
           <Image
             src="/icons/zoom-out.svg"
-            className="cursor-pointer"
+            className="cursor-pointer brightness-0 invert"
             alt="Zoom out"
             width="24"
             height="24"
@@ -27,7 +27,7 @@ const ResumeController = ({
         <TooltipRenderer title="Zoom in">
           <Image
             src="/icons/zoom-in.svg"
-            className="cursor-pointer"
+            className="cursor-pointer brightness-0 invert"
             alt="Zoom in"
             width="24"
             height="24"
@@ -37,7 +37,7 @@ const ResumeController = ({
         <TooltipRenderer title="Reset zoom">
           <Image
             src="/icons/reset-zoom.svg"
-            className="cursor-pointer"
+            className="cursor-pointer brightness-0 invert"
             alt="Reset zoom"
             width="24"
             height="24"

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { ChangeEvent, Fragment, useCallback } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
@@ -59,7 +59,7 @@ const Volunteer: React.FC<IVolunteerProps> = ({ volunteeringInfo, currentIndex }
   );
 
   return (
-    <Fragment>
+    <div className="flex flex-col gap-4">
       <TextField
         label="Organisation"
         variant="filled"
@@ -72,7 +72,8 @@ const Volunteer: React.FC<IVolunteerProps> = ({ volunteeringInfo, currentIndex }
         fullWidth
         required
         autoFocus={true}
-        sx={{ marginBottom: '26px' }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Role"
@@ -85,7 +86,8 @@ const Volunteer: React.FC<IVolunteerProps> = ({ volunteeringInfo, currentIndex }
         autoComplete="off"
         fullWidth
         required
-        sx={{ marginBottom: '26px' }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <DatePicker
         label="Start date"
@@ -95,7 +97,14 @@ const Volunteer: React.FC<IVolunteerProps> = ({ volunteeringInfo, currentIndex }
         }}
         format={DATE_PICKER_FORMAT}
         slotProps={{
-          textField: { variant: 'filled', autoComplete: 'off', fullWidth: true, required: true },
+          textField: {
+            variant: 'filled',
+            autoComplete: 'off',
+            fullWidth: true,
+            required: true,
+            InputLabelProps: { style: { color: 'black' } },
+            inputProps: { style: { color: 'black' } },
+          },
         }}
       />
       <SwitchWidget
@@ -118,7 +127,8 @@ const Volunteer: React.FC<IVolunteerProps> = ({ volunteeringInfo, currentIndex }
             autoComplete: 'off',
             fullWidth: true,
             required: true,
-            sx: { marginBottom: '26px' },
+            InputLabelProps: { style: { color: 'black' } },
+            inputProps: { style: { color: 'black' } },
           },
         }}
         disabled={volunteeringInfo.isVolunteeringNow}
@@ -129,7 +139,7 @@ const Volunteer: React.FC<IVolunteerProps> = ({ volunteeringInfo, currentIndex }
         onChange={onSummaryChange}
         name="summary"
       />
-    </Fragment>
+    </div>
   );
 };
 

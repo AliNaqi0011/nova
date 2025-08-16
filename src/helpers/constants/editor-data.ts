@@ -5,6 +5,7 @@ import EducationLayout from '@/modules/builder/editor/modules/education/Educatio
 import ExperienceLayout from '@/modules/builder/editor/modules/experience/ExperienceLayout';
 import { ReactNode } from 'react';
 import SkillsLayout from '@/modules/builder/editor/modules/skills/SkillsLayout';
+
 import VolunteeringLayout from '@/modules/builder/editor/modules/volunteering/VolunteeringLayout';
 
 export const headers: {

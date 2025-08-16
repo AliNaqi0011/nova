@@ -9,7 +9,12 @@ export const OutlinedButton = ({
   children: React.ReactNode | string;
   disabled?: boolean;
 }) => (
-  <Button variant="outlined" onClick={onClick} className="text-resume-900" disabled={disabled}>
+  <Button
+    variant="outlined"
+    onClick={onClick}
+    className="text-white border-white/50 hover:border-white"
+    disabled={disabled}
+  >
     {children}
   </Button>
 );
@@ -23,7 +28,7 @@ export const TextButton = ({
   children: React.ReactNode | string;
   disabled?: boolean;
 }) => (
-  <Button variant="outlined" onClick={onClick} className="text-resume-900" disabled={disabled}>
+  <Button variant="text" onClick={onClick} className="text-white" disabled={disabled}>
     {children}
   </Button>
 );

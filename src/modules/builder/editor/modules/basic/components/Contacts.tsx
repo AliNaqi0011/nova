@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { ChangeEvent, Fragment } from 'react';
 import TextField from '@mui/material/TextField';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 
 const Contacts = ({
   basicTabs,
   onChangeHandler,
 }: {
-  basicTabs: any;
-  onChangeHandler: (value: any, key: string) => void;
+  basicTabs: IBasicDetailsItem;
+  onChangeHandler: (value: unknown, key: string) => void;
 }) => {
   return (
     <Fragment>
@@ -18,6 +18,8 @@ const Contacts = ({
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           onChangeHandler(event.target.value, 'name');
         }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Image URL"
@@ -26,6 +28,8 @@ const Contacts = ({
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           onChangeHandler(event.target.value, 'image');
         }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Title"
@@ -34,6 +38,8 @@ const Contacts = ({
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           onChangeHandler(event.target.value, 'label');
         }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Email"
@@ -42,6 +48,8 @@ const Contacts = ({
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           onChangeHandler(event.target.value, 'email');
         }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Website URL"
@@ -50,6 +58,8 @@ const Contacts = ({
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           onChangeHandler(event.target.value, 'url');
         }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Phone"
@@ -58,6 +68,8 @@ const Contacts = ({
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           onChangeHandler(event.target.value, 'phone');
         }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Location"
@@ -68,6 +80,8 @@ const Contacts = ({
           location.city = event.target.value;
           onChangeHandler(location, 'location');
         }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Relevant Experience"
@@ -76,6 +90,8 @@ const Contacts = ({
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           onChangeHandler(event.target.value, 'relExp');
         }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Total Experience"
@@ -84,6 +100,8 @@ const Contacts = ({
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           onChangeHandler(event.target.value, 'totalExp');
         }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
     </Fragment>
   );

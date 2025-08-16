@@ -1,20 +1,27 @@
 import { ISkillItem } from '@/stores/skill.interface';
+import { useThemes } from '@/stores/themes';
 import styled from '@emotion/styled';
 
 const ProgressBar = styled.div`
   width: ${(props: { level: number }) => props.level}%;
   height: 6px;
-  background-color: ${(props) => props.theme.highlighterColor};
+  background-color: ${(props: { color: string }) => props.color};
 `;
 
 export default function RatedSkills({ items }: { items: ISkillItem[] }) {
+  const { selectedTheme } = useThemes();
+
   return (
     <div className="flex flex-col gap-2">
       {items?.map(({ name, level }) => (
         <div className="flex items-center" key={name}>
           <p className="min-w-[15ch]">{name}</p>
           <div className="w-full bg-gray-100 rounded-md">
-            <ProgressBar level={level} className="rounded-md" />
+            <ProgressBar
+              level={level}
+              color={selectedTheme.highlighterColor}
+              className="rounded-md"
+            />
           </div>
         </div>
       ))}

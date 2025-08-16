@@ -2,7 +2,10 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Bell, ChevronDown, Menu, X } from 'lucide-react';
+import { Menu, X, LogOut } from 'lucide-react';
+import { Button } from '@mui/material';
+import { User } from 'firebase/auth';
+import { onAuthChange, signOut } from '@/firebase/auth';
 
 const navigation = [
   { name: 'Resume Templates', href: '#templates' },
@@ -13,8 +16,13 @@ const navigation = [
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [isProfileMenuOpen, setProfileMenuOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthChange(setUser);
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,64 +92,44 @@ export default function Header() {
             </a>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-6">
-          <motion.div whileHover={{ scale: 1.2 }}>
-            <Bell className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer" />
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.2 }}>
-            <ShoppingCart className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer" />
-          </motion.div>
-          <div className="relative">
-            <button
-              onClick={() => setProfileMenuOpen(!isProfileMenuOpen)}
-              className="flex items-center gap-2"
-            >
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
+          {user ? (
+            <div className="flex items-center gap-4">
               <Image
-                src="https://randomuser.me/api/portraits/men/18.jpg"
+                src={user.photoURL || 'https://randomuser.me/api/portraits/men/18.jpg'}
                 alt="User"
                 width={32}
                 height={32}
                 className="rounded-full"
               />
-              <ChevronDown
-                className={`h-4 w-4 text-gray-400 transition-transform duration-300 ${
-                  isProfileMenuOpen ? 'rotate-180' : ''
-                }`}
-              />
-            </button>
-            <AnimatePresence>
-              {isProfileMenuOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                  className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-gray-800/80 backdrop-blur-lg shadow-lg ring-1 ring-white/10"
+              <Button
+                variant="outlined"
+                size="medium"
+                onClick={signOut}
+                className="text-white border-purple-500/50 hover:bg-white/10"
+                startIcon={<LogOut size={16} />}
+              >
+                Sign Out
+              </Button>
+            </div>
+          ) : (
+            <>
+              <Link href="/login" passHref>
+                <Button variant="text" size="medium" className="text-white hover:bg-white/10">
+                  Log In
+                </Button>
+              </Link>
+              <Link href="/signup" passHref>
+                <Button
+                  variant="outlined"
+                  size="medium"
+                  className="text-white border-purple-500/50 hover:bg-white/10"
                 >
-                  <div className="py-1">
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700/50 hover:text-white"
-                    >
-                      Your Profile
-                    </a>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700/50 hover:text-white"
-                    >
-                      Settings
-                    </a>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700/50 hover:text-white"
-                    >
-                      Sign out
-                    </a>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                  Sign Up
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </nav>
       <AnimatePresence>
@@ -196,12 +184,35 @@ export default function Header() {
                     ))}
                   </div>
                   <div className="py-6">
-                    <a
-                      href="#"
-                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-800"
-                    >
-                      Log in
-                    </a>
+                    {user ? (
+                      <a
+                        href="#"
+                        onClick={() => {
+                          signOut();
+                          setMobileMenuOpen(false);
+                        }}
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-800"
+                      >
+                        Sign Out
+                      </a>
+                    ) : (
+                      <>
+                        <Link
+                          href="/login"
+                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-800"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Log in
+                        </Link>
+                        <Link
+                          href="/signup"
+                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-800"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Sign Up
+                        </Link>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

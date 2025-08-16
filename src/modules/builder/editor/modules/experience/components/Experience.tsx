@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Fragment, useCallback } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
@@ -61,7 +61,7 @@ const Experience: React.FC<IExperienceProps> = ({ experienceInfo, currentIndex }
   );
 
   return (
-    <Fragment>
+    <div className="flex flex-col gap-4">
       <TextField
         label="Comapany name"
         variant="filled"
@@ -74,7 +74,8 @@ const Experience: React.FC<IExperienceProps> = ({ experienceInfo, currentIndex }
         fullWidth
         required
         autoFocus={true}
-        sx={{ marginBottom: '26px' }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Position"
@@ -87,7 +88,8 @@ const Experience: React.FC<IExperienceProps> = ({ experienceInfo, currentIndex }
         autoComplete="off"
         fullWidth
         required
-        sx={{ marginBottom: '26px' }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <DatePicker
         label="Start date"
@@ -97,7 +99,14 @@ const Experience: React.FC<IExperienceProps> = ({ experienceInfo, currentIndex }
           onChangeHandler('startDate', newDate);
         }}
         slotProps={{
-          textField: { variant: 'filled', autoComplete: 'off', fullWidth: true, required: true },
+          textField: {
+            variant: 'filled',
+            autoComplete: 'off',
+            fullWidth: true,
+            required: true,
+            InputLabelProps: { style: { color: 'black' } },
+            inputProps: { style: { color: 'black' } },
+          },
         }}
       />
       <SwitchWidget
@@ -120,7 +129,8 @@ const Experience: React.FC<IExperienceProps> = ({ experienceInfo, currentIndex }
             autoComplete: 'off',
             fullWidth: true,
             required: true,
-            sx: { marginBottom: '26px' },
+            InputLabelProps: { style: { color: 'black' } },
+            inputProps: { style: { color: 'black' } },
           },
         }}
         disabled={experienceInfo.isWorkingHere}
@@ -135,7 +145,8 @@ const Experience: React.FC<IExperienceProps> = ({ experienceInfo, currentIndex }
         }}
         autoComplete="off"
         fullWidth
-        sx={{ marginBottom: '26px' }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <RichtextEditor
         label="Few points on this work experience"
@@ -143,7 +154,7 @@ const Experience: React.FC<IExperienceProps> = ({ experienceInfo, currentIndex }
         onChange={onSummaryChange}
         name="summary"
       />
-    </Fragment>
+    </div>
   );
 };
 

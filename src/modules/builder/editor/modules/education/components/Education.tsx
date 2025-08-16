@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Fragment, useCallback } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
@@ -49,7 +49,7 @@ const Education: React.FC<IEducationProps> = ({ educationInfo, currentIndex }) =
   );
 
   return (
-    <Fragment>
+    <div className="flex flex-col gap-4">
       <TextField
         label="School or College name"
         variant="filled"
@@ -62,7 +62,8 @@ const Education: React.FC<IEducationProps> = ({ educationInfo, currentIndex }) =
         fullWidth
         required
         autoFocus={true}
-        sx={{ marginBottom: '26px' }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Degree"
@@ -75,7 +76,8 @@ const Education: React.FC<IEducationProps> = ({ educationInfo, currentIndex }) =
         autoComplete="off"
         fullWidth
         required
-        sx={{ marginBottom: '26px' }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Area"
@@ -88,7 +90,8 @@ const Education: React.FC<IEducationProps> = ({ educationInfo, currentIndex }) =
         autoComplete="off"
         fullWidth
         required
-        sx={{ marginBottom: '26px' }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <TextField
         label="Grade"
@@ -101,7 +104,8 @@ const Education: React.FC<IEducationProps> = ({ educationInfo, currentIndex }) =
         autoComplete="off"
         fullWidth
         required
-        sx={{ marginBottom: '26px' }}
+        InputLabelProps={{ style: { color: 'black' } }}
+        InputProps={{ style: { color: 'black' } }}
       />
       <DatePicker
         label="Start date"
@@ -111,7 +115,14 @@ const Education: React.FC<IEducationProps> = ({ educationInfo, currentIndex }) =
           onChangeHandler('startDate', newDate);
         }}
         slotProps={{
-          textField: { variant: 'filled', autoComplete: 'off', fullWidth: true, required: true },
+          textField: {
+            variant: 'filled',
+            autoComplete: 'off',
+            fullWidth: true,
+            required: true,
+            InputLabelProps: { style: { color: 'black' } },
+            inputProps: { style: { color: 'black' } },
+          },
         }}
       />
       <SwitchWidget
@@ -138,12 +149,13 @@ const Education: React.FC<IEducationProps> = ({ educationInfo, currentIndex }) =
             autoComplete: 'off',
             fullWidth: true,
             required: true,
-            sx: { marginBottom: '26px' },
+            InputLabelProps: { style: { color: 'black' } },
+            inputProps: { style: { color: 'black' } },
           },
         }}
         disabled={educationInfo.isStudyingHere}
       />
-    </Fragment>
+    </div>
   );
 };
 

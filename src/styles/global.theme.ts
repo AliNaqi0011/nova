@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
-export const GLOBAL_MUI_THEME = createTheme({
+const theme = createTheme({
   palette: {
     resume: {
       50: '#E7EEFA',
@@ -50,3 +50,5 @@ declare module '@mui/material/styles' {
     resume?: PaletteOptions['grey'];
   }
 }
+
+export default theme;

@@ -1,97 +1,72 @@
 import { create } from 'zustand';
-import { GetState, SetState } from './store.interface';
 import { produce } from 'immer';
 import resumeData from '@/helpers/constants/resume-data.json';
 import { IVolunteeringItem, IVolunteeringStore } from './volunteering.interface';
+import dayjs from 'dayjs';
 
-const addVolunteering =
-  (set: SetState<IVolunteeringStore>) =>
-  ({
-    organization,
-    position,
-    startDate,
-    isVolunteeringNow,
-    endDate,
-    summary,
-    id,
-    url = '',
-    highlights = [],
-  }: IVolunteeringItem) =>
+const volunteerWithDayjs = resumeData.volunteer.map((item) => ({
+  ...item,
+  startDate: item.startDate ? dayjs(item.startDate) : null,
+  endDate: item.endDate ? dayjs(item.endDate) : null,
+}));
+
+export const useVoluteeringStore = create<IVolunteeringStore>()((set, get) => ({
+  volunteeredExps: volunteerWithDayjs,
+
+  add: (newVolunteering: IVolunteeringItem) => {
     set(
       produce((state: IVolunteeringStore) => {
-        state.volunteeredExps.push({
-          id,
-          organization,
-          position,
-          startDate,
-          isVolunteeringNow,
-          endDate,
-          summary,
-          url,
-          highlights,
-        });
+        state.volunteeredExps.push(newVolunteering);
       })
     );
+  },
 
-const removeVolunteeringExp = (set: SetState<IVolunteeringStore>) => (index: number) =>
-  set((state) => ({
-    volunteeredExps: state.volunteeredExps
-      .slice(0, index)
-      .concat(state.volunteeredExps.slice(index + 1)),
-  }));
+  get: (index: number) => {
+    return get().volunteeredExps[index];
+  },
 
-const setVolunteeringExps =
-  (set: SetState<IVolunteeringStore>) => (values: IVolunteeringItem[]) => {
+  remove: (index: number) => {
+    set((state) => ({
+      volunteeredExps: state.volunteeredExps.filter((_, i) => i !== index),
+    }));
+  },
+
+  reset: (values: IVolunteeringItem[]) => {
     set({
       volunteeredExps: values,
     });
-  };
+  },
 
-const updatedVolunteeringExp =
-  (set: SetState<IVolunteeringStore>) => (index: number, updatedInfo: IVolunteeringItem) => {
+  onmoveup: (index: number) => {
+    set(
+      produce((state: IVolunteeringStore) => {
+        if (index > 0) {
+          const currentExperience = state.volunteeredExps[index];
+          state.volunteeredExps[index] = state.volunteeredExps[index - 1];
+          state.volunteeredExps[index - 1] = currentExperience;
+        }
+      })
+    );
+  },
+
+  onmovedown: (index: number) => {
+    set(
+      produce((state: IVolunteeringStore) => {
+        const totalExps = state.volunteeredExps.length;
+        if (index < totalExps - 1) {
+          const currentExperience = state.volunteeredExps[index];
+          state.volunteeredExps[index] = state.volunteeredExps[index + 1];
+          state.volunteeredExps[index + 1] = currentExperience;
+        }
+      })
+    );
+  },
+
+  updatedVolunteeringExp: (index: number, updatedInfo: IVolunteeringItem) => {
     set(
       produce((state: IVolunteeringStore) => {
         state.volunteeredExps[index] = updatedInfo;
       })
     );
-  };
-
-const getVolunteeringExp = (get: GetState<IVolunteeringStore>) => (index: number) => {
-  return get().volunteeredExps[index];
-};
-
-const onMoveUp = (set: SetState<IVolunteeringStore>) => (index: number) => {
-  set(
-    produce((state: IVolunteeringStore) => {
-      if (index > 0) {
-        const currentExperience = state.volunteeredExps[index];
-        state.volunteeredExps[index] = state.volunteeredExps[index - 1];
-        state.volunteeredExps[index - 1] = currentExperience;
-      }
-    })
-  );
-};
-
-const onMoveDown = (set: SetState<IVolunteeringStore>) => (index: number) => {
-  set(
-    produce((state: IVolunteeringStore) => {
-      const totalExp = state.volunteeredExps.length;
-      if (index < totalExp - 1) {
-        const currentExperience = state.volunteeredExps[index];
-        state.volunteeredExps[index] = state.volunteeredExps[index + 1];
-        state.volunteeredExps[index + 1] = currentExperience;
-      }
-    })
-  );
-};
-
-export const useVoluteeringStore = create<IVolunteeringStore>()((set, get) => ({
-  volunteeredExps: resumeData.volunteer,
-  add: addVolunteering(set),
-  get: getVolunteeringExp(get),
-  remove: removeVolunteeringExp(set),
-  reset: setVolunteeringExps(set),
-  onmoveup: onMoveUp(set),
-  onmovedown: onMoveDown(set),
-  updatedVolunteeringExp: updatedVolunteeringExp(set),
+  },
 }));

@@ -1,10 +1,9 @@
 import { IBasics } from '@/stores/index.interface';
 import styled from '@emotion/styled';
-import Color from 'color';
 import Image from 'next/image';
 
 const Role = styled.span`
-  color: ${(props) => Color(props.theme.titleColor).alpha(0.85).toString()};
+  color: rgba(0, 0, 0, 0.6);
 `;
 
 export default function BasicIntro({ basics }: { basics: IBasics }) {
@@ -26,7 +25,6 @@ export default function BasicIntro({ basics }: { basics: IBasics }) {
       <div className="flex flex-col justify-end items-end gap-2">
         <div className="flex gap-2">
           <Image src={'/icons/phone.svg'} alt="Phone" width={12} height={12} />
-          {/* <span className="text-sm">{basics.phone}</span> */}
           <a className="text-xs" href={`tel:${basics.phone}`}>
             {basics.phone}
           </a>

@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { Fragment } from 'react';
 import { RichtextEditor } from '@/helpers/common/components/richtext';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 
 const About = ({
   basicTabs,
   onChangeHandler,
 }: {
-  basicTabs: any;
-  onChangeHandler: (value: any, key: string) => void;
+  basicTabs: IBasicDetailsItem;
+  onChangeHandler: (value: string, key: string) => void;
 }) => {
   return (
     <Fragment>

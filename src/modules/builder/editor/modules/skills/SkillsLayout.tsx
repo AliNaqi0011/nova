@@ -8,8 +8,8 @@ import {
   useTechnologies,
   useTools,
 } from '@/stores/skills';
-import EditSectionContainer from '@/helpers/common/components/EditSectionContainer';
 import Skill from './components/Skill';
+import EditSectionContainer from '../../components/EditSectionContainer';
 
 const SkillsLayout = () => {
   const skillState = [

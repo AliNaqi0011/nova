@@ -30,4 +30,5 @@ export interface IBasicDetailsItem {
 export interface IBasicDetailsStore {
   values: IBasicDetailsItem;
   reset: (values: IBasicDetailsItem) => void;
+  get: () => IBasicDetailsItem;
 }

@@ -50,7 +50,7 @@ const SkillPill = ({
       key={name}
     >
       <div
-        className="bg-custom-grey flex items-center pl-4 pr-2 py-2 rounded-full text-sm cursor-default"
+        className="bg-black text-white flex items-center pl-4 pr-2 py-2 rounded-full text-sm cursor-default"
         data-testid="skill-pill"
         style={style}
         onMouseEnter={() => {
@@ -68,7 +68,7 @@ const SkillPill = ({
             width={16}
             height={6}
             alt="close"
-            className="cursor-grab"
+            className="cursor-grab brightness-0 invert"
           />
         </div>
         <span className="flex-1 ml-2 cursor-grab" data-testid="skill-title" {...listeners}>
@@ -82,14 +82,26 @@ const SkillPill = ({
             transition={animationEditIcon.transition}
             onClick={() => onEdit({ name, level, index })}
           >
-            <Image src="/icons/edit.svg" width={16} height={16} alt="edit" />
+            <Image
+              src="/icons/edit.svg"
+              width={16}
+              height={16}
+              alt="edit"
+              className="brightness-0 invert"
+            />
           </motion.button>
         )}
         <button
           className="ml-2 min-w-max flex items-center deleteButton"
           onClick={() => onDelete(index)}
         >
-          <Image src="/icons/close.svg" width={16} height={16} alt="close" />
+          <Image
+            src="/icons/close.svg"
+            width={16}
+            height={16}
+            alt="close"
+            className="brightness-0 invert"
+          />
         </button>
       </div>
     </motion.div>
