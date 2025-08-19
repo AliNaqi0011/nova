@@ -4,6 +4,7 @@ import ResumeController from '../atoms/ResumeController';
 import { ResumeTitle } from '../atoms/ResumeTitle';
 import { Button } from '@mui/material';
 import { loadStripe } from '@stripe/stripe-js';
+import { useEffect } from 'react';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string);
 
@@ -20,7 +21,7 @@ const ResumeHeader = () => {
         },
         body: JSON.stringify({
           productName: `${templateName} Resume PDF`,
-          success_url: `${window.location.origin}/builder?session_id={CHECKOUT_SESSION_ID}`,
+          success_url: `${window.location.origin}${window.location.pathname}?session_id={CHECKOUT_SESSION_ID}`,
           cancel_url: window.location.href,
         }),
       });
@@ -43,14 +44,8 @@ const ResumeHeader = () => {
     }
   };
 
-  const handleDownloadClick = () => {
-    // For now, this directly calls the payment handler.
-    // In a real app, you might want to check if the user has already paid for this session.
-    handlePayment();
-  };
-
-  // Check for successful payment from URL query parameters.
-  if (typeof window !== 'undefined') {
+  useEffect(() => {
+    // Check for successful payment from URL query parameters.
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('session_id')) {
       // Payment was successful. Trigger the download.
@@ -63,7 +58,7 @@ const ResumeHeader = () => {
         window.history.replaceState({}, document.title, newUrl);
       }, 500);
     }
-  }
+  }, []);
 
   return (
     <div className="flex items-center justify-between">
@@ -72,7 +67,7 @@ const ResumeHeader = () => {
         <Button
           variant="contained"
           size="small"
-          onClick={handleDownloadClick}
+          onClick={handlePayment}
           className="bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-[0_0_10px_theme(colors.purple.500/0.5)]"
         >
           Download as PDF
