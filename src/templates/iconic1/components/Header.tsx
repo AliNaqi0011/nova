@@ -1,6 +1,7 @@
 import { IBasics } from '@/stores/basic.interface';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
 import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
+import { Linkedin, Twitter, Mail, MapPin, Phone } from 'lucide-react';
 
 const ContactItem = ({
   icon,
@@ -77,9 +78,11 @@ export default function Header({ basics }: { basics: IBasics }) {
             <ContactItem key={index} icon={item.icon} text={item.text} href={item.href} />
           ))}
           <ContactItem icon={phoneContact.icon} text={phoneContact.text} href={phoneContact.href} />
-          {basics.profiles.slice(0, 3).map((profile) => (
-            <SocialItem key={profile.network} {...profile} />
-          ))}
+          {basics.profiles
+            .slice(0, 3)
+            .map((profile: JSX.IntrinsicAttributes & { network: string; url: string }) => (
+              <SocialItem key={profile.network} {...profile} />
+            ))}
         </div>
       </div>
     </header>

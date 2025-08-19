@@ -1,15 +1,9 @@
 import { IBasics } from '@/stores/basic.interface';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
-import { Mail, Phone, MapPin, Linkedin, Instagram } from 'lucide-react';
+import { MapPin, Linkedin, Instagram } from 'lucide-react';
+import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 
-const ContactItem = ({
-  icon,
-  text,
-
-}: {
-  text: string;
-  href?: string;
-}) => (
+const ContactItem = ({ icon, text }: { text: string; href?: string }) => (
   <div className="flex items-center gap-2 text-white">
     <div className="flex-grow text-right text-[8.5pt]">{text}</div>
     <div className="flex-shrink-0">{icon}</div>
@@ -34,7 +28,8 @@ export default function Header({ basics }: { basics: IBasics }) {
           <p className="text-lg font-light">{basics.label}</p>
           <div className="text-xs mt-2 text-gray-200 max-w-md">
             <HTMLRenderer htmlString={basics.summary} />
-      </div>
+          </div>
+        </div>
         <div className="w-[35%] space-y-1.5">
           <ContactItem icon={<MapPin size={15} />} text={basics.location.city} />
           {linkedin && (
