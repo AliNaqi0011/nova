@@ -9,7 +9,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import TemplatesSideBar from './templates/TemplatesSideBar';
 
 const RateUsSection = () => (
-  <div className="bg-black py-8 px-4 sm:px-6 lg:px-8 print:hidden">
+  <div className="bg-black py-8 px-4 sm:px-6 lg:px-8">
     <div className="max-w-2xl mx-auto text-center">
       <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
         Enjoying the Builder?
@@ -40,18 +40,20 @@ const BuilderLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-black">
-      <Header />
+      <div>
+        <Header />
+      </div>
       <div className="flex-1 flex pt-14">
         {/* Editor Sidebar (Left) */}
-        <aside className="hidden lg:block w-[22vw] min-w-[18rem] print:hidden">
+        <aside className="hidden lg:block w-[22vw] min-w-[18rem]">
           <EditorLayout />
         </aside>
 
         <main className="flex-1 flex flex-col overflow-hidden">
           <div className="flex-1 flex">
             {/* Main Content */}
-            <div className="flex-1 flex flex-col bg-gray-950/40 print:bg-white overflow-hidden">
-              <div className="w-full md:w-[210mm] mt-5 mb-3 mx-auto print:hidden px-4 md:px-0">
+            <div className="flex-1 flex flex-col bg-gray-950/40 overflow-hidden">
+              <div className="w-full md:w-[210mm] mt-5 mb-3 mx-auto px-4 md:px-0">
                 <ResumeHeader />
               </div>
               <div className="flex-1 overflow-y-auto no-scrollbar">
@@ -62,7 +64,7 @@ const BuilderLayout = () => {
         </main>
 
         {/* Templates Sidebar (Right) */}
-        <aside className="hidden lg:block w-[22vw] min-w-[18rem] print:hidden">
+        <aside className="hidden lg:block w-[22vw] min-w-[18rem]">
           <TemplatesSideBar />
         </aside>
       </div>
@@ -128,7 +130,7 @@ const BuilderLayout = () => {
       </AnimatePresence>
 
       <RateUsSection />
-      <div className="print:hidden">
+      <div>
         <Footer />
       </div>
     </div>

@@ -19,7 +19,7 @@ export default function Contact({ basics }: { basics: IBasics }) {
       </h2>
       <ContactItem
         icon={<MapPin size={14} />}
-        text={basics.location.address + ', ' + basics.location.city}
+        text={`${basics.location.address}, ${basics.location.city}`}
       />
       <ContactItem icon={<Phone size={14} />} text={basics.phone} />
       <ContactItem icon={<Mail size={14} />} text={basics.email} />

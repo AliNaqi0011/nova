@@ -9,6 +9,7 @@ import Interests from './Interests';
 import Strengths from './Strengths';
 import Languages from './Languages';
 import Achievements from './Achievements';
+import Header from './Header';
 
 interface SidebarProps {
   basics: IBasics;
@@ -28,35 +29,38 @@ export default function Sidebar({
   languages,
 }: SidebarProps) {
   return (
-    <div className="w-1/3 bg-[#2d767f] text-white p-6 flex flex-col gap-4">
-      <div className="bg-[#64b5f6] p-4 -m-2">
-        <ProfileImage
-          src={basics.image}
-          imageWrapperClassname="mx-auto"
-          width="120px"
-          height="120px"
-        />
+    <div className="w-full bg-[#2d767f] text-white p-6 flex flex-col gap-4">
+      <div className="flex items-center gap-6">
+        <div className="bg-[#64b5f6] p-2">
+          <ProfileImage src={basics.image} width="100px" height="100px" />
+        </div>
+        <Header basics={basics} />
       </div>
 
-      <SectionValidator value={skills}>
-        <Skills skills={skills} />
-      </SectionValidator>
+      <div className="grid grid-cols-2 gap-6 mt-4">
+        <div>
+          <SectionValidator value={skills}>
+            <Skills skills={skills} />
+          </SectionValidator>
+        </div>
+        <div>
+          <SectionValidator value={achievements}>
+            <Achievements achievements={achievements} />
+          </SectionValidator>
+          <SectionValidator value={strengths}>
+            <Strengths strengths={strengths} />
+          </SectionValidator>
+        </div>
+      </div>
 
-      <SectionValidator value={interests}>
-        <Interests interests={interests} />
-      </SectionValidator>
-
-      <SectionValidator value={strengths}>
-        <Strengths strengths={strengths} />
-      </SectionValidator>
-
-      <SectionValidator value={languages}>
-        <Languages languages={languages} />
-      </SectionValidator>
-
-      <SectionValidator value={achievements}>
-        <Achievements achievements={achievements} />
-      </SectionValidator>
+      <div className="grid grid-cols-2 gap-6 mt-4">
+        <SectionValidator value={interests}>
+          <Interests interests={interests} />
+        </SectionValidator>
+        <SectionValidator value={languages}>
+          <Languages languages={languages} />
+        </SectionValidator>
+      </div>
     </div>
   );
 }

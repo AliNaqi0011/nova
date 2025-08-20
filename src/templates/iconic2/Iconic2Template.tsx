@@ -4,6 +4,7 @@ import { SectionValidator } from '@/helpers/common/components/ValidSectionRender
 import { IBasics, IWorkIntrf, IEducation, ISkillsIntrf } from '@/stores/index.interface';
 import { IVolunteeringItem } from '@/stores/volunteering.interface';
 import { IAwardItem } from '@/stores/awards.interface';
+import { dateParser } from '@/helpers/utils';
 
 import Header from './components/Header';
 import WorkExperience from './components/WorkExperience';
@@ -88,6 +89,3 @@ export default function Iconic2Template() {
     </div>
   );
 }
-
-// Helper to parse dates, assuming it exists in utils
-import { dateParser } from '@/helpers/utils';

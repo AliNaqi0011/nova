@@ -23,47 +23,33 @@ body {
   page-break-inside: avoid;
 }
 
-@media print {
-  body *,
-  *::before,
-  *::after {
-    -webkit-print-color-adjust: exact !important; /* Chrome, Safari, Edge */
-    print-color-adjust: exact !important; /*Firefox*/
-  }
-
-  /* Hide elements that shouldn't be printed */
-  .print\:hidden {
-    display: none !important;
-  }
-
-  /* Reset layout for printing */
-  #resume-container,
-  #resume-pages-container {
-    padding: 0;
-    margin: 0;
-    background-color: transparent !important;
-    transform: scale(1) !important;
-    box-shadow: none;
-    display: block; /* Change from flex to block for printing */
-  }
-
-  .resume-page-view {
-    width: 100% !important;
-    height: 297mm !important; /* A4 height */
-    box-shadow: none !important;
-    margin: 0 !important;
-    page-break-after: always; /* Create a page break after each page div */
-    overflow: hidden; /* Hide any minor overflow during print */
-  }
-}
-
-@page {
-  size: A4;
-  margin: 0;
-}
-
 @media screen {
   #resume-container {
     background-color: rgb(24 24 27); /* zinc-900 */
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #resume-page-view,
+  #resume-page-view * {
+    visibility: visible;
+  }
+  #resume-page-view {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    transform: scale(1) !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    overflow: visible !important;
+  }
+  #resume-container {
+    background-color: white !important;
+    padding: 0 !important;
   }
 }

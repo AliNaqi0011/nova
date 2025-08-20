@@ -47,6 +47,12 @@ export default function ProfessionalTemplate() {
   const skills = resumeData.skills;
   const involvements = resumeData.activities.involvements;
   const achievements = resumeData.activities.achievements;
+  const languagesAndFrameworks = [...skills.languages, ...skills.frameworks];
+  const technologiesAndLibraries = [
+    ...skills.technologies,
+    ...skills.libraries,
+    ...skills.databases,
+  ];
 
   return (
     <ResumeContainer>
@@ -91,15 +97,15 @@ export default function ProfessionalTemplate() {
           </Section>
         </SectionValidator>
 
-        <SectionValidator value={skills.languages.concat(skills.frameworks)}>
+        <SectionValidator value={languagesAndFrameworks}>
           <Section title="Technical expertise">
-            <RatedSkills items={skills.languages.concat(skills.frameworks)} />
+            <RatedSkills items={languagesAndFrameworks} />
           </Section>
         </SectionValidator>
 
-        <SectionValidator value={skills.technologies.concat(skills.libraries, skills.databases)}>
+        <SectionValidator value={technologiesAndLibraries}>
           <Section title="Skills / Exposure">
-            <UnratedSkills items={skills.technologies.concat(skills.libraries, skills.databases)} />
+            <UnratedSkills items={technologiesAndLibraries} />
           </Section>
         </SectionValidator>
         <SectionValidator value={skills.practices}>

@@ -99,6 +99,66 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
     thumbnail: 'https://placehold.co/400x560.png',
     component: dynamic(() => import('@/templates/iconic3/Iconic3Template')),
   },
+  iconic4: {
+    id: 'iconic4',
+    name: 'Iconic 4',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/iconic4/Iconic4Template')),
+  },
+  iconic5: {
+    id: 'iconic5',
+    name: 'Iconic 5',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/iconic5/Iconic5Template')),
+  },
+  iconic6: {
+    id: 'iconic6',
+    name: 'Iconic 6',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/iconic6/Iconic6Template')),
+  },
+  impact: {
+    id: 'impact',
+    name: 'Impact',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/impact/ImpactTemplate')),
+  },
+  impact2: {
+    id: 'impact2',
+    name: 'Impact 2',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/impact2/Impact2Template')),
+  },
+  impact3: {
+    id: 'impact3',
+    name: 'Impact 3',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/impact3/Impact3Template')),
+  },
+  impact4: {
+    id: 'impact4',
+    name: 'Impact 4',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/impact4/Impact4Template')),
+  },
+  impact5: {
+    id: 'impact5',
+    name: 'Impact 5',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/impact5/Impact5Template')),
+  },
+  impact6: {
+    id: 'impact6',
+    name: 'Impact 6',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/impact6/Impact6Template')),
+  },
+  marketing: {
+    id: 'marketing',
+    name: 'Marketing',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/marketing/MarketingTemplate')),
+  },
   modern2: {
     id: 'modern2',
     name: 'Modern 2',
@@ -152,6 +212,12 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
     name: 'Professional 6',
     thumbnail: '/templates/professional.png',
     component: dynamic(() => import('@/templates/professional6/Professional6Template')),
+  },
+  arcitecture: {
+    id: 'arcitecture',
+    name: 'Arcitecture',
+    thumbnail: 'https://placehold.co/400x560.png',
+    component: dynamic(() => import('@/templates/arcitecture/ArcitectureTemplate')),
   },
 };
 

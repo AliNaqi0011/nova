@@ -20,12 +20,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         line_items: [
           {
             price_data: {
-              currency: 'usd',
+              currency: 'pkr',
               product_data: {
                 name: productName,
                 description: 'A professional resume tailored to your needs.',
               },
-              unit_amount: 500, // Amount in cents ($5.00)
+              unit_amount: 10000, // Amount in cents (100 PKR)
             },
             quantity: 1,
           },
@@ -33,6 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         mode: 'payment',
         success_url: success_url,
         cancel_url: cancel_url,
+        billing_address_collection: 'required',
       });
 
       if (!session.id) {
