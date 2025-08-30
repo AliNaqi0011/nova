@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { ISkillItem } from '@/stores/skill.interface';
 import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
 import Contact from './Contact';
@@ -6,7 +6,7 @@ import Skills from './Skills';
 import Languages from './Languages';
 
 interface SidebarProps {
-  basics: IBasics;
+  basics: IBasicDetailsItem;
   skills: ISkillItem[];
   languages: ISkillItem[];
 }

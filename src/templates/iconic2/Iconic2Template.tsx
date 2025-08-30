@@ -1,7 +1,8 @@
 import { StateContext } from '@/modules/builder/resume/StateContext';
 import { useContext } from 'react';
 import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
-import { IBasics, IWorkIntrf, IEducation, ISkillsIntrf } from '@/stores/index.interface';
+import { IWorkIntrf, IEducation, ISkillsIntrf } from '@/stores/index.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { IVolunteeringItem } from '@/stores/volunteering.interface';
 import { IAwardItem } from '@/stores/awards.interface';
 import { dateParser } from '@/helpers/utils';
@@ -16,7 +17,7 @@ import HonoursAndAwards from './components/HonoursAndAwards';
 import Conferences from './components/Conferences';
 
 interface Iconic2TemplateProps {
-  basics: IBasics;
+  basics: IBasicDetailsItem;
   work: IWorkIntrf[];
   education: IEducation[];
   skills: ISkillsIntrf;
@@ -25,7 +26,7 @@ interface Iconic2TemplateProps {
 }
 
 export default function Iconic2Template() {
-  const resumeData = useContext(StateContext) as Iconic2TemplateProps;
+  const resumeData = useContext(StateContext);
   if (!resumeData) return null;
 
   const { basics, work, education, skills, volunteer, awards } = resumeData;

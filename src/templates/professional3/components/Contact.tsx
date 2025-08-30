@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { Phone, Mail, MapPin, Globe } from 'lucide-react';
 
 const ContactItem = ({ icon, text }: { icon: React.ReactNode; text: string }) => (
@@ -8,7 +8,7 @@ const ContactItem = ({ icon, text }: { icon: React.ReactNode; text: string }) =>
   </div>
 );
 
-export default function Contact({ basics }: { basics: IBasics }) {
+export default function Contact({ basics }: { basics: IBasicDetailsItem }) {
   return (
     <section>
       <h3 className="font-bold text-base uppercase text-gray-800 border-b-2 border-gray-300 pb-1 mb-3">

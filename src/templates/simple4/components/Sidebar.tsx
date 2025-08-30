@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { ISkillItem } from '@/stores/skill.interface';
 import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
 
@@ -10,7 +10,7 @@ import Skills from './Skills';
 import Reference from './Reference';
 
 interface SidebarProps {
-  basics: IBasics | null;
+  basics: IBasicDetailsItem | null;
   personalData: PersonalDataProps | null;
   skills: ISkillItem[];
   reference: ReferenceProps | null;

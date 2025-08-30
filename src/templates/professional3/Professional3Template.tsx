@@ -7,6 +7,8 @@ import Header from './components/Header';
 
 export default function Professional3Template() {
   const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
+
   const { basics, work, education, skills, awards } = resumeData;
 
   const allSkills = [

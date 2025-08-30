@@ -1,4 +1,4 @@
-import { IBasics, IProfile } from '@/stores/basic.interface';
+import { IBasicDetailsItem, IProfiles } from '@/stores/basic.interface';
 import { Mail, Phone, MapPin, Linkedin, Globe } from 'lucide-react';
 import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 
@@ -26,10 +26,10 @@ const getSocialIcon = (network: string) => {
   }
 };
 
-export default function Header({ basics }: { basics: IBasics }) {
+export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   const { name, label, summary, email, phone, location, profiles, url } = basics;
-  const linkedin = profiles.find((p: IProfile) => p.network === 'linkedin');
-  const otherProfile = profiles.find((p: IProfile) => p.network !== 'linkedin' && p.url);
+  const linkedin = profiles.find((p: IProfiles) => p.network === 'linkedin');
+  const otherProfile = profiles.find((p: IProfiles) => p.network !== 'linkedin' && p.url);
 
   return (
     <header className="flex justify-between items-start pb-4 border-b-2 border-gray-200">

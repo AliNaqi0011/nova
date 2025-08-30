@@ -23,9 +23,7 @@ export default function WorkExperience({ work }: { work: IExperienceItem[] }) {
                   <ExternalLink size={14} />
                 </a>
               </div>
-              <p className="text-xs text-gray-500 font-semibold">
-                {job.name}, {job.location?.city || 'USA'}
-              </p>
+              <p className="text-xs text-gray-500 font-semibold">{job.name}</p>
             </div>
             <p className="text-sm text-gray-500 -mt-1">
               {dateParser(job.startDate, 'MM/YYYY')} -{' '}

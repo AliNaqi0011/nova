@@ -1,8 +1,8 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
 import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 
-export default function Header({ basics }: { basics: IBasics }) {
+export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   return (
     <header className="flex items-start gap-6 mb-4">
       <div className="flex-shrink-0">

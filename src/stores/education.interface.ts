@@ -11,6 +11,7 @@ export interface IEducationItem {
   score: string;
   courses: string[];
   id: string;
+  website: string;
 }
 
 export interface IEducationStore {

@@ -8,7 +8,7 @@ import Involvement from './components/Involvement';
 import { Objective } from './components/Objective';
 import RatedSkills from './components/RatedSkills';
 import { Section } from './components/Section';
-import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
+import { StandardSection } from '@/helpers/common/components/StandardSection';
 import { StateContext } from '@/modules/builder/resume/StateContext';
 import UnratedSkills from './components/UnratedSkills';
 import Work from './components/Work';
@@ -65,64 +65,68 @@ export default function ProfessionalTemplate() {
         >
           <BasicIntro basics={resumeData.basics} />
         </Section>
-        <SectionValidator value={resumeData.work}>
+
+        <StandardSection value={resumeData.work}>
           <Section title="Work Experience">
             <Work work={resumeData.work} />
           </Section>
-        </SectionValidator>
+        </StandardSection>
 
-        <SectionValidator value={involvements}>
+        <StandardSection value={involvements}>
           <Section title="Key Projects / Involvements">
             <Involvement data={involvements} />
           </Section>
-        </SectionValidator>
+        </StandardSection>
 
-        <SectionValidator value={achievements}>
+        <StandardSection value={achievements}>
           <Section title="Certificates and Awards">
             <Achievements data={achievements} />
           </Section>
-        </SectionValidator>
+        </StandardSection>
       </LeftSection>
 
       <RightSection>
-        <SectionValidator value={resumeData.basics.summary}>
+        <StandardSection value={resumeData.basics.summary}>
           <Section title="Summary">
             <AboutMe summary={resumeData.basics.summary} profileImage={resumeData.basics.image} />
           </Section>
-        </SectionValidator>
+        </StandardSection>
 
-        <SectionValidator value={resumeData.basics.objective}>
+        <StandardSection value={resumeData.basics.objective}>
           <Section title="Career Objective">
             <Objective objective={resumeData.basics.objective} />
           </Section>
-        </SectionValidator>
+        </StandardSection>
 
-        <SectionValidator value={languagesAndFrameworks}>
+        <StandardSection value={languagesAndFrameworks}>
           <Section title="Technical expertise">
             <RatedSkills items={languagesAndFrameworks} />
           </Section>
-        </SectionValidator>
+        </StandardSection>
 
-        <SectionValidator value={technologiesAndLibraries}>
+        <StandardSection value={technologiesAndLibraries}>
           <Section title="Skills / Exposure">
             <UnratedSkills items={technologiesAndLibraries} />
           </Section>
-        </SectionValidator>
-        <SectionValidator value={skills.practices}>
+        </StandardSection>
+
+        <StandardSection value={skills.practices}>
           <Section title="Methodology/Approach">
             <UnratedSkills items={skills.practices} />
           </Section>
-        </SectionValidator>
-        <SectionValidator value={skills.tools}>
+        </StandardSection>
+
+        <StandardSection value={skills.tools}>
           <Section title="Tools">
             <UnratedSkills items={skills.tools} />
           </Section>
-        </SectionValidator>
-        <SectionValidator value={resumeData.education}>
+        </StandardSection>
+
+        <StandardSection value={resumeData.education}>
           <Section title="Education">
             <Education education={resumeData.education} />
           </Section>
-        </SectionValidator>
+        </StandardSection>
       </RightSection>
     </ResumeContainer>
   );

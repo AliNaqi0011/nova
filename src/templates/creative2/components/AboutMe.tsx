@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { Phone, MapPin, Mail } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 
@@ -16,7 +16,7 @@ const ContactItem = ({ icon, text }: { icon: React.ReactNode; text: string }) =>
   </div>
 );
 
-export default function AboutMe({ basics }: { basics: IBasics }) {
+export default function AboutMe({ basics }: { basics: IBasicDetailsItem }) {
   return (
     <section>
       <SectionTitle>ABOUT ME</SectionTitle>

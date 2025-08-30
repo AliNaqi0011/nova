@@ -8,6 +8,7 @@ import { headers } from '@/helpers/constants/editor-data';
 import { resetResumeStore } from '@/stores/useResumeStore';
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
+import { SectionManager } from './components/SectionManager';
 
 interface EditorLayoutProps {
   closeEditor?: () => void;
@@ -47,7 +48,8 @@ const EditorLayout = ({ closeEditor, isMobile = false }: EditorLayoutProps) => {
         )}
         {displayElement}
 
-        <div className="mt-8">
+        <div className="mt-8 space-y-6">
+          <SectionManager />
           <OutlinedButton onClick={resetResumeStore}>Reset all edits</OutlinedButton>
         </div>
       </motion.div>

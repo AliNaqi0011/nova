@@ -8,6 +8,7 @@ const workWithDayjs = resumeData.work.map((item) => ({
   ...item,
   startDate: item.startDate ? dayjs(item.startDate, 'MMM YYYY') : null,
   endDate: item.endDate ? dayjs(item.endDate, 'MMM YYYY') : null,
+  website: item.url || '',
 }));
 
 export const useExperiences = create<IExperienceStore>()((set, get) => ({
@@ -32,13 +33,8 @@ export const useExperiences = create<IExperienceStore>()((set, get) => ({
   },
 
   reset: (values: IExperienceItem[]) => {
-    const workWithDayjs = values.map((item) => ({
-      ...item,
-      startDate: item.startDate ? dayjs(item.startDate as string) : null,
-      endDate: item.endDate ? dayjs(item.endDate as string) : null,
-    }));
     set({
-      experiences: workWithDayjs,
+      experiences: values,
     });
   },
 

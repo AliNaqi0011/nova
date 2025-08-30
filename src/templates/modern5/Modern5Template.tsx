@@ -11,6 +11,8 @@ import VerticalSection from './components/VerticalSection';
 
 export default function Modern5Template() {
   const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
+
   const { basics, education, skills, work, awards } = resumeData;
 
   const allSkills = [

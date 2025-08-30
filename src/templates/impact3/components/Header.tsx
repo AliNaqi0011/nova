@@ -1,7 +1,7 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 
-export default function Header({ basics }: { basics: IBasics }) {
+export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   return (
     <header className="relative">
       <div className="absolute top-0 right-0 w-24 h-24 bg-[#002D62] opacity-10">

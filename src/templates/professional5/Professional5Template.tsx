@@ -14,6 +14,8 @@ import Education from './components/Education';
 
 export default function Professional5Template() {
   const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
+
   const { basics, work, education, skills, awards, volunteer } = resumeData;
 
   const additionalSkills = [...skills.technologies, ...skills.practices, ...skills.tools];

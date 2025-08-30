@@ -49,14 +49,17 @@ export default function Hero() {
         >
           <div className="lg:col-span-6 place-self-center text-center lg:text-left">
             <motion.h1
-              className="text-4xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 text-transparent bg-clip-text"
+              className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 text-transparent bg-clip-text leading-tight"
               variants={itemVariants}
             >
-              Build Your Future, One Resume at a Time
+              Build Your Future, <span className="block">One Resume at a Time</span>
             </motion.h1>
-            <motion.p className="mt-6 text-lg leading-8 text-gray-300" variants={itemVariants}>
-              Create a job-winning resume in minutes with our professional, ATS-friendly templates.
-              No experience needed.
+            <motion.p
+              className="mt-6 text-lg lg:text-xl leading-relaxed text-gray-300 max-w-2xl"
+              variants={itemVariants}
+            >
+              Create pixel-perfect, professional resumes in minutes with our ATS-friendly templates.
+              <span className="text-purple-400 font-medium">No design experience needed.</span>
             </motion.p>
             <motion.div
               className="mt-10 flex items-center justify-center lg:justify-start gap-x-6"
@@ -64,41 +67,37 @@ export default function Hero() {
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/builder" passHref>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    className="bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-[0_0_20px_theme(colors.purple.500/0.5)]"
-                  >
+                  <button className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold rounded-xl shadow-[0_0_30px_theme(colors.purple.500/0.4)] hover:shadow-[0_0_40px_theme(colors.purple.500/0.6)] transition-all duration-300 text-lg">
                     Create Your Resume
-                  </Button>
+                  </button>
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  className="text-white border-purple-500/50 hover:bg-white/10"
-                >
+                <button className="px-8 py-4 border-2 border-purple-500/50 hover:border-purple-400 text-white hover:bg-purple-500/10 font-semibold rounded-xl transition-all duration-300 text-lg backdrop-blur-sm">
                   Explore Templates
-                </Button>
+                </button>
               </motion.div>
             </motion.div>
-            <motion.div className="mt-10" variants={itemVariants}>
-              <p className="text-sm text-gray-400">Trusted by over 500+ professionals at:</p>
-              <div className="mt-4 flex justify-center lg:justify-start items-center gap-6 filter grayscale opacity-60">
+            <motion.div className="mt-12" variants={itemVariants}>
+              <p className="text-sm text-gray-400 mb-6">
+                Trusted by 1000+ professionals at top companies:
+              </p>
+              <div className="flex justify-center lg:justify-start items-center gap-8 filter grayscale opacity-60 hover:opacity-80 transition-opacity duration-300">
                 {trustLogos.map((company, index) => (
                   <motion.div
                     key={company.name}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8 + index * 0.1 }}
+                    whileHover={{ scale: 1.1, opacity: 1 }}
+                    className="transition-all duration-200"
                   >
                     <Image
                       src={company.logo}
                       alt={company.name}
-                      width={80}
-                      height={30}
-                      className="h-6 object-contain"
+                      width={100}
+                      height={40}
+                      className="h-8 object-contain"
                     />
                   </motion.div>
                 ))}
@@ -108,23 +107,30 @@ export default function Hero() {
           <div className="lg:col-span-6 flex items-center justify-center">
             <motion.div
               className="relative"
-              animate={{ y: [-5, 5] }}
+              animate={{ y: [-8, 8] }}
               transition={{
-                duration: 3,
+                duration: 4,
                 repeat: Infinity,
                 repeatType: 'reverse',
                 ease: 'easeInOut',
               }}
             >
-              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-2xl opacity-20 blur-2xl"></div>
-              <Image
-                src="/templates/modern.png"
-                alt="Resume Builder Interface"
-                width={600}
-                height={600}
-                className="relative rounded-xl shadow-2xl shadow-purple-900/40"
-                data-ai-hint="professional resume examples"
-              />
+              <div className="absolute -inset-4 bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 rounded-3xl opacity-30 blur-3xl animate-pulse"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl opacity-40 blur-xl"></div>
+              <motion.div
+                whileHover={{ scale: 1.02, rotateY: 5 }}
+                transition={{ duration: 0.3 }}
+                className="relative"
+              >
+                <Image
+                  src="/templates/modern.png"
+                  alt="Professional Resume Builder Interface"
+                  width={700}
+                  height={700}
+                  className="relative rounded-2xl shadow-2xl shadow-purple-900/60 border border-purple-500/20"
+                  priority
+                />
+              </motion.div>
             </motion.div>
           </div>
         </motion.div>

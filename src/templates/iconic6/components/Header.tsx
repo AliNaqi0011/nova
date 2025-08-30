@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 import { Mail, Phone, MapPin, Linkedin, Instagram } from 'lucide-react';
 
@@ -20,7 +20,7 @@ const ContactItem = ({
   </a>
 );
 
-export default function Header({ basics }: { basics: IBasics }) {
+export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   const { name, label, summary, email, phone, location, profiles, url } = basics;
   const linkedin = profiles.find((p) => p.network === 'linkedin');
   const instagram = profiles.find((p) => p.network === 'instagram');

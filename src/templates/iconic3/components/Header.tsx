@@ -1,16 +1,16 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
 import { MapPin, Linkedin, Instagram } from 'lucide-react';
 import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 
-const ContactItem = ({ icon, text }: { text: string; href?: string }) => (
+const ContactItem = ({ icon, text }: { icon: React.ReactNode; text: string; href?: string }) => (
   <div className="flex items-center gap-2 text-white">
     <div className="flex-grow text-right text-[8.5pt]">{text}</div>
     <div className="flex-shrink-0">{icon}</div>
   </div>
 );
 
-export default function Header({ basics }: { basics: IBasics }) {
+export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   const linkedin = basics.profiles.find((p) => p.network === 'linkedin');
   const instagram = basics.profiles.find((p) => p.network === 'instagram');
 

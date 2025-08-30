@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
 const ContactItem = ({ icon, text }: { icon: React.ReactNode; text: string }) => (
@@ -8,7 +8,7 @@ const ContactItem = ({ icon, text }: { icon: React.ReactNode; text: string }) =>
   </div>
 );
 
-export default function ContactBar({ basics }: { basics: IBasics }) {
+export default function ContactBar({ basics }: { basics: IBasicDetailsItem }) {
   return (
     <div className="flex justify-around items-center p-2 border-b">
       <ContactItem icon={<Phone size={14} />} text={basics.phone} />

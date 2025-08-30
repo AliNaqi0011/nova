@@ -14,6 +14,8 @@ import Interests from './components/Interests';
 
 export default function Professional2Template() {
   const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
+
   const { basics, work, education, skills } = resumeData;
 
   const allSkills = [

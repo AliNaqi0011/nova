@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/index.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 
@@ -6,7 +6,7 @@ const Role = styled.span`
   color: rgba(0, 0, 0, 0.6);
 `;
 
-export default function BasicIntro({ basics }: { basics: IBasics }) {
+export default function BasicIntro({ basics }: { basics: IBasicDetailsItem }) {
   return (
     <div className="flex justify-between">
       <div className="flex flex-col gap-2">

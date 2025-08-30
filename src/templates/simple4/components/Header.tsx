@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { Phone, Mail, Linkedin, MapPin } from 'lucide-react';
 
 const ContactItem = ({
@@ -16,7 +16,7 @@ const ContactItem = ({
   </a>
 );
 
-export default function Header({ basics }: { basics: IBasics }) {
+export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   const linkedin = basics.profiles.find((p) => p.network === 'linkedin');
   return (
     <header className="pb-4 border-b-2 border-gray-100">

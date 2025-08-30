@@ -31,12 +31,16 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
     name: 'Modern Resume',
     thumbnail: '/templates/modern.png',
     component: dynamic(() => import('@/templates/modern/MordernTemplate')),
+    atsCompliant: true,
+    features: ['Clean Layout', 'ATS-Friendly', 'Professional Fonts'],
   },
   professional: {
     id: 'professional',
     name: 'Professional Resume',
     thumbnail: '/templates/professional.png',
     component: dynamic(() => import('@/templates/professional/ProfessionalTemplate')),
+    atsCompliant: true,
+    features: ['Corporate Style', 'ATS-Optimized', 'Standard Sections'],
   },
   simple: {
     id: 'simple',
@@ -44,6 +48,8 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
     thumbnail:
       'https://user-images.githubusercontent.com/12962887/201484876-75290af9-ccd6-4f6d-be96-6a8fb4f20c4b.png',
     component: dynamic(() => import('@/templates/simple/SimpleTemplate')),
+    atsCompliant: true,
+    features: ['Minimalist Design', 'ATS-Friendly', 'Easy to Read'],
   },
   simple2: {
     id: 'simple2',
@@ -213,9 +219,9 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
     thumbnail: '/templates/professional.png',
     component: dynamic(() => import('@/templates/professional6/Professional6Template')),
   },
-  arcitecture: {
-    id: 'arcitecture',
-    name: 'Arcitecture',
+  architecture: {
+    id: 'architecture',
+    name: 'Architecture',
     thumbnail: 'https://placehold.co/400x560.png',
     component: dynamic(() => import('@/templates/arcitecture/ArcitectureTemplate')),
   },

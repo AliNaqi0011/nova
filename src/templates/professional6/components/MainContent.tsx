@@ -6,7 +6,7 @@ import Experience from './Experience';
 import Education from './Education';
 
 interface MainContentProps {
-  basics: IBasics;
+  basics: IBasicDetailsItem;
   summary: string;
   work: IWorkIntrf[];
   education: IEducation[];

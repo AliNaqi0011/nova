@@ -8,69 +8,64 @@ import { WorkSection } from './components/Work';
 import { AwardSection } from './components/Awards';
 import { useContext } from 'react';
 import { StateContext } from '@/modules/builder/resume/StateContext';
-import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
+import { StandardSection } from '@/helpers/common/components/StandardSection';
 
 export default function MordernTemplate() {
   const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
 
   return (
-    <div className="p-2">
-      <BasicIntro
-        name={resumeData.basics.name}
-        label={resumeData.basics.label}
-        url={resumeData.basics.url}
-        email={resumeData.basics.email}
-        city={resumeData.basics.location.city}
-        phone={resumeData.basics.phone}
-        image={resumeData.basics.image}
-        profiles={resumeData.basics.profiles}
-      />
-      <div className="flex">
-        <div className="basis-[60%] p-3">
-          <SectionValidator value={resumeData.basics.summary}>
+    <div className="h-full flex flex-col bg-white p-4">
+      {/* Header */}
+      <div className="flex-shrink-0 mb-4">
+        <BasicIntro
+          name={resumeData.basics.name}
+          label={resumeData.basics.label}
+          url={resumeData.basics.url}
+          email={resumeData.basics.email}
+          city={resumeData.basics.location.city}
+          phone={resumeData.basics.phone}
+          image={resumeData.basics.image}
+          profiles={resumeData.basics.profiles}
+        />
+      </div>
+
+      {/* Main Content */}
+      <div className="flex flex-1 gap-4">
+        <div className="basis-[65%]">
+          <StandardSection value={resumeData.basics.summary}>
             <SummarySection summary={resumeData.basics.summary} />
-          </SectionValidator>
+          </StandardSection>
 
-          <SectionValidator value={resumeData.work}>
+          <StandardSection value={resumeData.work}>
             <WorkSection experience={resumeData.work} />
-          </SectionValidator>
+          </StandardSection>
 
-          <SectionValidator value={resumeData.awards}>
+          <StandardSection value={resumeData.awards}>
             <AwardSection awardsReceived={resumeData.awards} />
-          </SectionValidator>
+          </StandardSection>
         </div>
 
-        <div className="basis-[40%] p-3">
-          <SectionValidator value={resumeData.basics.objective}>
+        <div className="basis-[35%] bg-gray-50 p-3 rounded">
+          <StandardSection value={resumeData.basics.objective}>
             <Objective objective={resumeData.basics.objective} />
-          </SectionValidator>
+          </StandardSection>
 
-          <SectionValidator value={resumeData.skills.languages}>
+          <StandardSection value={resumeData.skills.languages}>
             <SkillsSection title="Languages" list={resumeData.skills.languages} />
-          </SectionValidator>
+          </StandardSection>
 
-          <SectionValidator value={resumeData.skills.technologies}>
+          <StandardSection value={resumeData.skills.technologies}>
             <SkillsSection title="Technologies" list={resumeData.skills.technologies} />
-          </SectionValidator>
+          </StandardSection>
 
-          <SectionValidator value={resumeData.skills.frameworks}>
-            <SkillsSection
-              title="Frameworks & Libraries"
-              list={resumeData.skills.frameworks.concat(resumeData.skills.libraries)}
-            />
-          </SectionValidator>
-
-          <SectionValidator value={resumeData.skills.tools}>
-            <SkillsSection title="Tools" list={resumeData.skills.tools} />
-          </SectionValidator>
-
-          <SectionValidator value={resumeData.education}>
+          <StandardSection value={resumeData.education}>
             <EducationSection education={resumeData.education} />
-          </SectionValidator>
+          </StandardSection>
 
-          <SectionValidator value={resumeData.volunteer}>
+          <StandardSection value={resumeData.volunteer}>
             <VolunteerSection volunteer={resumeData.volunteer} />
-          </SectionValidator>
+          </StandardSection>
         </div>
       </div>
     </div>

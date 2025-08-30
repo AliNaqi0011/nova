@@ -3,9 +3,10 @@ import { Button, TextField, Divider } from '@mui/material';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { signInWithGoogle, signInWithEmail } from '@/firebase/auth';
+import { auth } from '@/lib/auth';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { Alert, CircularProgress } from '@mui/material';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -27,23 +28,43 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [resetEmailSent, setResetEmailSent] = useState(false);
 
-  const handleGoogleSignIn = async () => {
-    const user = await signInWithGoogle();
-    if (user) {
-      router.push('/builder');
-    }
-  };
-
-  const handleEmailLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleDemoLogin = () => {
+    setLoading(true);
     setError('');
-    const user = await signInWithEmail(email, password);
-    if (user) {
+    const result = auth.signIn('demo@nova.com', 'demo123');
+    if (result.user) {
       router.push('/builder');
     } else {
-      setError('Invalid email or password.');
+      // Create demo user if doesn't exist
+      const signupResult = auth.signUp('Demo User', 'demo@nova.com', 'demo123');
+      if (signupResult.user) {
+        router.push('/builder');
+      }
     }
+    setLoading(false);
+  };
+
+  const handleEmailLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    if (!email || !password) {
+      setError('Please fill in all fields.');
+      setLoading(false);
+      return;
+    }
+
+    const result = auth.signIn(email, password);
+    if (result.user) {
+      router.push('/builder');
+    } else {
+      setError(result.error || 'Login failed');
+    }
+    setLoading(false);
   };
 
   return (
@@ -93,9 +114,21 @@ export default function LoginForm() {
           />
         </motion.div>
         {error && (
-          <motion.p className="text-red-400 text-sm text-center" variants={itemVariants}>
-            {error}
-          </motion.p>
+          <motion.div variants={itemVariants}>
+            <Alert severity="error" className="bg-red-900/20 border border-red-500/50 text-red-300">
+              {error}
+            </Alert>
+          </motion.div>
+        )}
+        {resetEmailSent && (
+          <motion.div variants={itemVariants}>
+            <Alert
+              severity="success"
+              className="bg-green-900/20 border border-green-500/50 text-green-300"
+            >
+              Password reset email sent! Check your inbox.
+            </Alert>
+          </motion.div>
         )}
         <motion.div variants={itemVariants}>
           <Button
@@ -103,16 +136,22 @@ export default function LoginForm() {
             variant="contained"
             fullWidth
             size="large"
-            className="bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-[0_0_20px_theme(colors.purple.500/0.5)]"
+            disabled={loading}
+            className="bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-[0_0_20px_theme(colors.purple.500/0.5)] disabled:opacity-50"
           >
-            Log In
+            {loading ? <CircularProgress size={24} color="inherit" /> : 'Log In'}
           </Button>
         </motion.div>
       </form>
-      <motion.div className="mt-6 text-right" variants={itemVariants}>
-        <Link href="#" className="text-sm text-purple-400 hover:text-purple-300">
-          Forgot Password?
-        </Link>
+      <motion.div className="mt-6 text-center" variants={itemVariants}>
+        <button
+          type="button"
+          onClick={handleDemoLogin}
+          disabled={loading}
+          className="text-sm text-purple-400 hover:text-purple-300 disabled:opacity-50 transition-colors"
+        >
+          Try Demo Account
+        </button>
       </motion.div>
       <motion.div className="my-6" variants={itemVariants}>
         <Divider className="before:border-white/20 after:border-white/20 text-gray-400">OR</Divider>
@@ -122,18 +161,19 @@ export default function LoginForm() {
           variant="outlined"
           fullWidth
           startIcon={<FcGoogle />}
-          className="text-white border-white/20 hover:bg-white/5"
-          onClick={handleGoogleSignIn}
+          className="text-white border-white/20 hover:bg-white/5 opacity-50 cursor-not-allowed"
+          disabled
         >
-          Sign in with Google
+          Google (Demo Only)
         </Button>
         <Button
           variant="outlined"
           fullWidth
           startIcon={<FaFacebook className="text-blue-500" />}
-          className="text-white border-white/20 hover:bg-white/5"
+          className="text-white border-white/20 hover:bg-white/5 opacity-50 cursor-not-allowed"
+          disabled
         >
-          Sign in with Facebook
+          Facebook (Demo Only)
         </Button>
       </motion.div>
       <motion.p className="mt-8 text-center text-sm text-gray-400" variants={itemVariants}>

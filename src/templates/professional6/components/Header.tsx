@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { Mail, Phone, MapPin, Globe } from 'lucide-react';
 
 const ContactItem = ({
@@ -16,7 +16,7 @@ const ContactItem = ({
   </a>
 );
 
-export default function Header({ basics }: { basics: IBasics }) {
+export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   return (
     <header className="pb-4">
       <h1 className="text-3xl font-bold text-white">{basics.name.toUpperCase()}</h1>

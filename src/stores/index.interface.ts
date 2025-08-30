@@ -48,8 +48,8 @@ export interface IWorkIntrf {
   name: string;
   position: string;
   url: string;
-  startDate: dayjs.Dayjs;
-  endDate: dayjs.Dayjs;
+  startDate: dayjs.Dayjs | null;
+  endDate: dayjs.Dayjs | null;
   summary: string;
   years: string;
   highlights: string[];
@@ -63,9 +63,9 @@ export interface IEducation {
   url: string;
   studyType: string;
   area: string;
-  startDate: dayjs.Dayjs;
+  startDate: dayjs.Dayjs | null;
   isStudyingHere: boolean;
-  endDate: dayjs.Dayjs;
+  endDate: dayjs.Dayjs | null;
   score: string;
   courses: string[];
   website: string;
@@ -76,8 +76,8 @@ export interface IVolunteer {
   organization: string;
   position: string;
   url: string;
-  startDate: string | null;
-  endDate: string | null;
+  startDate: dayjs.Dayjs | null;
+  endDate: dayjs.Dayjs | null;
   summary: string;
   highlights: string[];
   isVolunteeringNow: boolean;
@@ -87,7 +87,7 @@ export interface IAwards {
   id: string;
   title: string;
   awarder: string;
-  date: dayjs.Dayjs;
+  date: dayjs.Dayjs | null;
   summary: string;
 }
 
@@ -96,4 +96,7 @@ export interface IResume {
   skills: ISkillsIntrf;
   work: IWorkIntrf[];
   education: IEducation[];
+  volunteer: IVolunteer[];
+  awards: IAwards[];
+  activities: any;
 }

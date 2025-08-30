@@ -49,9 +49,19 @@ export const resetResumeStore = () => {
   useTechnologies.getState().reset(ResumeData.skills.technologies);
   usePractices.getState().reset(ResumeData.skills.practices);
   useTools.getState().reset(ResumeData.skills.tools);
-  useExperiences.getState().reset(ResumeData.work);
-  useEducations.getState().reset(ResumeData.education);
-  useVoluteeringStore.getState().reset(ResumeData.volunteer);
-  useAwards.getState().reset(ResumeData.awards);
+
+  // Map work data to include website property
+  const workWithWebsite = ResumeData.work.map((item) => ({ ...item, website: item.url || '' }));
+  useExperiences.getState().reset(workWithWebsite as any);
+
+  // Map education data to include website property
+  const educationWithWebsite = ResumeData.education.map((item) => ({
+    ...item,
+    website: item.url || '',
+  }));
+  useEducations.getState().reset(educationWithWebsite as any);
+
+  useVoluteeringStore.getState().reset(ResumeData.volunteer as any);
+  useAwards.getState().reset(ResumeData.awards as any);
   useActivity.getState().reset(ResumeData.activities);
 };

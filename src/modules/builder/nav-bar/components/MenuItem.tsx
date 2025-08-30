@@ -1,9 +1,9 @@
 import { Fragment, useState } from 'react';
+import { Button } from '@mui/material';
 
 import { INavMenuItemProps } from './MenuItem.interface';
 import Image from 'next/image';
 import { NavMenuPopover } from './NavMenuPopover';
-import { StyledButton } from '../atoms';
 
 export const NavMenuItem = ({ caption, popoverChildren }: INavMenuItemProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -18,7 +18,7 @@ export const NavMenuItem = ({ caption, popoverChildren }: INavMenuItemProps) => 
 
   return (
     <Fragment>
-      <StyledButton
+      <Button
         variant="text"
         size="small"
         onClick={handleClick}
@@ -35,7 +35,7 @@ export const NavMenuItem = ({ caption, popoverChildren }: INavMenuItemProps) => 
         }
       >
         {caption}
-      </StyledButton>
+      </Button>
       <NavMenuPopover isOpen={!!anchorEl} anchorElement={anchorEl} id="mark" onClose={handleClose}>
         {popoverChildren}
       </NavMenuPopover>

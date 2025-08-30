@@ -3,10 +3,12 @@ import { useContext } from 'react';
 import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
 
-import MainContent from './components/MainContent';
 import Header from './components/Header';
-import Footer from './components/Footer';
-import Sidebar from './components/Sidebar';
+import Summary from './components/Summary';
+import Education from './components/Education';
+import Skills from './components/Skills';
+import Contact from './components/Contact';
+import Experience from './components/Experience';
 
 interface Reference {
   name: string;
@@ -36,10 +38,11 @@ const ReferenceSection = ({ reference }: { reference: Reference }) => (
     </div>
   </section>
 );
-import Summary from './components/Summary';
 
 export default function Professional4Template() {
   const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
+
   const { basics, work, education, skills } = resumeData;
   const { languages, frameworks } = skills;
   const ratedSkills = [...languages, ...frameworks];

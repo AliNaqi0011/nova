@@ -11,6 +11,8 @@ import WorkingSkills from './components/WorkingSkills';
 
 export default function Modern2Template() {
   const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
+
   const { basics, work, skills, education } = resumeData;
 
   return (

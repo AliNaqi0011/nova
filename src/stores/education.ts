@@ -8,6 +8,7 @@ const educationWithDayjs = resumeData.education.map((item) => ({
   ...item,
   startDate: item.startDate ? dayjs(item.startDate) : null,
   endDate: item.endDate ? dayjs(item.endDate) : null,
+  website: item.url || '',
 }));
 
 export const useEducations = create<IEducationStore>()((set, get) => ({

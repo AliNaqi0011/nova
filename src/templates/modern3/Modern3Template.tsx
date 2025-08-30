@@ -10,6 +10,8 @@ import Education from './components/Education';
 
 export default function Modern3Template() {
   const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
+
   const { basics, work, education, skills } = resumeData;
 
   const allSkills = [

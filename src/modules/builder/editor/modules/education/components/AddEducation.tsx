@@ -14,6 +14,7 @@ const NEW_EDUCATION: IEducationItem = {
   score: '',
   courses: [],
   id: '',
+  website: '',
 };
 
 const AddEducation = ({

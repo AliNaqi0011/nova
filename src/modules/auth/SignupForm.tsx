@@ -3,9 +3,10 @@ import { Button, TextField, Divider } from '@mui/material';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { signInWithGoogle, signUpWithEmail } from '@/firebase/auth';
+import { auth } from '@/lib/auth';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { Alert, CircularProgress } from '@mui/material';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -24,26 +25,43 @@ const itemVariants = {
 
 export default function SignupForm() {
   const router = useRouter();
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleGoogleSignIn = async () => {
-    const user = await signInWithGoogle();
-    if (user) {
-      router.push('/builder');
-    }
-  };
-
-  const handleEmailSignup = async (e: React.FormEvent) => {
+  const handleEmailSignup = (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     setError('');
-    const user = await signUpWithEmail(email, password);
-    if (user) {
+
+    if (!fullName || !email || !password || !confirmPassword) {
+      setError('Please fill in all fields.');
+      setLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.');
+      setLoading(false);
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      setLoading(false);
+      return;
+    }
+
+    const result = auth.signUp(fullName, email, password);
+    if (result.user) {
       router.push('/builder');
     } else {
-      setError('Could not create account. Please try again.');
+      setError(result.error || 'Could not create account');
     }
+    setLoading(false);
   };
 
   return (
@@ -65,6 +83,9 @@ export default function SignupForm() {
             label="Full Name"
             variant="outlined"
             fullWidth
+            required
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
             InputLabelProps={{
               className: 'text-gray-400',
             }}
@@ -79,6 +100,7 @@ export default function SignupForm() {
             variant="outlined"
             fullWidth
             type="email"
+            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             InputLabelProps={{
@@ -95,8 +117,30 @@ export default function SignupForm() {
             variant="outlined"
             fullWidth
             type="password"
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            helperText="Must be at least 6 characters"
+            InputLabelProps={{
+              className: 'text-gray-400',
+            }}
+            InputProps={{
+              className: 'text-white bg-white/5 border-white/20',
+            }}
+            FormHelperTextProps={{
+              className: 'text-gray-500',
+            }}
+          />
+        </motion.div>
+        <motion.div variants={itemVariants}>
+          <TextField
+            label="Confirm Password"
+            variant="outlined"
+            fullWidth
+            type="password"
+            required
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             InputLabelProps={{
               className: 'text-gray-400',
             }}
@@ -106,9 +150,11 @@ export default function SignupForm() {
           />
         </motion.div>
         {error && (
-          <motion.p className="text-red-400 text-sm text-center" variants={itemVariants}>
-            {error}
-          </motion.p>
+          <motion.div variants={itemVariants}>
+            <Alert severity="error" className="bg-red-900/20 border border-red-500/50 text-red-300">
+              {error}
+            </Alert>
+          </motion.div>
         )}
         <motion.div variants={itemVariants}>
           <Button
@@ -116,9 +162,10 @@ export default function SignupForm() {
             variant="contained"
             fullWidth
             size="large"
-            className="bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-[0_0_20px_theme(colors.purple.500/0.5)]"
+            disabled={loading}
+            className="bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-[0_0_20px_theme(colors.purple.500/0.5)] disabled:opacity-50"
           >
-            Create Account
+            {loading ? <CircularProgress size={24} color="inherit" /> : 'Create Account'}
           </Button>
         </motion.div>
       </form>
@@ -130,18 +177,19 @@ export default function SignupForm() {
           variant="outlined"
           fullWidth
           startIcon={<FcGoogle />}
-          className="text-white border-white/20 hover:bg-white/5"
-          onClick={handleGoogleSignIn}
+          className="text-white border-white/20 hover:bg-white/5 opacity-50 cursor-not-allowed"
+          disabled
         >
-          Sign up with Google
+          Google (Demo Only)
         </Button>
         <Button
           variant="outlined"
           fullWidth
           startIcon={<FaFacebook className="text-blue-500" />}
-          className="text-white border-white/20 hover:bg-white/5"
+          className="text-white border-white/20 hover:bg-white/5 opacity-50 cursor-not-allowed"
+          disabled
         >
-          Sign up with Facebook
+          Facebook (Demo Only)
         </Button>
       </motion.div>
       <motion.p className="mt-8 text-center text-sm text-gray-400" variants={itemVariants}>

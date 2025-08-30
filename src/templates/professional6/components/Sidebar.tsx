@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { ISkillItem } from '@/stores/skill.interface';
 import { IAwardItem } from '@/stores/awards.interface';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
@@ -12,7 +12,7 @@ import Achievements from './Achievements';
 import Header from './Header';
 
 interface SidebarProps {
-  basics: IBasics;
+  basics: IBasicDetailsItem;
   skills: ISkillItem[];
   interests: string[];
   strengths: string[];

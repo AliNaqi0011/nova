@@ -11,11 +11,13 @@ export const SectionValidator = ({
 }: {
   value:
     | string
+    | string[]
     | IExperienceItem[]
     | IEducationItem[]
     | IAwardItem[]
     | IVolunteeringItem[]
-    | ISkillItem[];
+    | ISkillItem[]
+    | any[];
   children: ReactNode;
 }) => {
   const isValid = useMemo(() => {
@@ -26,5 +28,5 @@ export const SectionValidator = ({
     return null;
   }
 
-  return <Fragment>{children}</Fragment>;
+  return <div data-section-validator="true">{children}</div>;
 };

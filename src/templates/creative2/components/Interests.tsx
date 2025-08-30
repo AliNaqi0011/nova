@@ -1,9 +1,9 @@
 import SectionTitle from './SectionTitle';
-import { Headphones, Basketball, Gamepad2, Camera } from 'lucide-react';
+import { Headphones, Circle, Gamepad2, Camera } from 'lucide-react';
 
 const iconMap: { [key: string]: React.ReactNode } = {
   Headphones: <Headphones size={28} />,
-  Basketball: <Basketball size={28} />,
+  Basketball: <Circle size={28} />,
   'Game Controller': <Gamepad2 size={28} />,
   Camera: <Camera size={28} />,
 };

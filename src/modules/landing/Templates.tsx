@@ -1,7 +1,8 @@
 import { Button } from '@mui/material';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Eye, ArrowRight } from 'lucide-react';
+import { AVAILABLE_TEMPLATES } from '@/helpers/constants';
+import { TemplateLivePreview } from '@/helpers/common/components/TemplateLivePreview';
 
 const templateCategories = [
   {
@@ -117,11 +118,16 @@ const templateCategories = [
   },
 ];
 
-const TemplateCard = ({
-  template,
-}: {
-  template: { name: string; imageUrl: string; aiHint: string };
-}) => {
+const TemplateCard = ({ templateId }: { templateId: string }) => {
+  const template = AVAILABLE_TEMPLATES[templateId];
+  if (!template) {
+    return (
+      <div className="aspect-[4/5.6] rounded-2xl bg-gray-800 flex items-center justify-center">
+        <span className="text-white text-sm">Template not found</span>
+      </div>
+    );
+  }
+
   const cardVariants = {
     hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: {
@@ -146,16 +152,11 @@ const TemplateCard = ({
             '0 25px 50px -12px rgba(168, 85, 247, 0.25), 0 10px 10px -5px rgba(236, 72, 153, 0.2)',
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        className="relative w-full transition-all duration-500"
+        className="relative w-full transition-all duration-500 aspect-[4/5.6] rounded-2xl overflow-hidden bg-gray-800"
       >
-        <Image
-          src={template.imageUrl}
-          alt={template.name}
-          width={400}
-          height={560}
-          className="w-full rounded-2xl bg-gray-800 object-cover"
-          data-ai-hint={template.aiHint}
-        />
+        <div className="absolute inset-0">
+          <TemplateLivePreview TemplateComponent={template.component} scale={0.5} />
+        </div>
         <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 group-hover:ring-purple-500/50 transition-all duration-300" />
         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex flex-col items-center justify-center p-4 text-center">
           <h3 className="text-lg font-semibold text-white">{template.name}</h3>
@@ -231,9 +232,18 @@ export default function Templates() {
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 md:grid-cols-3">
-                {category.templates.slice(0, 3).map((template) => (
-                  <TemplateCard key={template.name} template={template} />
-                ))}
+                {category.name === 'Modern' &&
+                  ['modern2', 'modern3', 'modern4'].map((templateId) => (
+                    <TemplateCard key={templateId} templateId={templateId} />
+                  ))}
+                {category.name === 'Professional' &&
+                  ['professional2', 'professional3', 'professional4'].map((templateId) => (
+                    <TemplateCard key={templateId} templateId={templateId} />
+                  ))}
+                {category.name === 'Creative' &&
+                  ['creative1', 'simple2', 'impact2'].map((templateId) => (
+                    <TemplateCard key={templateId} templateId={templateId} />
+                  ))}
               </div>
             </motion.div>
           ))}

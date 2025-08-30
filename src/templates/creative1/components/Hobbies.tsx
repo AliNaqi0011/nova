@@ -1,4 +1,4 @@
-import { Camera, Gamepad2, Music, BookOpen, Swimmer } from 'lucide-react';
+import { Camera, Gamepad2, Music, BookOpen, Waves } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 
 const iconMap: { [key: string]: React.ReactNode } = {
@@ -6,7 +6,7 @@ const iconMap: { [key: string]: React.ReactNode } = {
   gaming: <Gamepad2 size={24} className="text-gray-600" />,
   music: <Music size={24} className="text-gray-600" />,
   reading: <BookOpen size={24} className="text-gray-600" />,
-  swimming: <Swimmer size={24} className="text-gray-600" />,
+  swimming: <Waves size={24} className="text-gray-600" />,
 };
 
 const getHobbyIcon = (hobby: string): React.ReactNode => {

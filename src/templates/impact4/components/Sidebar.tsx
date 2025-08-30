@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { ISkillItem } from '@/stores/skill.interface';
 import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
 
@@ -9,7 +9,7 @@ import Memberships from './Memberships';
 import Interests from './Interests';
 
 interface SidebarProps {
-  basics: IBasics;
+  basics: IBasicDetailsItem;
   skills: ISkillItem[];
   conferences: { name: string; details: string }[];
   memberships: string[];

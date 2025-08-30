@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { Mail, Phone, MapPin, Linkedin } from 'lucide-react';
 
 const ContactItem = ({
@@ -18,7 +18,7 @@ const ContactItem = ({
   </div>
 );
 
-export default function Contact({ basics }: { basics: IBasics }) {
+export default function Contact({ basics }: { basics: IBasicDetailsItem }) {
   const linkedin = basics.profiles.find((p) => p.network === 'linkedin');
   return (
     <section className="space-y-2">

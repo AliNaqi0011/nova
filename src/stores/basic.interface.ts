@@ -4,7 +4,7 @@ export type IProfiles = {
   url: string;
 };
 
-type ILocation = {
+export type ILocation = {
   address: string;
   postalCode: string;
   city: string;

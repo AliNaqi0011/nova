@@ -11,6 +11,7 @@ export interface IExperienceItem {
   summary: string;
   highlights: string[];
   isWorkingHere: boolean;
+  website: string;
 }
 
 export interface IExperienceStore {

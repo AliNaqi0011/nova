@@ -14,6 +14,7 @@ const NEW_EXPERIENCE: IExperienceItem = {
   id: '',
   url: '',
   highlights: [],
+  website: '',
 };
 
 const AddExperience = ({

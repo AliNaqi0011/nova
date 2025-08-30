@@ -42,6 +42,8 @@ import Summary from './components/Summary';
 
 export default function Modern4Template() {
   const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
+
   const { basics, work, education, skills } = resumeData;
   const { languages, frameworks } = skills;
   const ratedSkills = [...languages, ...frameworks];

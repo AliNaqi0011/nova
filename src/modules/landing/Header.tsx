@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, LogOut } from 'lucide-react';
 import { Button } from '@mui/material';
-import { User } from 'firebase/auth';
-import { onAuthChange, signOut } from '@/firebase/auth';
+import { auth, User } from '@/lib/auth';
 
 const navigation = [
   { name: 'Resume Templates', href: '#templates' },
@@ -20,7 +19,7 @@ export default function Header() {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthChange(setUser);
+    const unsubscribe = auth.onAuthChange(setUser);
     return () => unsubscribe();
   }, []);
 
@@ -105,7 +104,7 @@ export default function Header() {
               <Button
                 variant="outlined"
                 size="medium"
-                onClick={signOut}
+                onClick={() => auth.signOut()}
                 className="text-white border-purple-500/50 hover:bg-white/10"
                 startIcon={<LogOut size={16} />}
               >
@@ -188,7 +187,7 @@ export default function Header() {
                       <a
                         href="#"
                         onClick={() => {
-                          signOut();
+                          auth.signOut();
                           setMobileMenuOpen(false);
                         }}
                         className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-800"

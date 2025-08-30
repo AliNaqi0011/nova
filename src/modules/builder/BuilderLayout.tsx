@@ -37,26 +37,29 @@ const RateUsSection = () => (
 const BuilderLayout = () => {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [isTemplatesOpen, setIsTemplatesOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   return (
-    <div className="flex flex-col min-h-screen bg-black">
-      <div>
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      <div className="sticky top-0 z-30 bg-black/95 backdrop-blur-sm border-b border-gray-800">
         <Header />
       </div>
-      <div className="flex-1 flex pt-14">
+      <div className="flex-1 flex pt-2">
         {/* Editor Sidebar (Left) */}
-        <aside className="hidden lg:block w-[22vw] min-w-[18rem]">
-          <EditorLayout />
-        </aside>
+        {!isFullscreen && (
+          <aside className="hidden lg:block w-[22vw] min-w-[18rem] max-w-[24rem] bg-gray-900/50 border-r border-gray-800">
+            <EditorLayout />
+          </aside>
+        )}
 
         <main className="flex-1 flex flex-col overflow-hidden">
           <div className="flex-1 flex">
             {/* Main Content */}
-            <div className="flex-1 flex flex-col bg-gray-950/40 overflow-hidden">
-              <div className="w-full md:w-[210mm] mt-5 mb-3 mx-auto px-4 md:px-0">
-                <ResumeHeader />
+            <div className="flex-1 flex flex-col bg-gradient-to-b from-gray-950/60 to-gray-900/40 overflow-hidden">
+              <div className="w-full max-w-[210mm] mt-3 mb-2 mx-auto px-2 md:px-4">
+                <ResumeHeader isFullscreen={isFullscreen} setIsFullscreen={setIsFullscreen} />
               </div>
-              <div className="flex-1 overflow-y-auto no-scrollbar">
+              <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-600 scrollbar-track-gray-800">
                 <ResumeLayout />
               </div>
             </div>
@@ -64,27 +67,33 @@ const BuilderLayout = () => {
         </main>
 
         {/* Templates Sidebar (Right) */}
-        <aside className="hidden lg:block w-[22vw] min-w-[18rem]">
-          <TemplatesSideBar />
-        </aside>
+        {!isFullscreen && (
+          <aside className="hidden lg:block w-[22vw] min-w-[18rem] max-w-[24rem] bg-gray-900/50 border-l border-gray-800">
+            <TemplatesSideBar />
+          </aside>
+        )}
       </div>
 
       {/* Mobile Action Buttons */}
-      <div className="lg:hidden fixed bottom-6 right-6 z-40 flex flex-col gap-4">
-        <button
+      <div className="lg:hidden fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <motion.button
           onClick={() => setIsEditorOpen(true)}
-          className="bg-purple-600 text-white p-3 rounded-full shadow-lg"
+          className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-3 rounded-full shadow-lg shadow-purple-500/25 backdrop-blur-sm"
           aria-label="Open editor"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          <PanelLeftOpen className="h-6 w-6" />
-        </button>
-        <button
+          <PanelLeftOpen className="h-5 w-5" />
+        </motion.button>
+        <motion.button
           onClick={() => setIsTemplatesOpen(true)}
-          className="bg-purple-600 text-white p-3 rounded-full shadow-lg"
+          className="bg-gradient-to-r from-pink-600 to-purple-600 text-white p-3 rounded-full shadow-lg shadow-pink-500/25 backdrop-blur-sm"
           aria-label="Open templates"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          <PanelRightOpen className="h-6 w-6" />
-        </button>
+          <PanelRightOpen className="h-5 w-5" />
+        </motion.button>
       </div>
 
       {/* Mobile Editor Sidebar */}

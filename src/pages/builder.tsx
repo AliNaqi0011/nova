@@ -2,8 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { onAuthChange } from '@/firebase/auth';
-import { User } from 'firebase/auth';
+import { auth, User } from '@/lib/auth';
 import BuilderLayout from '@/modules/builder/BuilderLayout';
 
 const BuilderPage: NextPage = () => {
@@ -12,7 +11,7 @@ const BuilderPage: NextPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthChange((user) => {
+    const unsubscribe = auth.onAuthChange((user) => {
       if (user) {
         setUser(user);
       } else {

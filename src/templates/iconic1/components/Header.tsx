@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
 import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 import { Linkedin, Twitter, Mail, MapPin, Phone } from 'lucide-react';
@@ -34,7 +34,7 @@ const SocialItem = ({ network, url }: { network: string; url: string }) => {
   return <ContactItem icon={icon} text={text} href={url} />;
 };
 
-export default function Header({ basics }: { basics: IBasics }) {
+export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   const otherContacts = [
     {
       icon: <Mail size={15} />,

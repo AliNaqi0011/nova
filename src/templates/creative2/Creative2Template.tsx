@@ -16,6 +16,8 @@ import Interests from './components/Interests';
 
 export default function Creative2Template() {
   const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
+
   const { basics, work, education, skills, volunteer, awards } = resumeData;
 
   const proficientSkills = [

@@ -3,9 +3,11 @@ import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 import SectionTitle from './SectionTitle';
 import { Pencil } from 'lucide-react';
 
+import { Dayjs } from 'dayjs';
+
 interface Project {
   name: string;
-  date: string;
+  date: Dayjs | null;
   summary: string;
 }
 

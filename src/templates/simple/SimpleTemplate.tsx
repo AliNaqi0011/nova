@@ -1,6 +1,6 @@
 import { StateContext } from '@/modules/builder/resume/StateContext';
 import { useContext } from 'react';
-import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
+import { StandardSection } from '@/helpers/common/components/StandardSection';
 
 import Header from './components/Header';
 import Summary from './components/Summary';
@@ -44,29 +44,29 @@ export default function SimpleTemplate() {
       <main className="flex-grow">
         <Header basics={basics} />
 
-        <SectionValidator value={basics.summary}>
+        <StandardSection value={basics.summary}>
           <Summary summary={basics.summary} />
-        </SectionValidator>
+        </StandardSection>
 
-        <SectionValidator value={awards}>
+        <StandardSection value={awards}>
           <KeyAchievements awards={awards} />
-        </SectionValidator>
+        </StandardSection>
 
-        <SectionValidator value={work}>
+        <StandardSection value={work}>
           <Experience work={work} />
-        </SectionValidator>
+        </StandardSection>
 
-        <SectionValidator value={certifications}>
+        <StandardSection value={certifications}>
           <Certification certifications={certifications} />
-        </SectionValidator>
+        </StandardSection>
 
-        <SectionValidator value={otherAwards}>
+        <StandardSection value={otherAwards}>
           <Awards awards={otherAwards} />
-        </SectionValidator>
+        </StandardSection>
 
-        <SectionValidator value={allSkills}>
+        <StandardSection value={allSkills}>
           <Skills skills={allSkills} />
-        </SectionValidator>
+        </StandardSection>
       </main>
 
       <Footer url={basics.url} />

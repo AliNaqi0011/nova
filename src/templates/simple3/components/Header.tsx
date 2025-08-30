@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 
 const ContactItem = ({ text, href }: { text: string; href?: string }) => {
   if (href) {
@@ -16,7 +16,7 @@ const ContactItem = ({ text, href }: { text: string; href?: string }) => {
   return <p className="text-sm text-gray-600">{text}</p>;
 };
 
-export default function Header({ basics }: { basics: IBasics }) {
+export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   const linkedin = basics.profiles.find((p) => p.network === 'linkedin');
   return (
     <header className="text-center pb-3">

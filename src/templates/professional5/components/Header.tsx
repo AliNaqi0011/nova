@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { Mail, Link as LinkIcon, MapPin } from 'lucide-react';
 
 const ContactItem = ({
@@ -16,7 +16,7 @@ const ContactItem = ({
   </a>
 );
 
-export default function Header({ basics }: { basics: IBasics }) {
+export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   return (
     <header className="flex flex-col">
       <h1 className="text-4xl font-bold text-gray-800 tracking-tight">

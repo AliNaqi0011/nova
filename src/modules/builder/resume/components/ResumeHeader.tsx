@@ -2,146 +2,146 @@ import { useTemplates } from '@/stores/useTemplate';
 import { useZoom } from '@/stores/useZoom';
 import ResumeController from '../atoms/ResumeController';
 import { ResumeTitle } from '../atoms/ResumeTitle';
-import { Button } from '@mui/material';
-import { loadStripe } from '@stripe/stripe-js';
 import { useResumeStore } from '@/stores/useResumeStore';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { Maximize2, Minimize2, Printer, Eye } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
+interface ResumeHeaderProps {
+  isFullscreen?: boolean;
+  setIsFullscreen?: (value: boolean) => void;
+}
 
-const ResumeHeader = () => {
+const ResumeHeader = ({ isFullscreen = false, setIsFullscreen }: ResumeHeaderProps) => {
   const { zoomIn, zoomOut, resetZoom } = useZoom.getState();
   const templateName = useTemplates((state) => state.activeTemplate.name);
   const resumeData = useResumeStore();
   const [isDownloading, setIsDownloading] = useState(false);
-  const router = useRouter();
+  const [showPreview, setShowPreview] = useState(false);
 
-  const handleDownload = async () => {
+  const handlePrint = () => {
     setIsDownloading(true);
+
     const resumeElement = document.getElementById('resume-page-view');
     if (!resumeElement) {
-      console.error('Resume element not found');
+      alert('Resume not found!');
       setIsDownloading(false);
       return;
     }
 
-    try {
-      const canvas = await html2canvas(resumeElement, {
-        scale: 3, // Higher scale for better quality
-        useCORS: true,
-        logging: false, // Turn off logging for production
-        width: resumeElement.offsetWidth,
-        height: resumeElement.offsetHeight,
-        windowWidth: resumeElement.scrollWidth,
-        windowHeight: resumeElement.scrollHeight,
-      });
-
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4',
-      });
-
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      const canvasWidth = canvas.width;
-      const canvasHeight = canvas.height;
-      const ratio = canvasWidth / canvasHeight;
-
-      let newWidth = pdfWidth;
-      let newHeight = newWidth / ratio;
-
-      if (newHeight > pdfHeight) {
-        newHeight = pdfHeight;
-        newWidth = newHeight * ratio;
-      }
-
-      const offsetX = (pdfWidth - newWidth) / 2;
-      const offsetY = (pdfHeight - newHeight) / 2;
-
-      pdf.addImage(imgData, 'PNG', offsetX, offsetY, newWidth, newHeight);
-      pdf.save(`${resumeData.basics.name}-resume.pdf`);
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    } finally {
+    // Create print window
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      alert('Please allow popups for printing');
       setIsDownloading(false);
-    }
-  };
-
-  useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
-    if (query.get('success')) {
-      console.log('Order placed! You will receive an email confirmation.');
-      handleDownload();
-      // Clean up the URL
-      router.replace(router.pathname, undefined, { shallow: true });
+      return;
     }
 
-    if (query.get('canceled')) {
-      console.log('Order canceled -- continue to shop around and checkout when you’re ready.');
-      // Clean up the URL
-      router.replace(router.pathname, undefined, { shallow: true });
-    }
-  }, [router]);
+    // Get resume HTML and styles
+    const resumeHTML = resumeElement.outerHTML;
+    const styles = Array.from(document.styleSheets)
+      .map((sheet) => {
+        try {
+          return Array.from(sheet.cssRules)
+            .map((rule) => rule.cssText)
+            .join('\n');
+        } catch (e) {
+          return '';
+        }
+      })
+      .join('\n');
 
-  const handleCheckout = async () => {
-    try {
-      const response = await fetch('/api/stripe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          productName: `${templateName} Resume`,
-          success_url: `${window.location.origin}${window.location.pathname}?success=true`,
-          cancel_url: `${window.location.origin}${window.location.pathname}?canceled=true`,
-        }),
-      });
+    // Write to print window
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Resume - ${resumeData.basics.name}</title>
+          <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: Arial, sans-serif; }
+            @page { size: A4; margin: 0; }
+            @media print {
+              body { -webkit-print-color-adjust: exact; }
+              #resume-page-view {
+                width: 210mm !important;
+                height: 297mm !important;
+                transform: none !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+              }
+            }
+            ${styles}
+          </style>
+        </head>
+        <body>
+          ${resumeHTML}
+        </body>
+      </html>
+    `);
 
-      if (!response.ok) {
-        throw new Error('Failed to create Stripe session');
-      }
+    printWindow.document.close();
 
-      const { sessionId } = await response.json();
-      const stripe = await stripePromise;
-
-      if (!stripe) {
-        throw new Error('Stripe.js has not loaded yet.');
-      }
-
-      const { error } = await stripe.redirectToCheckout({ sessionId });
-
-      if (error) {
-        console.warn('Error redirecting to Stripe Checkout:', error);
-      }
-    } catch (error) {
-      console.error('Error during checkout:', error);
-    }
+    // Wait for content to load then print
+    setTimeout(() => {
+      printWindow.print();
+      printWindow.close();
+      setIsDownloading(false);
+    }, 500);
   };
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between bg-gray-900/80 backdrop-blur-sm rounded-lg px-4 py-3 border border-gray-700/50">
       <ResumeTitle title={templateName} />
-      <div className="hidden md:flex items-center gap-4">
-        <ResumeController zoomIn={zoomIn} zoomOut={zoomOut} resetZoom={resetZoom} />
-        <Button
-          onClick={handleCheckout}
-          variant="outlined"
-          color="primary"
-          disabled={isDownloading}
+
+      <div className="flex items-center gap-2">
+        {/* Zoom Controls */}
+        <div className="hidden md:block">
+          <ResumeController zoomIn={zoomIn} zoomOut={zoomOut} resetZoom={resetZoom} />
+        </div>
+
+        {/* Preview Toggle */}
+        <motion.button
+          onClick={() => setShowPreview(!showPreview)}
+          className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-colors"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          title="Toggle Preview"
         >
-          {isDownloading ? 'Downloading...' : 'Download as PDF'}
-        </Button>
+          <Eye className="h-4 w-4" />
+        </motion.button>
+
+        {/* Fullscreen Toggle */}
+        {setIsFullscreen && (
+          <motion.button
+            onClick={() => setIsFullscreen(!isFullscreen)}
+            className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+          >
+            {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+          </motion.button>
+        )}
+
+        {/* Print Button */}
+        <motion.button
+          onClick={handlePrint}
+          disabled={isDownloading}
+          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-600 disabled:to-gray-600 text-white rounded-lg font-medium transition-all duration-200 shadow-lg"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Printer className="h-4 w-4" />
+          <span className="hidden sm:inline">
+            {isDownloading ? 'Preparing...' : 'Print Resume'}
+          </span>
+        </motion.button>
       </div>
     </div>
   );
 };
 
 export default ResumeHeader;
+export type { ResumeHeaderProps };

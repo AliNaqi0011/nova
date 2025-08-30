@@ -1,7 +1,7 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 
-export default function Header({ basics }: { basics: IBasics }) {
+export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   return (
     <header>
       <h1 className="text-4xl font-bold text-gray-800">{basics.name}</h1>

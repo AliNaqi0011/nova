@@ -1,4 +1,4 @@
-import { IBasics } from '@/stores/basic.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   <h2 className="text-base font-bold pb-1 mb-2 border-b-2 border-white">{children}</h2>
@@ -10,7 +10,7 @@ const ContactItem = ({ label, value }: { label: string; value: string }) => (
     <p className="text-xs">{value}</p>
   </div>
 );
-export default function Contact({ basics }: { basics: IBasics }) {
+export default function Contact({ basics }: { basics: IBasicDetailsItem }) {
   return (
     <section>
       <SectionTitle>Contact</SectionTitle>
