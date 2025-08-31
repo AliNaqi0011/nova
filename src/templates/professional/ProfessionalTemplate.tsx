@@ -44,6 +44,8 @@ const RightSection = styled.div`
 
 export default function ProfessionalTemplate() {
   const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
+
   const skills = resumeData.skills;
   const involvements = resumeData.activities.involvements;
   const achievements = resumeData.activities.achievements;
@@ -66,19 +68,19 @@ export default function ProfessionalTemplate() {
           <BasicIntro basics={resumeData.basics} />
         </Section>
 
-        <StandardSection value={resumeData.work}>
+        <StandardSection title="Work Experience" value={resumeData.work}>
           <Section title="Work Experience">
             <Work work={resumeData.work} />
           </Section>
         </StandardSection>
 
-        <StandardSection value={involvements}>
+        <StandardSection title="Key Projects / Involvements" value={involvements}>
           <Section title="Key Projects / Involvements">
             <Involvement data={involvements} />
           </Section>
         </StandardSection>
 
-        <StandardSection value={achievements}>
+        <StandardSection title="Certificates and Awards" value={achievements}>
           <Section title="Certificates and Awards">
             <Achievements data={achievements} />
           </Section>
@@ -86,43 +88,43 @@ export default function ProfessionalTemplate() {
       </LeftSection>
 
       <RightSection>
-        <StandardSection value={resumeData.basics.summary}>
+        <StandardSection title="Summary" value={resumeData.basics.summary}>
           <Section title="Summary">
             <AboutMe summary={resumeData.basics.summary} profileImage={resumeData.basics.image} />
           </Section>
         </StandardSection>
 
-        <StandardSection value={resumeData.basics.objective}>
+        <StandardSection title="Career Objective" value={resumeData.basics.objective}>
           <Section title="Career Objective">
             <Objective objective={resumeData.basics.objective} />
           </Section>
         </StandardSection>
 
-        <StandardSection value={languagesAndFrameworks}>
+        <StandardSection title="Technical expertise" value={languagesAndFrameworks}>
           <Section title="Technical expertise">
             <RatedSkills items={languagesAndFrameworks} />
           </Section>
         </StandardSection>
 
-        <StandardSection value={technologiesAndLibraries}>
+        <StandardSection title="Skills / Exposure" value={technologiesAndLibraries}>
           <Section title="Skills / Exposure">
             <UnratedSkills items={technologiesAndLibraries} />
           </Section>
         </StandardSection>
 
-        <StandardSection value={skills.practices}>
+        <StandardSection title="Methodology/Approach" value={skills.practices}>
           <Section title="Methodology/Approach">
             <UnratedSkills items={skills.practices} />
           </Section>
         </StandardSection>
 
-        <StandardSection value={skills.tools}>
+        <StandardSection title="Tools" value={skills.tools}>
           <Section title="Tools">
             <UnratedSkills items={skills.tools} />
           </Section>
         </StandardSection>
 
-        <StandardSection value={resumeData.education}>
+        <StandardSection title="Education" value={resumeData.education}>
           <Section title="Education">
             <Education education={resumeData.education} />
           </Section>

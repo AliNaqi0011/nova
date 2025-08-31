@@ -18,9 +18,9 @@ export const SectionOrderControl: React.FC = () => {
           const isDragging = draggedItem?.index === index;
 
           return (
-            <motion.div
+            <div
               key={section.id}
-              className={`flex items-center gap-3 p-3 bg-gray-800 rounded-lg border ${
+              className={`flex items-center gap-3 p-3 bg-gray-800 rounded-lg border transition-all hover:scale-[1.02] ${
                 isDragging ? 'opacity-50 border-purple-500' : 'border-gray-700'
               }`}
               draggable
@@ -28,8 +28,6 @@ export const SectionOrderControl: React.FC = () => {
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(e, index)}
               onDragEnd={handleDragEnd}
-              whileHover={{ scale: 1.02 }}
-              layout
             >
               <GripVertical className="h-4 w-4 text-gray-400 cursor-move" />
 
@@ -45,7 +43,7 @@ export const SectionOrderControl: React.FC = () => {
               >
                 {section.enabled ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
               </button>
-            </motion.div>
+            </div>
           );
         })}
       </div>

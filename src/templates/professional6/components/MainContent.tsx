@@ -1,4 +1,5 @@
 import { IBasics, IEducation, IWorkIntrf } from '@/stores/index.interface';
+import { IBasicDetailsItem } from '@/stores/basic.interface';
 import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
 import Header from './Header';
 import ProfessionalSummary from './ProfessionalSummary';

@@ -17,14 +17,14 @@ export default function Experience({ work }: { work: IExperienceItem[] }) {
             <div className="text-right text-xs text-gray-500">
               <p>{job.url ? job.url.split('//')[1] : 'New York, NY'}</p>
               <p>
-                <time dateTime={job.startDate.toISOString()}>
+                <time dateTime={job.startDate?.toISOString()}>
                   {dateParser(job.startDate, 'MM/YYYY')}
                 </time>{' '}
                 -{' '}
                 {job.isWorkingHere ? (
                   'Present'
                 ) : (
-                  <time dateTime={job.endDate.toISOString()}>
+                  <time dateTime={job.endDate?.toISOString()}>
                     {dateParser(job.endDate, 'MM/YYYY')}
                   </time>
                 )}

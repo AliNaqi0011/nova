@@ -24,9 +24,10 @@ export const useTemplateEnhancer = () => {
         element.setAttribute('draggable', 'true');
         element.classList.add('transition-all', 'duration-200', 'hover:shadow-sm');
 
-        const handleDragStartLocal = (e: DragEvent) => {
+        const handleDragStartLocal = (e: Event) => {
+          const dragEvent = e as DragEvent;
           const dragData = { id: `section-${index}`, index };
-          e.dataTransfer?.setData('text/plain', JSON.stringify(dragData));
+          dragEvent.dataTransfer?.setData('text/plain', JSON.stringify(dragData));
           element.classList.add('opacity-50');
         };
 
@@ -34,14 +35,16 @@ export const useTemplateEnhancer = () => {
           element.classList.remove('opacity-50');
         };
 
-        const handleDragOverLocal = (e: DragEvent) => {
-          e.preventDefault();
-          e.dataTransfer!.dropEffect = 'move';
+        const handleDragOverLocal = (e: Event) => {
+          const dragEvent = e as DragEvent;
+          dragEvent.preventDefault();
+          dragEvent.dataTransfer!.dropEffect = 'move';
         };
 
-        const handleDropLocal = (e: DragEvent) => {
-          e.preventDefault();
-          const data = JSON.parse(e.dataTransfer?.getData('text/plain') || '{}');
+        const handleDropLocal = (e: Event) => {
+          const dragEvent = e as DragEvent;
+          dragEvent.preventDefault();
+          const data = JSON.parse(dragEvent.dataTransfer?.getData('text/plain') || '{}');
           if (data.index !== undefined && data.index !== index) {
             const parent = element.parentElement;
             const draggedElement = parent?.children[data.index];

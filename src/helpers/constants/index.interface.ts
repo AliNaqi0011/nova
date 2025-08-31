@@ -12,6 +12,8 @@ export interface ITemplate {
     name: string;
     thumbnail: string;
     component: React.ComponentType;
+    atsCompliant?: boolean;
+    features?: string[];
   };
 }
 
@@ -20,4 +22,6 @@ export interface ITemplateContent {
   name: string;
   thumbnail: string;
   component: React.ComponentType;
+  atsCompliant?: boolean;
+  features?: string[];
 }

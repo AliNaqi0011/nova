@@ -50,7 +50,7 @@ export default function Simple3Template() {
         </SectionValidator>
       </main>
 
-      <Footer url={basics.url} />
+      <Footer />
     </div>
   );
 }

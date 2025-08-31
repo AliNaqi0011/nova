@@ -2,10 +2,15 @@ import { ISkillItem } from '@/stores/skill.interface';
 import { useThemes } from '@/stores/themes';
 import styled from '@emotion/styled';
 
-const ProgressBar = styled.div`
-  width: ${(props: { level: number }) => props.level}%;
+interface ProgressBarProps {
+  level: number;
+  color: string;
+}
+
+const ProgressBar = styled.div<ProgressBarProps>`
+  width: ${(props) => props.level}%;
   height: 6px;
-  background-color: ${(props: { color: string }) => props.color};
+  background-color: ${(props) => props.color};
 `;
 
 export default function RatedSkills({ items }: { items: ISkillItem[] }) {

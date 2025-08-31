@@ -69,7 +69,7 @@ export default function SimpleTemplate() {
         </StandardSection>
       </main>
 
-      <Footer url={basics.url} />
+      <Footer />
     </div>
   );
 }

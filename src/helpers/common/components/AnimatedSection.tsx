@@ -25,10 +25,39 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
 }) => {
   const { elementRef, isVisible } = useIntersectionObserver();
 
+  if (draggable) {
+    return (
+      <div
+        ref={elementRef}
+        className={`${className} cursor-move ${isDragging ? 'opacity-50' : ''}`}
+        draggable
+        onDragStart={onDragStart}
+        onDragOver={onDragOver}
+        onDrop={onDrop}
+        onDragEnd={onDragEnd}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{
+            opacity: isVisible ? 1 : 0.3,
+            y: isVisible ? 0 : 10,
+            scale: isVisible ? 1 : 0.98,
+          }}
+          transition={{
+            duration: 0.3,
+            ease: 'easeOut',
+          }}
+        >
+          {children}
+        </motion.div>
+      </div>
+    );
+  }
+
   return (
     <motion.div
       ref={elementRef}
-      className={`${className} ${draggable ? 'cursor-move' : ''} ${isDragging ? 'opacity-50' : ''}`}
+      className={className}
       initial={{ opacity: 0, y: 20 }}
       animate={{
         opacity: isVisible ? 1 : 0.3,
@@ -39,11 +68,6 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
         duration: 0.3,
         ease: 'easeOut',
       }}
-      draggable={draggable}
-      onDragStart={onDragStart}
-      onDragOver={onDragOver}
-      onDrop={onDrop}
-      onDragEnd={onDragEnd}
     >
       {children}
     </motion.div>

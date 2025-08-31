@@ -33,37 +33,37 @@ export default function MordernTemplate() {
       {/* Main Content */}
       <div className="flex flex-1 gap-4">
         <div className="basis-[65%]">
-          <StandardSection value={resumeData.basics.summary}>
+          <StandardSection title="Summary" value={resumeData.basics.summary}>
             <SummarySection summary={resumeData.basics.summary} />
           </StandardSection>
 
-          <StandardSection value={resumeData.work}>
+          <StandardSection title="Work Experience" value={resumeData.work}>
             <WorkSection experience={resumeData.work} />
           </StandardSection>
 
-          <StandardSection value={resumeData.awards}>
+          <StandardSection title="Awards" value={resumeData.awards}>
             <AwardSection awardsReceived={resumeData.awards} />
           </StandardSection>
         </div>
 
         <div className="basis-[35%] bg-gray-50 p-3 rounded">
-          <StandardSection value={resumeData.basics.objective}>
+          <StandardSection title="Objective" value={resumeData.basics.objective}>
             <Objective objective={resumeData.basics.objective} />
           </StandardSection>
 
-          <StandardSection value={resumeData.skills.languages}>
+          <StandardSection title="Languages" value={resumeData.skills.languages}>
             <SkillsSection title="Languages" list={resumeData.skills.languages} />
           </StandardSection>
 
-          <StandardSection value={resumeData.skills.technologies}>
+          <StandardSection title="Technologies" value={resumeData.skills.technologies}>
             <SkillsSection title="Technologies" list={resumeData.skills.technologies} />
           </StandardSection>
 
-          <StandardSection value={resumeData.education}>
+          <StandardSection title="Education" value={resumeData.education}>
             <EducationSection education={resumeData.education} />
           </StandardSection>
 
-          <StandardSection value={resumeData.volunteer}>
+          <StandardSection title="Volunteer" value={resumeData.volunteer}>
             <VolunteerSection volunteer={resumeData.volunteer} />
           </StandardSection>
         </div>

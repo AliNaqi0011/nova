@@ -2,7 +2,7 @@ import React from 'react';
 import { SectionValidator } from './ValidSectionRenderer';
 
 interface StandardSectionProps {
-  title: string;
+  title?: string;
   children: React.ReactNode;
   value: any;
   className?: string;

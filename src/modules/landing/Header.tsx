@@ -95,7 +95,7 @@ export default function Header() {
           {user ? (
             <div className="flex items-center gap-4">
               <Image
-                src={user.photoURL || 'https://randomuser.me/api/portraits/men/18.jpg'}
+                src={user.avatar || 'https://randomuser.me/api/portraits/men/18.jpg'}
                 alt="User"
                 width={32}
                 height={32}

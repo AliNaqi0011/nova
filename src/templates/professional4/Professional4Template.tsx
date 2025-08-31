@@ -8,7 +8,10 @@ import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 
 const Professional4Template: React.FC = () => {
-  const { basics, work, education, skills } = useContext(StateContext);
+  const resumeData = useContext(StateContext);
+  if (!resumeData) return null;
+
+  const { basics, work, education, skills } = resumeData;
 
   const allSkills = [
     ...skills.languages,

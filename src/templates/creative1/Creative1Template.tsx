@@ -35,12 +35,12 @@ export default function Creative1Template() {
       </div>
       <div className="flex">
         <div className="w-[35%] bg-[#5DB9A8] p-6 text-white min-h-[920px]">
-          <StandardSection value={basics}>
+          <StandardSection title="Sidebar" value={basics}>
             <Sidebar basics={basics} skills={allSkills} languages={skills.languages} />
           </StandardSection>
         </div>
         <div className="w-[65%] p-8">
-          <StandardSection value={basics.summary}>
+          <StandardSection title="Main Content" value={basics.summary}>
             <MainContent
               summary={basics.summary}
               work={work}

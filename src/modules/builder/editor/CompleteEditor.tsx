@@ -17,7 +17,6 @@ import {
   Eye,
   EyeOff,
   Star,
-  StarBorder,
   Move,
   GripVertical,
   ChevronUp,
@@ -635,7 +634,11 @@ export default function CompleteEditor() {
                                   size="small"
                                   className={exp.visible ? 'text-yellow-400' : 'text-gray-500'}
                                 >
-                                  {exp.visible ? <Star size={16} /> : <StarBorder size={16} />}
+                                  {exp.visible ? (
+                                    <Star size={16} />
+                                  ) : (
+                                    <Star size={16} className="opacity-30" />
+                                  )}
                                 </IconButton>
                               </div>
                               <IconButton
@@ -761,13 +764,11 @@ export default function CompleteEditor() {
                                 size="small"
                                 fullWidth
                                 onKeyPress={(e) => {
-                                  if (e.key === 'Enter' && e.currentTarget.value.trim()) {
-                                    const newHighlights = [
-                                      ...exp.highlights,
-                                      e.currentTarget.value.trim(),
-                                    ];
+                                  const target = e.currentTarget as HTMLInputElement;
+                                  if (e.key === 'Enter' && target.value.trim()) {
+                                    const newHighlights = [...exp.highlights, target.value.trim()];
                                     updateExperience(exp.id, 'highlights', newHighlights);
-                                    e.currentTarget.value = '';
+                                    target.value = '';
                                   }
                                 }}
                                 InputProps={{ className: 'text-white bg-gray-700' }}
