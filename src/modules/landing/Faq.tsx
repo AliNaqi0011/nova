@@ -4,27 +4,51 @@ import { ChevronDown } from 'lucide-react';
 const faqs = [
   {
     id: 1,
-    question: 'How do I make a resume?',
+    question: 'How do I create a resume with Nova Resume?',
     answer:
-      'You can use our resume builder! Just pick a template, fill in your details, and download your resume in minutes. Our AI writer can even help you write your resume summary and bullet points.',
+      'Creating a resume is simple! Sign up for free, choose from our professional templates, fill in your information using our guided editor, and download your resume as a PDF. The entire process takes just minutes.',
   },
   {
     id: 2,
-    question: 'What is the best resume template?',
+    question: 'Is Nova Resume completely free?',
     answer:
-      'The best resume template depends on your industry and experience. Our builder offers a variety of professional, modern, and creative templates that are all ATS-friendly.',
+      'Yes! Nova Resume is completely free to use. You can create unlimited resumes, access all templates, and download your resumes without any cost or hidden fees.',
   },
   {
     id: 3,
-    question: 'Is Nova Resume free?',
+    question: 'Are the resume templates ATS-friendly?',
     answer:
-      'Yes, our core resume builder is completely free to use. You can create, edit, and download a basic resume without any cost. We also offer premium templates and features for a small fee.',
+      'Absolutely! All our templates are designed to be ATS (Applicant Tracking System) friendly, ensuring your resume gets past automated screening systems and reaches human recruiters.',
   },
   {
     id: 4,
-    question: 'Can I download my resume as a PDF?',
+    question: 'Can I edit my resume after downloading?',
     answer:
-      'Absolutely! All our templates can be downloaded as a high-resolution PDF, which is the standard format for job applications.',
+      'Yes! Your resume data is saved in your account, so you can return anytime to make edits, try different templates, or create multiple versions for different job applications.',
+  },
+  {
+    id: 5,
+    question: 'What file formats can I download my resume in?',
+    answer:
+      'You can download your resume as a high-quality PDF, which is the preferred format for most job applications and ensures your formatting stays consistent across all devices.',
+  },
+  {
+    id: 6,
+    question: 'Is my data secure and private?',
+    answer:
+      'Yes, your privacy is our priority. Your resume data is stored securely and never shared with third parties. You have full control over your information and can delete it anytime.',
+  },
+  {
+    id: 7,
+    question: 'Do I need to create an account to use the builder?',
+    answer:
+      'While you can try our builder without an account, creating a free account allows you to save your progress, access your resumes from any device, and make edits anytime.',
+  },
+  {
+    id: 8,
+    question: 'Can I create multiple resumes for different jobs?',
+    answer:
+      'Yes! You can create multiple resumes tailored for different positions, industries, or career levels. This helps you customize your application for each opportunity.',
   },
 ];
 
@@ -78,19 +102,17 @@ export default function Faq() {
                 variants={itemVariants}
                 className="group rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:border-purple-500/50 hover:bg-white/10"
               >
-                <dt>
-                  <details>
-                    <summary className="flex w-full cursor-pointer list-none items-center justify-between text-left text-lg font-medium leading-7">
-                      {faq.question}
-                      <ChevronDown className="h-6 w-6 transition-transform duration-300 group-open:rotate-180" />
-                    </summary>
-                    <dd className="mt-4 text-base leading-7 text-gray-400">
-                      <p>{faq.answer}</p>
-                    </dd>
-                  </details>
-                </dt>
+                <details className="group/details">
+                  <summary className="flex w-full cursor-pointer list-none items-center justify-between text-left text-lg font-medium leading-7">
+                    {faq.question}
+                    <ChevronDown className="h-6 w-6 transition-transform duration-300 group-open/details:rotate-180" />
+                  </summary>
+                  <div className="mt-4 text-base leading-7 text-gray-400">
+                    <p>{faq.answer}</p>
+                  </div>
+                </details>
               </motion.div>
-            ))}
+            ))
           </motion.dl>
         </div>
       </div>

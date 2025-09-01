@@ -63,11 +63,11 @@ export default function Features() {
   };
 
   return (
-    <div id="features" className="bg-black text-white py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div id="features" className="bg-black text-white py-16 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
           <motion.h2
-            className="text-3xl font-bold tracking-tight sm:text-4xl bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 text-transparent bg-clip-text"
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 text-transparent bg-clip-text"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -76,7 +76,7 @@ export default function Features() {
             All the tools you need to land your dream job
           </motion.h2>
           <motion.p
-            className="mt-6 text-lg leading-8 text-gray-400"
+            className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-400"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -87,29 +87,29 @@ export default function Features() {
           </motion.p>
         </div>
         <motion.div
-          className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl"
+          className="mx-auto mt-12 sm:mt-16 lg:mt-24 max-w-2xl lg:max-w-4xl"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+          <dl className="grid max-w-xl grid-cols-1 gap-x-6 sm:gap-x-8 gap-y-8 sm:gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
             {features.map((feature) => (
               <motion.div
                 key={feature.name}
-                className="relative pl-16 group"
+                className="relative pl-12 sm:pl-16 group"
                 variants={itemVariants}
               >
-                <dt className="text-base font-semibold leading-7 text-white">
-                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 group-hover:bg-gradient-to-r from-pink-500 to-purple-600 transition-all duration-300">
+                <dt className="text-sm sm:text-base font-semibold leading-6 sm:leading-7 text-white">
+                  <div className="absolute left-0 top-0 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-white/10 group-hover:bg-gradient-to-r from-pink-500 to-purple-600 transition-all duration-300">
                     <feature.icon
-                      className="h-6 w-6 text-purple-400 group-hover:text-white transition-colors duration-300"
+                      className="h-4 w-4 sm:h-6 sm:w-6 text-purple-400 group-hover:text-white transition-colors duration-300"
                       aria-hidden="true"
                     />
                   </div>
                   {feature.name}
                 </dt>
-                <dd className="mt-2 text-base leading-7 text-gray-400">{feature.description}</dd>
+                <dd className="mt-2 text-sm sm:text-base leading-6 sm:leading-7 text-gray-400">{feature.description}</dd>
               </motion.div>
             ))}
           </dl>

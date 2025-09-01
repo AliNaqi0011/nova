@@ -8,31 +8,7 @@ import { PanelLeftOpen, PanelRightOpen, Star } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import TemplatesSideBar from './templates/TemplatesSideBar';
 
-const RateUsSection = () => (
-  <div className="bg-black py-8 px-4 sm:px-6 lg:px-8">
-    <div className="max-w-2xl mx-auto text-center">
-      <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-        Enjoying the Builder?
-      </h2>
-      <p className="mt-3 text-lg leading-8 text-gray-400">
-        If you find our resume builder helpful, please consider giving us a star on GitHub!
-      </p>
-      <div className="mt-6">
-        <motion.a
-          href="https://github.com/sadanandpai/resume-builder"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-x-2 rounded-md bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 text-base font-semibold text-white shadow-lg hover:shadow-purple-500/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <Star className="h-5 w-5" aria-hidden="true" />
-          Rate Us on GitHub
-        </motion.a>
-      </div>
-    </div>
-  </div>
-);
+
 
 const BuilderLayout = () => {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
@@ -41,7 +17,7 @@ const BuilderLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
-      <div className="sticky top-0 z-30 bg-black/95 backdrop-blur-sm border-b border-gray-800">
+      <div className="sticky top-0 z-[9999] bg-black/95 backdrop-blur-sm border-b border-gray-800 builder-header">
         <Header />
       </div>
       <div className="flex-1 flex pt-2">
@@ -138,7 +114,7 @@ const BuilderLayout = () => {
         )}
       </AnimatePresence>
 
-      <RateUsSection />
+
       <div>
         <Footer />
       </div>

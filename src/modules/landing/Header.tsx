@@ -9,8 +9,9 @@ import { auth, User } from '@/lib/auth';
 const navigation = [
   { name: 'Resume Templates', href: '#templates' },
   { name: 'Resume Builder', href: '/builder' },
-  { name: 'Testimonials', href: '#testimonials' },
+  { name: 'Features', href: '#features' },
   { name: 'FAQ', href: '#faq' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export default function Header() {
@@ -81,14 +82,25 @@ export default function Header() {
         </div>
         <div className="hidden lg:flex lg:gap-x-8">
           {navigation.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="relative text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-colors group"
-            >
-              {item.name}
-              <span className="absolute bottom-[-2px] left-1/2 w-0 h-0.5 bg-teal-400 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-            </a>
+            {item.href.startsWith('#') ? (
+              <a
+                key={item.name}
+                href={item.href}
+                className="relative text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-colors group"
+              >
+                {item.name}
+                <span className="absolute bottom-[-2px] left-1/2 w-0 h-0.5 bg-teal-400 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+              </a>
+            ) : (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="relative text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-colors group"
+              >
+                {item.name}
+                <span className="absolute bottom-[-2px] left-1/2 w-0 h-0.5 bg-teal-400 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+              </Link>
+            )}
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
@@ -172,15 +184,26 @@ export default function Header() {
                 <div className="-my-6 divide-y divide-gray-500/25">
                   <div className="space-y-2 py-6">
                     {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-800"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                      item.href.startsWith('#') ? (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-800"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.name}
+                        </a>
+                      ) : (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-800"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      )
+                    ))
                   </div>
                   <div className="py-6">
                     {user ? (

@@ -11,22 +11,17 @@ const navigation = {
     { name: 'Templates', href: '#templates' },
   ],
   support: [
-    { name: 'Contact Us', href: '#' },
+    { name: 'Contact Us', href: '/contact' },
     { name: 'FAQ', href: '#faq' },
     { name: 'Tutorials', href: '#' },
   ],
   company: [
-    { name: 'About Us', href: '#' },
+    { name: 'About Us', href: '/about' },
     { name: 'Blog', href: '#' },
     { name: 'Careers', href: '#' },
-    { name: 'Privacy Policy', href: '#' },
+    { name: 'Privacy Policy', href: '/privacy' },
   ],
   social: [
-    {
-      name: 'GitHub',
-      href: 'https://github.com/sadanandpai/resume-builder',
-      icon: (props: React.ComponentProps<'svg'>) => <Github {...props} />,
-    },
     {
       name: 'Twitter',
       href: '#',
