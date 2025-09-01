@@ -1,8 +1,10 @@
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Eye, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import { AVAILABLE_TEMPLATES } from '@/helpers/constants';
 import { TemplateLivePreview } from '@/helpers/common/components/TemplateLivePreview';
+import { useTemplates } from '@/stores/useTemplate';
 
 const templateCategories = [
   {
@@ -120,6 +122,8 @@ const templateCategories = [
 
 const TemplateCard = ({ templateId }: { templateId: string }) => {
   const template = AVAILABLE_TEMPLATES[templateId];
+  const { setTemplate } = useTemplates();
+  
   if (!template) {
     return (
       <div className="aspect-[4/5.6] rounded-2xl bg-gray-800 flex items-center justify-center">
@@ -127,6 +131,10 @@ const TemplateCard = ({ templateId }: { templateId: string }) => {
       </div>
     );
   }
+
+  const handleTemplateSelect = () => {
+    setTemplate(template);
+  };
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50, scale: 0.9 },
@@ -160,10 +168,15 @@ const TemplateCard = ({ templateId }: { templateId: string }) => {
         <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 group-hover:ring-purple-500/50 transition-all duration-300" />
         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex flex-col items-center justify-center p-4 text-center">
           <h3 className="text-lg font-semibold text-white">{template.name}</h3>
-          <button className="mt-4 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-white/10 rounded-full hover:bg-white/20 transition-all">
-            <Eye className="w-4 h-4 mr-2" />
-            Preview
-          </button>
+          <Link href="/builder">
+            <button 
+              onClick={handleTemplateSelect}
+              className="mt-4 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-white/10 rounded-full hover:bg-white/20 transition-all"
+            >
+              <Eye className="w-4 h-4 mr-2" />
+              Use Template
+            </button>
+          </Link>
         </div>
       </motion.div>
     </motion.div>

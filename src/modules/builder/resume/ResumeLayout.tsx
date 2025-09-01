@@ -47,12 +47,12 @@ const ResumeClient = () => {
           )}
           <div
             id="resume-page-view"
-            className="bg-white shadow-2xl overflow-hidden print:shadow-none"
+            className="bg-white shadow-2xl overflow-hidden print:shadow-none mx-auto resume-content"
             style={{
               width: '210mm',
               height: '297mm',
               transform: `scale(${zoom})`,
-              transformOrigin: 'top',
+              transformOrigin: 'top center',
             }}
           >
             <SectionRenderer>
@@ -74,7 +74,7 @@ export const ResumeLayout = () => {
   }, []);
 
   return (
-    <div id="resume-container" className="h-full w-full flex items-start justify-center p-4 md:p-8">
+    <div id="resume-container" className="h-full w-full flex items-start justify-center p-2 sm:p-4 md:p-8 lg:pr-16 overflow-hidden">
       {isClient ? (
         <StateContext.Provider value={resumeData}>
           <ResumeClient />

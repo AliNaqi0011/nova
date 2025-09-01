@@ -92,12 +92,12 @@ const ResumeHeader = ({ isFullscreen = false, setIsFullscreen }: ResumeHeaderPro
   };
 
   return (
-    <div className="flex items-center justify-between bg-gray-900/80 backdrop-blur-sm rounded-lg px-4 py-3 border border-gray-700/50">
+    <div className="flex items-center justify-between bg-gray-900/80 backdrop-blur-sm rounded-lg px-4 py-3 border border-gray-700/50 relative z-10 resume-header">
       <ResumeTitle title={templateName} />
 
       <div className="flex items-center gap-2">
         {/* Zoom Controls */}
-        <div className="hidden md:block">
+        <div className="block">
           <ResumeController zoomIn={zoomIn} zoomOut={zoomOut} resetZoom={resetZoom} />
         </div>
 

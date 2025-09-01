@@ -16,7 +16,7 @@ const BuilderLayout = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 builder-layout">
       <div className="sticky top-0 z-[9999] bg-black/95 backdrop-blur-sm border-b border-gray-800 builder-header">
         <Header />
       </div>
@@ -32,7 +32,7 @@ const BuilderLayout = () => {
           <div className="flex-1 flex">
             {/* Main Content */}
             <div className="flex-1 flex flex-col bg-gradient-to-b from-gray-950/60 to-gray-900/40 overflow-hidden">
-              <div className="w-full max-w-[210mm] mt-3 mb-2 mx-auto px-2 md:px-4">
+              <div className="w-full max-w-[210mm] mt-3 mb-4 mx-auto px-2 md:px-4 relative z-20">
                 <ResumeHeader isFullscreen={isFullscreen} setIsFullscreen={setIsFullscreen} />
               </div>
               <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-600 scrollbar-track-gray-800">

@@ -32,15 +32,49 @@ export const PrintResume: React.FC = () => {
   }, []);
 
   const handlePrint = () => {
-    // Ensure resume is visible and properly formatted
+    // Force visibility of resume content
     const resumeElement = document.getElementById('resume-page-view');
+    const containerElement = document.getElementById('resume-container');
+    const builderLayout = document.querySelector('.builder-layout');
+    
     if (resumeElement) {
-      resumeElement.style.opacity = '1';
       resumeElement.style.visibility = 'visible';
+      resumeElement.style.opacity = '1';
+      resumeElement.style.display = 'block';
     }
+    
+    if (containerElement) {
+      containerElement.style.visibility = 'visible';
+      containerElement.style.opacity = '1';
+      containerElement.style.display = 'flex';
+      containerElement.style.alignItems = 'center';
+      containerElement.style.justifyContent = 'center';
+    }
+    
+    // Reset layout padding for print
+    if (builderLayout) {
+      const flexElement = builderLayout.querySelector('.flex-1');
+      if (flexElement) {
+        (flexElement as HTMLElement).style.paddingTop = '0';
+      }
+    }
+    
+    // Add print class to body
+    document.body.classList.add('printing');
     
     setTimeout(() => {
       globalThis?.print();
+      // Remove print class after printing
+      setTimeout(() => {
+        document.body.classList.remove('printing');
+        // Restore original padding
+        if (builderLayout) {
+          const flexElement = builderLayout.querySelector('.flex-1');
+          if (flexElement) {
+            (flexElement as HTMLElement).style.paddingTop = '';
+          }
+        }
+      }, 1000);
     }, 100);
   };
 

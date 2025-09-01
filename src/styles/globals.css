@@ -88,6 +88,8 @@ body {
   overflow: hidden;
 }
 
+
+
 /* Professional typography */
 .resume-text {
   font-family:
@@ -133,6 +135,74 @@ body {
   z-index: 9999;
 }
 
+/* Auto-hide header */
+.builder-header {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Trigger area for showing header */
+.header-trigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  z-index: 10001;
+  pointer-events: auto;
+}
+
+.header-trigger:hover ~ .builder-header {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+
+.builder-header:hover {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+
+/* Resume header positioning */
+.resume-header {
+  position: relative;
+  z-index: 20;
+}
+
+/* Resume content positioning */
+#resume-page-view {
+  position: relative;
+  z-index: 10;
+}
+
+/* Desktop resume positioning */
+@media (min-width: 1024px) {
+  #resume-container {
+    padding-right: 4rem !important;
+  }
+}
+
+/* Mobile resume preview */
+@media (max-width: 768px) {
+  #resume-container {
+    padding: 0.5rem !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+  
+  #resume-page-view {
+    width: 210mm !important;
+    height: 297mm !important;
+    transform: scale(0.45) !important;
+    transform-origin: top center !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #resume-page-view {
+    transform: scale(0.35) !important;
+  }
+}
+
 /* Print button styles */
 .print-button {
   background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
@@ -160,23 +230,48 @@ body {
     margin: 0;
   }
 
-  body {
-    margin: 0;
-    padding: 0;
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
     background: white !important;
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 
-  /* Hide everything except resume */
-  body > *:not(#__next) {
-    display: none !important;
+  /* Show only resume content */
+  body * {
+    visibility: hidden !important;
   }
 
-  header, nav, footer, .no-print {
-    display: none !important;
+  #resume-page-view, #resume-page-view * {
+    visibility: visible !important;
   }
 
-  #resume-page-view, .resume-container {
+  #resume-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    background: white !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .flex-1 {
+    padding-top: 0 !important;
+  }
+
+  .mt-8 {
+    margin-top: 0 !important;
+  }
+
+  #resume-page-view {
     width: 210mm !important;
     height: 297mm !important;
     transform: none !important;
@@ -188,11 +283,19 @@ body {
     overflow: visible !important;
     opacity: 1 !important;
     visibility: visible !important;
+    position: relative !important;
+    display: block !important;
   }
 
-  /* Ensure all resume content is visible */
-  .resume-content * {
-    opacity: 1 !important;
-    visibility: visible !important;
+  /* Hide non-print elements */
+  .no-print, header, nav, footer, .builder-header, .header-trigger {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Reset all padding and margins for print */
+  .builder-layout > * {
+    padding: 0 !important;
+    margin: 0 !important;
   }
 }
