@@ -66,16 +66,18 @@ export default function Hero() {
               variants={itemVariants}
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/builder">
+                <Link href="/login">
                   <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold rounded-xl shadow-[0_0_30px_theme(colors.purple.500/0.4)] hover:shadow-[0_0_40px_theme(colors.purple.500/0.6)] transition-all duration-300 text-base sm:text-lg">
                     Create Your Resume
                   </button>
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500/50 hover:border-purple-400 text-white hover:bg-purple-500/10 font-semibold rounded-xl transition-all duration-300 text-base sm:text-lg backdrop-blur-sm">
-                  Explore Templates
-                </button>
+                <a href="#templates">
+                  <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500/50 hover:border-purple-400 text-white hover:bg-purple-500/10 font-semibold rounded-xl transition-all duration-300 text-base sm:text-lg backdrop-blur-sm">
+                    Explore Templates
+                  </button>
+                </a>
               </motion.div>
             </motion.div>
             <motion.div className="mt-12" variants={itemVariants}>

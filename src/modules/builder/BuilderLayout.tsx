@@ -17,10 +17,11 @@ const BuilderLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 builder-layout">
-      <div className="sticky top-0 z-[9999] bg-black/95 backdrop-blur-sm border-b border-gray-800 builder-header">
+      <div className="header-trigger"></div>
+      <div className="sticky top-0 z-[9999] bg-black/95 backdrop-blur-sm border-b border-gray-800 builder-header transition-transform duration-300 hover:translate-y-0 -translate-y-full hover:opacity-100 opacity-0">
         <Header />
       </div>
-      <div className="flex-1 flex pt-2">
+      <div className="flex-1 flex pt-16">
         {/* Editor Sidebar (Left) */}
         {!isFullscreen && (
           <aside className="hidden lg:block w-[22vw] min-w-[18rem] max-w-[24rem] bg-gray-900/50 border-r border-gray-800">
