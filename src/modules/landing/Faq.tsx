@@ -112,7 +112,7 @@ export default function Faq() {
                   </div>
                 </details>
               </motion.div>
-            ))
+            ))}
           </motion.dl>
         </div>
       </div>
