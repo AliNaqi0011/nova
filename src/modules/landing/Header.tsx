@@ -81,8 +81,8 @@ export default function Header() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-8">
-          {navigation.map((item) => (
-            {item.href.startsWith('#') ? (
+          {navigation.map((item) => 
+            item.href.startsWith('#') ? (
               <a
                 key={item.name}
                 href={item.href}
@@ -100,8 +100,8 @@ export default function Header() {
                 {item.name}
                 <span className="absolute bottom-[-2px] left-1/2 w-0 h-0.5 bg-teal-400 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
               </Link>
-            )}
-          ))}
+            )
+          )}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
           {user ? (
@@ -183,7 +183,7 @@ export default function Header() {
               <div className="mt-6 flow-root">
                 <div className="-my-6 divide-y divide-gray-500/25">
                   <div className="space-y-2 py-6">
-                    {navigation.map((item) => (
+                    {navigation.map((item) => 
                       item.href.startsWith('#') ? (
                         <a
                           key={item.name}
@@ -203,7 +203,7 @@ export default function Header() {
                           {item.name}
                         </Link>
                       )
-                    ))
+                    )}
                   </div>
                   <div className="py-6">
                     {user ? (
