@@ -1,4 +1,5 @@
 import { IBasicDetailsItem } from '@/stores/basic.interface';
+import { sanitizeText } from '@/utils/sanitize';
 
 const ContactItem = ({ text, href }: { text: string; href?: string }) => {
   if (href) {
@@ -20,10 +21,10 @@ export default function Header({ basics }: { basics: IBasicDetailsItem }) {
   const linkedin = basics.profiles.find((p) => p.network === 'linkedin');
   return (
     <header className="text-center pb-3">
-      <h1 className="text-4xl font-bold tracking-tight text-black">{basics.name.toUpperCase()}</h1>
-      <p className="text-lg font-semibold text-gray-700 mt-1">{basics.label}</p>
+      <h1 className="text-4xl font-bold tracking-tight text-black">{sanitizeText(basics.name.toUpperCase())}</h1>
+      <p className="text-lg font-semibold text-gray-700 mt-1">{sanitizeText(basics.label)}</p>
       <div className="flex items-center justify-center gap-x-4 mt-2">
-        <ContactItem text={basics.email} href={`mailto:${basics.email}`} />
+        <ContactItem text={sanitizeText(basics.email)} href={`mailto:${sanitizeText(basics.email)}`} />
         {linkedin && (
           <>
             <span>•</span>
@@ -31,7 +32,7 @@ export default function Header({ basics }: { basics: IBasicDetailsItem }) {
           </>
         )}
         <span>•</span>
-        <ContactItem text={basics.location.city} />
+        <ContactItem text={sanitizeText(basics.location.city)} />
       </div>
     </header>
   );

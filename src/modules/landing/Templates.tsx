@@ -234,14 +234,16 @@ export default function Templates() {
                   {category.description}
                 </p>
                 <div className="mt-6">
-                  <Button
-                    variant="text"
-                    size="large"
-                    className="text-purple-400 hover:bg-purple-400/10"
-                    endIcon={<ArrowRight />}
-                  >
-                    View all {category.name.toLowerCase()} templates
-                  </Button>
+                  <Link href="/login">
+                    <Button
+                      variant="text"
+                      size="large"
+                      className="text-purple-400 hover:bg-purple-400/10"
+                      endIcon={<ArrowRight />}
+                    >
+                      View all {category.name.toLowerCase()} templates
+                    </Button>
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 md:grid-cols-3">

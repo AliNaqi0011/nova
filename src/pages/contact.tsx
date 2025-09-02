@@ -2,7 +2,8 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Header from '@/modules/landing/Header';
 import Footer from '@/modules/landing/Footer';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import Link from 'next/link';
+import { Mail, Phone, MapPin, ArrowLeft } from 'lucide-react';
 
 const ContactPage: NextPage = () => {
   return (
@@ -13,6 +14,9 @@ const ContactPage: NextPage = () => {
         <link rel="icon" type="image/png" href="/icons/resume-icon.png" />
       </Head>
 
+      <Link href="/" className="fixed top-6 left-6 z-50 text-white hover:text-purple-400 transition-colors">
+        <ArrowLeft className="h-6 w-6" />
+      </Link>
       <Header />
       
       <main className="pt-24 pb-16">
@@ -28,7 +32,7 @@ const ContactPage: NextPage = () => {
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <Mail className="h-6 w-6 text-purple-400" />
-                  <span className="text-gray-300">support@novaresume.com</span>
+                  <span className="text-gray-300">alinaqi.te@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <Phone className="h-6 w-6 text-purple-400" />
@@ -75,6 +79,10 @@ const ContactPage: NextPage = () => {
                 </div>
                 <button
                   type="submit"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = 'mailto:alinaqi.te@gmail.com?subject=Contact from Nova Resume';
+                  }}
                   className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300"
                 >
                   Send Message

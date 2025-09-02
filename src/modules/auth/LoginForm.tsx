@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Button, TextField, Divider } from '@mui/material';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
+import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { auth } from '@/lib/auth';
 import { useRouter } from 'next/router';
@@ -68,12 +69,16 @@ export default function LoginForm() {
   };
 
   return (
-    <motion.div
-      className="bg-black/20 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-2xl shadow-purple-500/10"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
+    <>
+      <Link href="/" className="fixed top-6 left-6 z-10 text-white hover:text-purple-400 transition-colors">
+        <ArrowLeft className="h-6 w-6" />
+      </Link>
+      <motion.div
+        className="bg-black/20 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-2xl shadow-purple-500/10"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
       <motion.h2 className="text-3xl font-bold text-center text-white mb-2" variants={itemVariants}>
         Welcome Back
       </motion.h2>
@@ -139,7 +144,7 @@ export default function LoginForm() {
             disabled={loading}
             className="bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-[0_0_20px_theme(colors.purple.500/0.5)] disabled:opacity-50"
           >
-            {loading ? <CircularProgress size={24} color="inherit" /> : 'Log In'}
+            {loading ? <CircularProgress size={24} color="inherit" /> : 'Start Building'}
           </Button>
         </motion.div>
       </form>
@@ -182,6 +187,7 @@ export default function LoginForm() {
           Sign up
         </Link>
       </motion.p>
-    </motion.div>
+      </motion.div>
+    </>
   );
 }

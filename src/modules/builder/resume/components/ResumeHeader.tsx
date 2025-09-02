@@ -3,7 +3,7 @@ import { useZoom } from '@/stores/useZoom';
 import ResumeController from '../atoms/ResumeController';
 import { ResumeTitle } from '../atoms/ResumeTitle';
 import { useResumeStore } from '@/stores/useResumeStore';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Maximize2, Minimize2, Printer, Eye } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -18,6 +18,18 @@ const ResumeHeader = ({ isFullscreen = false, setIsFullscreen }: ResumeHeaderPro
   const resumeData = useResumeStore();
   const [isDownloading, setIsDownloading] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      const isCurrentlyFullscreen = !!document.fullscreenElement;
+      if (setIsFullscreen) {
+        setIsFullscreen(isCurrentlyFullscreen);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, [setIsFullscreen]);
 
   const handlePrint = () => {
     setIsDownloading(true);
@@ -115,7 +127,20 @@ const ResumeHeader = ({ isFullscreen = false, setIsFullscreen }: ResumeHeaderPro
         {/* Fullscreen Toggle */}
         {setIsFullscreen && (
           <motion.button
-            onClick={() => setIsFullscreen(!isFullscreen)}
+            onClick={() => {
+              if (!isFullscreen) {
+                // Enter fullscreen
+                if (document.documentElement.requestFullscreen) {
+                  document.documentElement.requestFullscreen();
+                }
+              } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                  document.exitFullscreen();
+                }
+              }
+              setIsFullscreen(!isFullscreen);
+            }}
             className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

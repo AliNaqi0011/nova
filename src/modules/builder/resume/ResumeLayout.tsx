@@ -5,6 +5,7 @@ import { useResumeStore } from '@/stores/useResumeStore';
 import { useTemplates } from '@/stores/useTemplate';
 import { useZoom } from '@/stores/useZoom';
 import { SectionRenderer } from '@/helpers/common/components/SectionRenderer';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
 
 const ResumeClient = () => {
   const resumeData = useContext(StateContext);
@@ -36,7 +37,7 @@ const ResumeClient = () => {
   return (
     <StateContext.Provider value={resumeData}>
       <Suspense
-        fallback={<div className="text-gray-500 text-center py-8">Loading Template...</div>}
+        fallback={<div className="text-gray-500 text-center py-8"><LoadingSpinner /> Loading Template...</div>}
       >
         <div className="space-y-4">
           {isOverflowing && (
@@ -84,7 +85,7 @@ export const ResumeLayout = () => {
           className="bg-white shadow-2xl flex items-center justify-center animate-pulse"
           style={{ width: `210mm`, height: `297mm` }}
         >
-          <div className="text-gray-400">Loading Resume...</div>
+          <LoadingSpinner />
         </div>
       )}
     </div>

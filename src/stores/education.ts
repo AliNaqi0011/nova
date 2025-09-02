@@ -22,6 +22,27 @@ export const useEducations = create<IEducationStore>()((set, get) => ({
     );
   },
 
+  addEmpty: () => {
+    const emptyEducation: IEducationItem = {
+      institution: '',
+      studyType: '',
+      area: '',
+      score: '',
+      startDate: null,
+      endDate: null,
+      website: '',
+      courses: [],
+      url: '',
+      isStudyingHere: false,
+      id: Date.now().toString(),
+    };
+    set(
+      produce((state: IEducationStore) => {
+        state.academics.push(emptyEducation);
+      })
+    );
+  },
+
   get: (index: number) => {
     return get().academics[index];
   },
@@ -69,5 +90,9 @@ export const useEducations = create<IEducationStore>()((set, get) => ({
         state.academics[index] = updatedInfo;
       })
     );
+  },
+
+  hasEducation: () => {
+    return get().academics.length > 0;
   },
 }));

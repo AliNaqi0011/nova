@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 import theme from '@/styles/global.theme';
 import createEmotionCache from '@/styles/createEmotionCache';
@@ -48,16 +49,18 @@ const roboto_slab = Roboto_Slab({
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
-    <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={theme}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <main
-            className={`${roboto.variable} ${kalam.variable} ${roboto_condensed.variable} ${roboto_slab.variable} font-sans`}
-          >
-            <Component {...pageProps} />
-          </main>
-        </LocalizationProvider>
-      </ThemeProvider>
-    </CacheProvider>
+    <ErrorBoundary>
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={theme}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <main
+              className={`${roboto.variable} ${kalam.variable} ${roboto_condensed.variable} ${roboto_slab.variable} font-sans`}
+            >
+              <Component {...pageProps} />
+            </main>
+          </LocalizationProvider>
+        </ThemeProvider>
+      </CacheProvider>
+    </ErrorBoundary>
   );
 }

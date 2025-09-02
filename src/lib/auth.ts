@@ -94,6 +94,10 @@ class LocalAuth {
 
   signOut() {
     this.saveCurrentUser(null);
+    // Force trigger auth change
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('storage'));
+    }
   }
 
   getCurrentUser(): User | null {

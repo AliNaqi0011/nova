@@ -17,10 +17,12 @@ export interface IEducationItem {
 export interface IEducationStore {
   academics: IEducationItem[];
   add: (newEducation: IEducationItem) => void;
+  addEmpty: () => void;
   get: (index: number) => void;
   remove: (index: number) => void;
   reset: (values: IEducationItem[]) => void;
   onmoveup: (index: number) => void;
   onmovedown: (index: number) => void;
   updateEducation: (index: number, updatedInfo: IEducationItem) => void;
+  hasEducation: () => boolean;
 }

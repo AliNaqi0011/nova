@@ -14,6 +14,8 @@ const BuilderLayout = () => {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [isTemplatesOpen, setIsTemplatesOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isLeftPanelOpen, setIsLeftPanelOpen] = useState(true);
+  const [isRightPanelOpen, setIsRightPanelOpen] = useState(true);
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 builder-layout">
@@ -23,10 +25,26 @@ const BuilderLayout = () => {
       </div>
       <div className="flex-1 flex pt-16">
         {/* Editor Sidebar (Left) */}
-        {!isFullscreen && (
-          <aside className="hidden lg:block w-[22vw] min-w-[18rem] max-w-[24rem] bg-gray-900/50 border-r border-gray-800">
+        {!isFullscreen && isLeftPanelOpen && (
+          <aside className="hidden lg:block w-[30vw] min-w-[20rem] max-w-[28rem] bg-gray-900/50 border-r border-gray-800 relative">
+            <button
+              onClick={() => setIsLeftPanelOpen(false)}
+              className="absolute top-4 right-2 z-10 p-1 text-gray-400 hover:text-white transition-colors"
+            >
+              <PanelLeftOpen className="h-4 w-4 rotate-180" />
+            </button>
             <EditorLayout />
           </aside>
+        )}
+        
+        {/* Left Panel Toggle Button */}
+        {!isFullscreen && !isLeftPanelOpen && (
+          <button
+            onClick={() => setIsLeftPanelOpen(true)}
+            className="hidden lg:block fixed left-4 top-1/2 z-30 p-2 bg-gray-800 hover:bg-gray-700 text-white rounded-r-lg transition-colors"
+          >
+            <PanelLeftOpen className="h-4 w-4" />
+          </button>
         )}
 
         <main className="flex-1 flex flex-col overflow-hidden">
@@ -44,10 +62,26 @@ const BuilderLayout = () => {
         </main>
 
         {/* Templates Sidebar (Right) */}
-        {!isFullscreen && (
-          <aside className="hidden lg:block w-[22vw] min-w-[18rem] max-w-[24rem] bg-gray-900/50 border-l border-gray-800">
+        {!isFullscreen && isRightPanelOpen && (
+          <aside className="hidden lg:block w-[25vw] min-w-[18rem] max-w-[22rem] bg-gray-900/50 border-l border-gray-800 relative">
+            <button
+              onClick={() => setIsRightPanelOpen(false)}
+              className="absolute top-4 left-2 z-10 p-1 text-gray-400 hover:text-white transition-colors"
+            >
+              <PanelRightOpen className="h-4 w-4 rotate-180" />
+            </button>
             <TemplatesSideBar />
           </aside>
+        )}
+        
+        {/* Right Panel Toggle Button */}
+        {!isFullscreen && !isRightPanelOpen && (
+          <button
+            onClick={() => setIsRightPanelOpen(true)}
+            className="hidden lg:block fixed right-4 top-1/2 z-30 p-2 bg-gray-800 hover:bg-gray-700 text-white rounded-l-lg transition-colors"
+          >
+            <PanelRightOpen className="h-4 w-4" />
+          </button>
         )}
       </div>
 

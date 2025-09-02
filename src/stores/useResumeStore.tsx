@@ -17,7 +17,7 @@ import { useExperiences } from './experience';
 import { useVoluteeringStore } from './volunteering';
 
 export const useResumeStore = () => {
-  return {
+  const resumeData = {
     ...ResumeData,
     basics: useBasicDetails((state) => state.values),
     work: useExperiences((state) => state.experiences),
@@ -35,6 +35,21 @@ export const useResumeStore = () => {
     },
     activities: useActivity((state) => state.activities),
   };
+
+  // Auto-save to session storage
+  if (typeof window !== 'undefined') {
+    sessionStorage.setItem('nova_resume_data', JSON.stringify(resumeData));
+  }
+
+  return resumeData;
+};
+
+// Load resume data from session storage
+export const loadResumeFromSession = () => {
+  if (typeof window === 'undefined') return null;
+  
+  const saved = sessionStorage.getItem('nova_resume_data');
+  return saved ? JSON.parse(saved) : null;
 };
 
 /**

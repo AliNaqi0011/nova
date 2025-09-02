@@ -22,6 +22,27 @@ export const useExperiences = create<IExperienceStore>()((set, get) => ({
     );
   },
 
+  addEmpty: () => {
+    const emptyExperience: IExperienceItem = {
+      name: '',
+      position: '',
+      startDate: null,
+      endDate: null,
+      isWorkingHere: false,
+      summary: '',
+      highlights: [],
+      url: '',
+      website: '',
+      id: Date.now().toString(),
+      years: '',
+    };
+    set(
+      produce((state: IExperienceStore) => {
+        state.experiences.push(emptyExperience);
+      })
+    );
+  },
+
   get: (index: number) => {
     return get().experiences[index];
   },
@@ -69,5 +90,9 @@ export const useExperiences = create<IExperienceStore>()((set, get) => ({
         state.experiences[index] = updatedInfo;
       })
     );
+  },
+
+  hasExperience: () => {
+    return get().experiences.length > 0;
   },
 }));
