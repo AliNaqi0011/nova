@@ -1,5 +1,11 @@
+import withPWA from 'next-pwa';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { i18n } = require('./next-i18next.config');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  i18n,
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
@@ -43,4 +49,9 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withPWA({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+})(nextConfig);

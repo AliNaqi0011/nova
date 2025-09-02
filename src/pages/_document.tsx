@@ -24,6 +24,11 @@ export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
         <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Nova Resume" />
+        <link rel="apple-touch-icon" href="/icons/resume-icon.png" />
         <meta name="emotion-insertion-point" content="" />
         {/* Add your XPay script here if required */}
         {emotionStyleTags}

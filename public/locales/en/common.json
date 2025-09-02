@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "signup": "Sign Up"
+  },
+  "hero": {
+    "title": "Build Your Future, One Resume at a Time",
+    "subtitle": "Create professional ATS-friendly resumes with our modern resume builder",
+    "createResume": "Create Your Resume",
+    "exploreTemplates": "Explore Templates"
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit"
+  }
+}
